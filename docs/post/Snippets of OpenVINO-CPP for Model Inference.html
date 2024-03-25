@@ -12,8 +12,9 @@
         else if(localStorage.getItem("meek_theme")=="light"){document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="light";}
     </script>
     
-<meta name="description" content="Just for fun.">
-<title>Simpler, Better</title>
+<meta name="description" content="Snippets of OpenVINO-CPP for Model Inference">
+<title>Snippets of OpenVINO-CPP for Model Inference</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 </head>
 <style>
@@ -24,81 +25,104 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </style>
 
 <style>
-.avatar {transition: 0.8s;width:64px;height:64px;object-fit: cover;}
-.avatar:hover{transform: scale(1.15) rotate(360deg);}
-#header h1 a{color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;font-family:Monaco;margin-left:8px;}
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
-.title-right button{margin-right:8px;padding:16px;}
-.title-right .circle{padding: 14px 16px;}
-
-.SideNav{min-width: 360px;}
-.SideNav-icon{margin-right: 16px}
-.SideNav-item .Label{color: #fff;margin-left:8px;}
-.d-flex{min-width:0;}
-.listTitle{overflow:hidden;white-space:nowrap;text-overflow: ellipsis;max-width: 100%;}
-.listLabels{white-space:nowrap;}
-.listLabels object{max-height:16px;max-width:24px;}
-
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
 @media (max-width: 600px) {
     body {padding: 8px;}
-    .avatar {width:40px;height:40px;}
-    .blogTitle{display:none;}
-    #buttonRSS{display:none;}
-    .LabelTime{display:none;}
+    .postTitle{font-size:24px;}
 }
 </style>
 
 
+
+
 <body>
     <div id="header">
-<h1>
-    <img src="https://github.githubassets.com/favicons/favicon.svg" class="avatar circle" id="avatarImg" alt="avatar"><a class="blogTitle">Simpler, Better</a></h1>
+<h1 class="postTitle">Snippets of OpenVINO-CPP for Model Inference</h1>
 <div class="title-right">
-    <a href="https://lartpang.github.io/me/tag.html"><button id="buttonSearch" class="btn btn-invisible circle" title="搜索">
-        <svg class="octicon" width="16" height="16" >
-            <path id="pathSearch" fill-rule="evenodd"></path>
+    
+    <a href="https://lartpang.github.io/me"><button id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd" d="M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z"></path>
+        </svg>
+    </button></a>
+
+    
+    <a href="https://github.com/lartpang/me/issues/2" target="_blank"><button class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
         </svg>
     </button></a>
     
-    <a href="https://lartpang.github.io/me/rss.xml" target="_blank"><button id="buttonRSS" class="btn btn-invisible circle" title="RSS">
-        <svg class="octicon" width="16" height="16" >
-            <path id="pathRSS" fill-rule="evenodd"></path>
-        </svg>
-    </button></a>
-    <button class="btn btn-invisible circle" onclick="modeSwitch()" title="切换主题">
+
+    <button class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
         <svg class="octicon" width="16" height="16" >
             <path id="themeSwitch" fill-rule="evenodd"></path>
         </svg>
     </button>
+
 </div>
 </div>
     <div id="content">
-<div style="margin-bottom: 16px;">Just for fun.</div>
-<nav class="SideNav border">
-<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/Snippets%20of%20OpenVINO-CPP%20for%20Model%20Inference.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">Snippets of OpenVINO-CPP for Model Inference</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#3108A9"><object><a style="color:#fff" href="https://lartpang.github.io/me/tag.html#tool">tool</a></object></span>
-        <span class="Label LabelTime" style="background-color:#bc4c00">2024-03-25</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/Build%20OpenCV%20and%20OpenVINO%20for%20Windows%2010%20with%20VS%202022.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">Build OpenCV and OpenVINO for Windows 10 with VS 2022</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#3108A9"><object><a style="color:#fff" href="https://lartpang.github.io/me/tag.html#tool">tool</a></object></span>
-        <span class="Label LabelTime" style="background-color:#bc4c00">2024-03-25</span>
-    </div>
-</a>
-</nav>
+<div class="markdown-body" id="postBody"><h2>Header File</h2>
+<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>openvino/openvino.hpp<span class="pl-pds">&gt;</span></span></pre></div>
+<h2>Create Infer Request</h2>
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">void</span> <span class="pl-en">preprocessing</span>(std::shared_ptr&lt;ov::Model&gt; model) {
+  ov::preprocess::PrePostProcessor <span class="pl-smi">ppp</span>(model);
+  ppp.<span class="pl-c1">input</span>().<span class="pl-c1">tensor</span>().<span class="pl-c1">set_layout</span>(<span class="pl-s"><span class="pl-pds">"</span>NHWC<span class="pl-pds">"</span></span>); <span class="pl-c"><span class="pl-c">//</span> input data is NHWC from OpenCV Mat</span>
+  ppp.<span class="pl-c1">input</span>().<span class="pl-c1">model</span>().<span class="pl-c1">set_layout</span>(<span class="pl-s"><span class="pl-pds">"</span>NCHW<span class="pl-pds">"</span></span>); <span class="pl-c"><span class="pl-c">//</span> In the model, the layout is NCHW</span>
+  model = ppp.<span class="pl-c1">build</span>();
+}
+
+ov::Core core;
+
+<span class="pl-k">auto</span> model = core.read_model(model_path); # can use onnx <span class="pl-k">or</span> openvino<span class="pl-s"><span class="pl-pds">'</span>s xml file</span>
+<span class="pl-s">preprocessing(model);</span>
+<span class="pl-s"></span>
+<span class="pl-s">auto compiled_model = core.compile_model(model, "CPU");  // Or without `"CPU"`</span>
+<span class="pl-s">auto input_port = compiled_model.input();</span>
+<span class="pl-s">auto infer_request = compiled_model.create_infer_request();</span></pre></div>
+<h2>Input and Output</h2>
+<ul>
+<li>single input</li>
+</ul>
+<div class="highlight highlight-source-c++"><pre class="notranslate">infer_request.set_input_tensor(blob);
+infer_request.crop_net.infer();</pre></div>
+<ul>
+<li>single output</li>
+</ul>
+<div class="highlight highlight-source-c++"><pre class="notranslate">ov::Tensor single_output = <span class="pl-c1">this</span>-&gt;point_net.get_output_tensor(<span class="pl-c1">0</span>);</pre></div>
+<ul>
+<li>multiple outputs</li>
+</ul>
+<div class="highlight highlight-source-c++"><pre class="notranslate">ov::Tensor multi_outputs0 = <span class="pl-c1">this</span>-&gt;point_net.get_output_tensor(<span class="pl-c1">0</span>);
+ov::Tensor multi_outputs1 = <span class="pl-c1">this</span>-&gt;point_net.get_output_tensor(<span class="pl-c1">1</span>);</pre></div>
+<h2>OpenCV <code class="notranslate">cv::Mat</code> &lt;-&gt; OpenVINO <code class="notranslate">ov::Tensor</code></h2>
+<p>The key to these steps is the alignment of the data layout.</p>
+<h3><code class="notranslate">cv::Mat</code> -&gt; <code class="notranslate">ov::Tensor</code></h3>
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> converting the uint8 3-channels image mat to a float32 tensor</span>
+image.convertTo(image, CV_32FC3, <span class="pl-c1">1.0</span> / <span class="pl-c1">255</span>);
+<span class="pl-c"><span class="pl-c">//</span> NHWC layout as mentioned above. (N=1, C=3)</span>
+ov::Tensor <span class="pl-en">blob</span>(input_port.get_element_type(), input_port.get_shape(), (<span class="pl-k">float</span> *)image.data);</pre></div>
+<h3><code class="notranslate">ov::Tensor</code> -&gt; <code class="notranslate">cv::Mat</code></h3>
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> tensor follows the NCHW layout, so tensor_shape is (N,C,H,W)</span>
+ov::Shape tensor_shape = tensor.get_shape();
+<span class="pl-c"><span class="pl-c">//</span> Due to N=1 and C=1, we can directly assign all data to a new mat.</span>
+cv::Mat <span class="pl-en">mat</span>(tensor_shape[<span class="pl-c1">2</span>], tensor_shape[<span class="pl-c1">3</span>], CV_32F, tensor.data());</pre></div>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://github.com/OpenVINO-dev-contest/YOLOv7_OpenVINO_cpp-python/blob/main/cpp/main_preprocessing.cpp">https://github.com/OpenVINO-dev-contest/YOLOv7_OpenVINO_cpp-python/blob/main/cpp/main_preprocessing.cpp</a></li>
+<li><a href="https://github.com/openvinotoolkit/openvino/blob/master/samples/cpp/hello_classification/main.cpp">https://github.com/openvinotoolkit/openvino/blob/master/samples/cpp/hello_classification/main.cpp</a></li>
+</ul></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
 </div>
     <div id="footer">Copyright © <span id="year"></span><a href="https://lartpang.github.io/me"> Simpler, Better </a>
 <p>
@@ -151,19 +175,45 @@ console.log("\n %c Gmeek last %c https://github.com/Meekdai/Gmeek \n\n", "color:
 </script>
 
 <script>
-document.getElementById("pathSearch").setAttribute("d",IconList["search"]);
-document.getElementById("pathRSS").setAttribute("d",IconList["rss"]);
-iconTOP=document.getElementsByClassName("svgTop1");
-iconPost=document.getElementsByClassName("svgTop0");
-for(var i=0;i<iconTOP.length;i++){
-    iconTOP[i].setAttribute("d",IconList["upload"]);
-    iconTOP[i].parentNode.style.color="red";
-}
-for(var i=0;i<iconPost.length;i++){
-    iconPost[i].setAttribute("d",IconList["post"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","lartpang/me");
+    script.setAttribute("issue-term","title");
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else{script.setAttribute("theme","github-light");}
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
 }
 
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
 
 </script>
+
+
+
 
 </html>
