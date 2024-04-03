@@ -146,8 +146,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ul>
 <li>顺序形式：
 <ul>
-<li><strong>Serial Adapter 中</strong>最初提出了 NLP 领域适配器概念。每个 Transformer 块都通过添加两个适配器模块来增强，一个适配器模块分别位于自注意力层之后，另一个位于 FFN 层之后。随后的研究旨在解决与适配器层相关的额外计算成本。</li>
-<li><strong>AdapterFusion</strong>中提出了一种修改后的框架，其中仅在 FFN 层之后的 "Add &amp; Norm" 步骤之后插入适配器层，以提高计算效率。</li>
+<li><strong>Serial Adapter</strong> 中最初提出了 NLP 领域适配器概念。每个 Transformer 块都通过添加两个适配器模块来增强，一个适配器模块分别位于自注意力层之后，另一个位于 FFN 层之后。随后的研究旨在解决与适配器层相关的额外计算成本。</li>
+<li><strong>AdapterFusion</strong> 中提出了一种修改后的框架，其中仅在 FFN 层之后的 "Add &amp; Norm" 步骤之后插入适配器层，以提高计算效率。</li>
 </ul>
 </li>
 <li>并行形式：这避免前述顺序形式可能会降低模型的并行性，并需要在推理效率和准确性之间进行权衡的问题。
@@ -164,22 +164,22 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </ul>
 <p>为了提高适配器的性能和泛化能力，各种研究已经实现了多任务学习策略。</p>
 <ul>
-<li>**AdapterFusion **将所有预训练的适配器保留在模型中，并采用融合模块来合并多任务信息。</li>
-<li><strong>MerA</strong> 通过基于权重和激活的最佳传输将预训练的适配器合并为一个适配器。这种方法避免了引入任何额外的可训练参数，从而提高了计算效率。</li>
+<li><strong>AdapterFusion</strong> 将所有预训练的适配器保留在模型中，并采用融合模块来合并多任务信息。<br>
+*<strong>MerA</strong> 通过基于权重和激活的最佳传输将预训练的适配器合并为一个适配器。这种方法避免了引入任何额外的可训练参数，从而提高了计算效率。</li>
 <li><strong>Hyperformer</strong> 将多任务信息存储在共享的超网络中，该超网络根据任务和层 ID 嵌入生成特定于任务和层的适配器参数。给定一个新任务，只需要学习一个额外的任务嵌入，因此减少了训练参数的数量。</li>
 </ul>
 <h4>Soft Prompt</h4>
 <p>人们普遍认为，<strong>软提示的连续嵌入空间本质上包含更多信息，而不是通过上下文学习来优化离散 token 表示</strong>【When do prompting and prefix-tuning work? a theory of capabilities and limitations】。受到这个概念的启发，研究人员直接将可调整向量（称为软提示）附加到输入序列的开头。这可以表示如下：</p>
 <ul>
-<li><strong>Prefix-tuning</strong>将可学习向量添加到所有 Transformer 层中的 k 和 v 序列之前。为了确保优化过程中的稳定性，Prefix-tuning 采用了重参数化策略，利用 MLP 层来生成这些前缀向量，而不是直接对其进行优化。微调后，仅保存前缀向量以供推理。该技术在多项研究中得到了调整和改进。</li>
+<li><strong>Prefix-tuning</strong> 将可学习向量添加到所有 Transformer 层中的 k 和 v 序列之前。为了确保优化过程中的稳定性，Prefix-tuning 采用了重参数化策略，利用 MLP 层来生成这些前缀向量，而不是直接对其进行优化。微调后，仅保存前缀向量以供推理。该技术在多项研究中得到了调整和改进。</li>
 <li><strong>P-tuning v2</strong>删除了重参数化并将其用途扩展到更广泛的模型规模和 NLP 任务。</li>
-<li>**APT (Adaptive Prefix Tuning)**通过引入自适应门机制来控制每层中的前缀重要性来增强前缀调整。</li>
+<li><strong>APT (Adaptive Prefix Tuning)</strong> 通过引入自适应门机制来控制每层中的前缀重要性来增强前缀调整。</li>
 <li>同期的工作 P-tuning 和 Prompt-tuning 仅在初始词嵌入层,而不是所有层应用可学习向量，以提高训练和推理效率。需要强调的是，后者主要在大型模型中证明了其有效性，特别是那些拥有超过 110 亿个参数的模型。</li>
-<li>作为补充，Xprompt 通过分层结构修剪消除了负面提示标记，从而缩小了较小模型规模的性能差距。 并且 Universality and limitations of prompt tuning 中提供了一些针对即时调整的理论分析，证明了其在有限深度 Transformer 中的普遍性和局限性。</li>
-<li>**IDPG (InstanceDependent Prompt Generation)**通过使用轻量级提示生成器根据每个输入句子生成提示来改进提示调整。</li>
-<li>**LPT (Late Prompt Tuning)**还利用提示生成器来获取实例感知提示。与之前的工作不同，LPT 仅在中间层之后添加这些提示，而不是在初始层或所有层。这种策略性的布局消除了中间层以下的梯度计算，从而显着加快了训练速度。同时，LPT 可以提高整体性能，因为较短的反向传播路径保留了更多的任务相关信息。</li>
-<li>**SPT (Selective Prompt Tuning)**受 LPT 的启发，更深入地研究了提示插入策略的重要性。它在每一层中引入一个可学习的概率门控，来确定是使用从前一层传播的提示还是注入新生成的提示。</li>
-<li><strong>APrompt</strong>采用了另一种提示插入策略。除了在每个 Transformer 层的输入序列开头插入输入提示之外，APrompt 还为自注意力模块中的相应的 Q、K、V 矩阵添加额外的可学习的 prompt，以学习新的注意力模式。此外，APrompt 还结合了任务特定头的学习。</li>
+<li><strong>Xprompt</strong> 作为补充，通过分层结构修剪消除了负面提示标记，从而缩小了较小模型规模的性能差距。 并且 Universality and limitations of prompt tuning 中提供了一些针对即时调整的理论分析，证明了其在有限深度 Transformer 中的普遍性和局限性。</li>
+<li><strong>IDPG (InstanceDependent Prompt Generation)</strong> 通过使用轻量级提示生成器根据每个输入句子生成提示来改进提示调整。</li>
+<li><strong>LPT (Late Prompt Tuning)</strong> 还利用提示生成器来获取实例感知提示。与之前的工作不同，LPT 仅在中间层之后添加这些提示，而不是在初始层或所有层。这种策略性的布局消除了中间层以下的梯度计算，从而显着加快了训练速度。同时，LPT 可以提高整体性能，因为较短的反向传播路径保留了更多的任务相关信息。</li>
+<li><strong>SPT (Selective Prompt Tuning)</strong> 受 LPT 的启发，更深入地研究了提示插入策略的重要性。它在每一层中引入一个可学习的概率门控，来确定是使用从前一层传播的提示还是注入新生成的提示。</li>
+<li><strong>APrompt</strong> 采用了另一种提示插入策略。除了在每个 Transformer 层的输入序列开头插入输入提示之外，APrompt 还为自注意力模块中的相应的 Q、K、V 矩阵添加额外的可学习的 prompt，以学习新的注意力模式。此外，APrompt 还结合了任务特定头的学习。</li>
 </ul>
 <p>软提示的概念已被用于各种下游任务，尽管它们的训练可能容易不稳定且收敛缓慢。</p>
 <ul>
@@ -195,8 +195,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/819e7acde42b11068c508d3a01afb2a7b9a706d7018d149057e9b46d34add055/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731313837353636343232392d34653539636337322d393361622d343538612d616465322d3933623264396131613831312e706e6723617665726167654875653d25323365656564653826636c69656e7449643d7536333331343630632d653935382d342666726f6d3d7061737465266865696768743d3235302669643d753838653663306434266f726967696e4865696768743d343939266f726967696e57696474683d31303231266f726967696e616c547970653d62696e61727926726174696f3d3226726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d3732363931267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7537616535643636612d353332342d343139312d623066392d3263326538333536653930267469746c653d2677696474683d3531302e35"><img src="https://camo.githubusercontent.com/819e7acde42b11068c508d3a01afb2a7b9a706d7018d149057e9b46d34add055/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731313837353636343232392d34653539636337322d393361622d343538612d616465322d3933623264396131613831312e706e6723617665726167654875653d25323365656564653826636c69656e7449643d7536333331343630632d653935382d342666726f6d3d7061737465266865696768743d3235302669643d753838653663306434266f726967696e4865696768743d343939266f726967696e57696474683d31303231266f726967696e616c547970653d62696e61727926726174696f3d3226726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d3732363931267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7537616535643636612d353332342d343139312d623066392d3263326538333536653930267469746c653d2677696474683d3531302e35" alt="image.png" data-canonical-src="https://cdn.nlark.com/yuque/0/2024/png/192314/1711875664229-4e59cc72-93ab-458a-ade2-93b2d9a1a811.png#averageHue=%23eeede8&amp;clientId=u6331460c-e958-4&amp;from=paste&amp;height=250&amp;id=u88e6c0d4&amp;originHeight=499&amp;originWidth=1021&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=72691&amp;status=done&amp;style=none&amp;taskId=u7ae5d66a-5324-4191-b0f9-2c2e8356e90&amp;title=&amp;width=510.5" style="max-width: 100%;"></a></p>
 <p>除了上面提到的方法之外，还出现了其他在微调过程中策略性地合并附加参数的方法。</p>
 <ul>
-<li>**(IA)**<strong>3</strong> 引入了三个一维的可学习重缩放向量，分别重新缩放 K、V 和 FFN 的激活。而 Q 和 K 的尺度向量可以无缝地集成到 Q 和 K 的权重矩阵中。这种集成有效地消除了推理过程中的额外计算成本。</li>
-<li><strong>SSF</strong>，与之类似，也对模型激活执行线性变换。在预训练模型中的每个操作（即 MSA、FFN 和层归一化）之后，注入 SSF-ADA 层，该层对操作生成的特征执行缩放和移位。在微调过程中，只有 SSF-ADA 层可以更新。而在推理过程中，与 (IA)3 类似，这些 SSF-ADA 层可以合并到模型权重中，因此不会产生额外的推理开销。</li>
+<li><strong>(IA)$^3$</strong> 引入了三个一维的可学习重缩放向量，分别重新缩放 K、V 和 FFN 的激活。而 Q 和 K 的尺度向量可以无缝地集成到 Q 和 K 的权重矩阵中。这种集成有效地消除了推理过程中的额外计算成本。</li>
+<li><strong>SSF</strong> 与之类似，也对模型激活执行线性变换。在预训练模型中的每个操作（即 MSA、FFN 和层归一化）之后，注入 SSF-ADA 层，该层对操作生成的特征执行缩放和移位。在微调过程中，只有 SSF-ADA 层可以更新。而在推理过程中，与 (IA)3 类似，这些 SSF-ADA 层可以合并到模型权重中，因此不会产生额外的推理开销。</li>
 <li><strong>IPA (InferenceTime Policy Adapters)</strong> 提供了一种新颖的方法来使 LLM（例如 GPT-4）与用户特定的要求保持一致，而无需修改基本模型的参数。当处理参数非常大且通常无法直接访问的模型时，这一点尤其重要。IPA 通过在解码阶段将基本 LLM（基本策略）的输出分布与较小规模模型（适配器策略）的输出分布相结合（通过乘法和归一化）来实现这一目标。在训练过程中，策略适配器的参数使用强化学习进行微调，而基本策略的参数保持固定。在推理过程中，IPA 使用基本模型和经过训练的策略适配器的组合分布进行解码，对其进行定制以满足特定的用户定义标准。</li>
 </ul>
 <h3>Selective PEFT</h3>
@@ -205,13 +205,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ul>
 <li>非结构化掩码
 <ul>
-<li><strong>Diff pruning</strong>是一项代表性工作，它在微调过程中将可学习的二进制掩码应用于模型权重。为了实现参数效率，掩模通过 L0 范数惩罚的可微近似进行正则化。</li>
+<li><strong>Diff pruning</strong> 是一项代表性工作，它在微调过程中将可学习的二进制掩码应用于模型权重。为了实现参数效率，掩模通过 L0 范数惩罚的可微近似进行正则化。</li>
 <li><strong>PaFi</strong> 只需选择具有最小绝对量级的模型参数作为可训练的。</li>
 <li><strong>FishMask</strong> 使用近似 Fisher 信息确定参数重要性。然后它根据此信息选择前 k 个参数以形成掩码。</li>
 <li><strong>Fish-Dip</strong> 也使用 Fisher 信息来计算掩码，但掩码将在每个训练周期动态重新计算。</li>
 <li><strong>LT-SFT</strong> 引入了另一种技术来确定参数重要性，该技术受到彩票假设的启发，其中选择在初始微调阶段变化最大的参数子集来形成掩码。</li>
 <li><strong>SAM</strong>【On the effectiveness of parameter-efficient fine-tuning】提出了一种二阶近似方法，该方法用可分析求解的优化函数来近似原始问题，以帮助确定参数掩码。</li>
-<li><strong>Child-tuning</strong>提出了两种在每次训练迭代期间选择子网络的方法，其中仅可以更新该子网络内的参数。</li>
+<li><strong>Child-tuning</strong> 提出了两种在每次训练迭代期间选择子网络的方法，其中仅可以更新该子网络内的参数。</li>
 </ul>
 </li>
 <li>结构化掩码：上述非结构化参数掩码会导致非零掩码分布不均匀，并在实现 PEFT 时降低硬件效率。以规则模式组织参数掩码可以提高训练期间的计算和硬件效率。因此各种结构化选择性 PEFT 技术得到了广泛的研究。
@@ -411,7 +411,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li><strong>T2I-Adapter</strong> 引入了一种轻量级适配器模型来对齐外部控制信号与文本到图像扩散模型的内部知识。该适配器可以通过 structural control (e.g., sketch, depth map, semantic segmentation map, and keypose), color control (e.g., hue and color distribution) 以及通过组合多个适配器来集成各种控制来，从而实现精确操作。</li>
 </ul>
 <h4>Customized Generation</h4>
-<p>**文本到图像扩散模型的有效性受到用户通过文本阐明所需目标的能力的限制。**例如，很难描述一个大规模模型训练中不会遇到的创新玩具车的精确特征。因此，定制生成的目标是使模型能够从用户提供的最小图像集中掌握新概念。</p>
+<p><strong>文本到图像扩散模型的有效性受到用户通过文本阐明所需目标的能力的限制。</strong><br>
+例如，很难描述一个大规模模型训练中不会遇到的创新玩具车的精确特征。因此，定制生成的目标是使模型能够从用户提供的最小图像集中掌握新概念。</p>
 <ul>
 <li><strong>Textual Inversion</strong> 通过找到一个新的伪词（类似于 soft prompt）来解决这个问题，该伪词代表预训练文本到图像扩散的文本嵌入空间中的新的特定概念。伪词通过扩散模型中的原始优化目标进行优化，给定描述概念的小图像集（通常为 3-5 个图像），并且预训练模型保持不变（untouched）。在推理过程中，该伪词可以像任何其他单词一样对待，并与其他文本查询组成（例如，"&lt;伪词&gt;在海滩上的照片 "）。</li>
 <li><strong>Custom Diffusion</strong> 解决了更具挑战性的设置：多个概念的组合微调。它仅微调从文本到注意层中的 K 和 Q 的映射权重，这在多概念学习场景中产生了卓越的性能。此外，在微调过程中，自定义扩散通过引入一小组带有与目标类似描述的真实图像来防止模型遗忘，同时采用增强来加快收敛速度并改进结果。</li>
