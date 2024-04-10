@@ -65,7 +65,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><ul>
+<div class="markdown-body" id="postBody"><h1>CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation</h1>
+<ul>
 <li>论文：<a href="https://arxiv.org/abs/2403.00712" rel="nofollow">https://arxiv.org/abs/2403.00712</a></li>
 <li>代码：<a href="https://github.com/baegwangbin/DSINE">https://github.com/baegwangbin/DSINE</a></li>
 </ul>
@@ -77,9 +78,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>总的来说，这篇论文通过提出新的归纳偏置和方法，成功地改善了表面法线估计的准确性和平滑性，并提高了模型的泛化能力。</p>
 <blockquote>
 <p><strong>表面法线估计</strong></p>
-<p>表面法线估计是一种计算机视觉任务，旨在从单个RGB图像中估计出每个像素点的表面法线。表面法线是一个三维向量，表示在给定像素点上垂直于表面的方向。这个任务在许多计算机视觉应用中非常重要，如三维重建、场景理解、物体识别等。<br>
+<p>表面法线估计是一种计算机视觉任务，旨在从单个 RGB 图像中估计出每个像素点的表面法线。表面法线是一个三维向量，表示在给定像素点上垂直于表面的方向。这个任务在许多计算机视觉应用中非常重要，如三维重建、场景理解、物体识别等。<br>
 其提供了一种理解场景几何结构的方法。通过估计表面法线，我们可以获取到场景中物体表面的局部属性，如平面的法线方向、曲面的光滑程度等。这些信息对于进一步理解场景和进行后续处理（如深度估计、物体识别等）非常有用。<br>
-表面法线估计通常通过深度学习方法实现。通过对大量带有标注的表面法线图像进行训练，神经网络可以学习到一种从RGB图像中估计表面法线的方法。然而，由于表面法线估计任务的输出空间是三维的（即单位球面），因此存在一些挑战，如输出空间的非一致性、难以收集带有标注的数据等。</p>
+表面法线估计通常通过深度学习方法实现。通过对大量带有标注的表面法线图像进行训练，神经网络可以学习到一种从 RGB 图像中估计表面法线的方法。然而，由于表面法线估计任务的输出空间是三维的（即单位球面），因此存在一些挑战，如输出空间的非一致性、难以收集带有标注的数据等。</p>
 </blockquote></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
