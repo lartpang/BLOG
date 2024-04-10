@@ -9,7 +9,26 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts">
+<meta name="description" content="# CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts
+
+* 论文：<https://arxiv.org/bas/2404.00741>
+* 代码：<https://github.com/uncbiag/SegNext>
+
+![image](https://github.com/lartpang/blog/assets/26847524/70061347-789b-4334-bc13-012d1c713723)
+
+这篇文章主要研究了如何在保持低延迟的同时提高交互式图像分割的质量，并实现多种提示的兼容性。">
+<meta property="og:title" content="CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts">
+<meta property="og:description" content="# CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts
+
+* 论文：<https://arxiv.org/bas/2404.00741>
+* 代码：<https://github.com/uncbiag/SegNext>
+
+![image](https://github.com/lartpang/blog/assets/26847524/70061347-789b-4334-bc13-012d1c713723)
+
+这篇文章主要研究了如何在保持低延迟的同时提高交互式图像分割的质量，并实现多种提示的兼容性。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://lartpang.github.io/blog/post/CVPR%202024%20-%20Rethinking%20Interactive%20Image%20Segmentationwith%20Low%20Latency%2C%20High%20Quality%2C%20and%20Diverse%20Prompts.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
 <title>CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts</title>
 
 
@@ -70,9 +89,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>论文：<a href="https://arxiv.org/bas/2404.00741" rel="nofollow">https://arxiv.org/bas/2404.00741</a></li>
 <li>代码：<a href="https://github.com/uncbiag/SegNext">https://github.com/uncbiag/SegNext</a></li>
 </ul>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/70061347-789b-4334-bc13-012d1c713723"><img src="https://github.com/lartpang/blog/assets/26847524/70061347-789b-4334-bc13-012d1c713723" alt="image" style="max-width: 100%;"></a></p>
+<p><img src="https://github.com/lartpang/blog/assets/26847524/70061347-789b-4334-bc13-012d1c713723" alt="image" style="max-width: 100%;"></p>
 <p>这篇文章主要研究了如何在保持低延迟的同时提高交互式图像分割的质量，并实现多种提示的兼容性。</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/9ecd883a-f0d5-46ed-a9ce-77426d7cae07"><img src="https://github.com/lartpang/blog/assets/26847524/9ecd883a-f0d5-46ed-a9ce-77426d7cae07" alt="image" style="max-width: 100%;"></a></p>
+<p><img src="https://github.com/lartpang/blog/assets/26847524/9ecd883a-f0d5-46ed-a9ce-77426d7cae07" alt="image" style="max-width: 100%;"></p>
 <p>研究人员提出了一种名为 SegNext 的方法，它重新引入了专家模型中常用的密集视觉提示的表示和融合方式，以促进高质量的分割。该方法将五种不同的视觉提示（包括点击、框、涂鸦、多边形和遮罩）统一在一个密集图上。</p>
 <p>所提方法也支持文本提示，即使用 CLIP 来将文本提示编码成向量，并通过交叉注意力块将其与图像嵌入融合。尽管文本提示的性能可能具有很大的提升空间，但是配合视觉提示仍然展现出了具有希望的表现。</p>
 <p>实验结果显示，<strong>密集表示和融合视觉提示</strong>是实现高质量分割的关键设计选择。与现有的专家模型相比，该方法能够在保持低延迟的同时实现更好的分割效果。</p>
@@ -141,6 +160,12 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+// importing the medium-zoom library for <img>
+    let medium_zoom_script = document.createElement('script');
+    medium_zoom_script.src = 'https://unpkg.com/medium-zoom/dist/medium-zoom.min.js';
+    // only impose medium-zoom to images in the postBody
+    medium_zoom_script.onload = function() {mediumZoom('#postBody img');};
+    document.head.appendChild(medium_zoom_script);
 cmButton=document.getElementById("cmButton");
     span=document.createElement("span");
     span.setAttribute("class","Counter");

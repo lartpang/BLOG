@@ -9,7 +9,22 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="CVPR 2024 - Efficient Deformable ConvNets: Rethinking Dynamic and Sparse Operator for Vision Applications">
+<meta name="description" content="# CVPR 2024 - Efficient Deformable ConvNets - Rethinking Dynamic and Sparse Operator for Vision Applications
+
+* 论文：<https://arxiv.org/abs/2401.06197>
+* 代码：<https://github.com/OpenGVLab/DCNv4>
+
+本文提出了高效的 DCNv4，这是一个专为视觉应用设计的高效有效的运算符。">
+<meta property="og:title" content="CVPR 2024 - Efficient Deformable ConvNets: Rethinking Dynamic and Sparse Operator for Vision Applications">
+<meta property="og:description" content="# CVPR 2024 - Efficient Deformable ConvNets - Rethinking Dynamic and Sparse Operator for Vision Applications
+
+* 论文：<https://arxiv.org/abs/2401.06197>
+* 代码：<https://github.com/OpenGVLab/DCNv4>
+
+本文提出了高效的 DCNv4，这是一个专为视觉应用设计的高效有效的运算符。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://lartpang.github.io/blog/post/CVPR%202024%20-%20Efficient%20Deformable%20ConvNets-%20Rethinking%20Dynamic%20and%20Sparse%20Operator%20for%20Vision%20Applications.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
 <title>CVPR 2024 - Efficient Deformable ConvNets: Rethinking Dynamic and Sparse Operator for Vision Applications</title>
 
 
@@ -135,6 +150,12 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+// importing the medium-zoom library for <img>
+    let medium_zoom_script = document.createElement('script');
+    medium_zoom_script.src = 'https://unpkg.com/medium-zoom/dist/medium-zoom.min.js';
+    // only impose medium-zoom to images in the postBody
+    medium_zoom_script.onload = function() {mediumZoom('#postBody img');};
+    document.head.appendChild(medium_zoom_script);
 
 function openComments(){
     cm=document.getElementById("comments");
