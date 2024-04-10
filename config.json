@@ -2,5 +2,6 @@
     "title":"Simpler, Better",
     "subTitle":"Just for fun.",
     "avatarUrl":"https://github.githubassets.com/favicons/favicon.svg",
-    "GMEEK_VERSION":"last"
+    "GMEEK_VERSION":"last",
+    "useMediumZoom": 1,
 }
