@@ -83,13 +83,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>大量食材之间的类别差异、新食材的出现以及与大型食物分割数据集相关的高注释成本。现有方法主要采用封闭词汇和静态文本嵌入设置，往往无法有效处理食材，特别是新颖和多样化的食材。为此本文提出了一种新的开放词汇食品图像分割（Open-Vocabulary Food Image Segmentation）框架 OVFoodSeg，通过采用图像感知文本表示来提升开放词汇食品图像分割的能力。这一任务和框架旨在解决现有方法在处理新和多样化的食材时的不足。</p>
 <p>在整合视觉语言模型 CLIP 的基础上，为了处理食物配料视觉表征中大的类内方差，该方法集成了两个创新模块，即图像到文本学习器 FoodLearner 和图像感知的文本编码器 Image-Informed Text Encoder，丰富了文本嵌入与图像特定的信息，从而有效地将知识从已知的食材转移到新的食材。</p>
 <p>OVFoodSeg 的训练过程分为两个阶段：</p>
-<p><img src="https://github.com/lartpang/blog/assets/26847524/7d86100e-568c-4a81-92e5-1e26689b1193" alt="image" style="max-width: 100%;"></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/7d86100e-568c-4a81-92e5-1e26689b1193"><img src="https://github.com/lartpang/blog/assets/26847524/7d86100e-568c-4a81-92e5-1e26689b1193" alt="image" style="max-width: 100%;"></a></p>
 <p>第一阶段是预训练 FoodLearner，使其具备将视觉信息与特定相关食物的文本表征对齐的能力。利用视觉表征利用交叉注意力层更新可学习的 query token，文本信息联合生成文本表征。</p>
 <ul>
 <li>FoodLearner 使用预训练的 BLIP2 中的 qformer 来初始化。训练时配合 query token 输入的可以使图像嵌入，也可以是文本嵌入，甚至可以只有文本嵌入。多种输入形式实现对于这一组件的联合优化。</li>
 <li>使用 Recipe-1M+ 数据集训练。其中的成分过于详细，类似调料等虽然是食谱的组成部分，但由于它们在图像中是不可见的，因此会造成数据噪声。为了提高配料数据的质量，本文通过特定的 prompt 让 ChatGPT 为每个菜谱获取最直观的配料。然后利用清理后的成分列表作为文本信息，与相应的图像配对后对 FoodLearner 模块进行预训练。</li>
 </ul>
-<p><img src="https://github.com/lartpang/blog/assets/26847524/b53ac26c-7911-44f0-acc6-7e6c3efd31d9" alt="image" style="max-width: 100%;"></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/b53ac26c-7911-44f0-acc6-7e6c3efd31d9"><img src="https://github.com/lartpang/blog/assets/26847524/b53ac26c-7911-44f0-acc6-7e6c3efd31d9" alt="image" style="max-width: 100%;"></a></p>
 <p>第二阶段是用于分割任务的学习阶段，调整 FoodLearner 和 Image-Informed Text Encoder 以适应分割任务。</p>
 <ul>
 <li>FoodLearner 基于可学习的 query token 与图像特征的交互获得文本诱导的视觉表征，这与 CLIP 文本编码器提出的文本表征直接相加，之后直接送入现有的开集分割算法 SAN 的管线中。</li>
@@ -170,12 +170,7 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-// importing the medium-zoom library for <img>
-    let medium_zoom_script = document.createElement('script');
-    medium_zoom_script.src = 'https://unpkg.com/medium-zoom/dist/medium-zoom.min.js';
-    // only impose medium-zoom to images in the postBody
-    medium_zoom_script.onload = function() {mediumZoom('#postBody img');};
-    document.head.appendChild(medium_zoom_script);
+
 
 function openComments(){
     cm=document.getElementById("comments");

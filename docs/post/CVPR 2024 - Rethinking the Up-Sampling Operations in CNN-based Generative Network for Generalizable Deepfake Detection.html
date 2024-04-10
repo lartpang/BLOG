@@ -89,7 +89,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>论文：<a href="https://arxiv.org/abs/2312.10461" rel="nofollow">https://arxiv.org/abs/2312.10461</a></li>
 <li>代码：<a href="https://github.com/chuangchuangtan/NPR-DeepfakeDetection">https://github.com/chuangchuangtan/NPR-DeepfakeDetection</a></li>
 </ul>
-<p><img src="https://github.com/lartpang/blog/assets/26847524/0c7f34a2-8f24-458e-84c9-37b8253deb5c" alt="image" style="max-width: 100%;"></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/0c7f34a2-8f24-458e-84c9-37b8253deb5c"><img src="https://github.com/lartpang/blog/assets/26847524/0c7f34a2-8f24-458e-84c9-37b8253deb5c" alt="image" style="max-width: 100%;"></a></p>
 <p>本文主要研究了基于 CNN 的生成网络中的上采样操作，以实现通用的深度伪造检测。研究者发现，上采样操作不仅可以产生基于频率的伪造 artifact，还可以产生更广义的伪造 artifact。研究者提出了邻近像素关系（NPR）的概念，用作训练检测模型的 artifact 表示。研究者通过在包含 28 种不同生成模型样本的开放世界数据集上进行的全面分析，验证了所提出 NPR 的有效性。</p>
 <ul>
 <li>上采样操作的研究：研究者发现，上采样操作在常见的生成模型中普遍存在，这些操作不仅在频率域上影响整个图像，还在像素级上留下痕迹。</li>
@@ -162,12 +162,7 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-// importing the medium-zoom library for <img>
-    let medium_zoom_script = document.createElement('script');
-    medium_zoom_script.src = 'https://unpkg.com/medium-zoom/dist/medium-zoom.min.js';
-    // only impose medium-zoom to images in the postBody
-    medium_zoom_script.onload = function() {mediumZoom('#postBody img');};
-    document.head.appendChild(medium_zoom_script);
+
 
 function openComments(){
     cm=document.getElementById("comments");
