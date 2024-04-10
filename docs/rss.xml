@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Simpler, Better</title><link>https://lartpang.github.io/blog</link><description>Just for fun.</description><copyright>Simpler, Better</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://lartpang.github.io/blog</link></image><lastBuildDate>Wed, 10 Apr 2024 09:40:13 +0000</lastBuildDate><managingEditor>Simpler, Better</managingEditor><ttl>60</ttl><webMaster>Simpler, Better</webMaster><item><title>CVPR 2024 - Open-Vocabulary Video Anomaly Detection</title><link>https://lartpang.github.io/blog/post/CVPR%202024%20-%20Open-Vocabulary%20Video%20Anomaly%20Detection.html</link><description># CVPR 2024 - Open-Vocabulary Video Anomaly Detection&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Simpler, Better</title><link>https://lartpang.github.io/blog</link><description>Just for fun.</description><copyright>Simpler, Better</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://lartpang.github.io/blog</link></image><lastBuildDate>Wed, 10 Apr 2024 09:43:18 +0000</lastBuildDate><managingEditor>Simpler, Better</managingEditor><ttl>60</ttl><webMaster>Simpler, Better</webMaster><item><title>CVPR 2024 - Open-Vocabulary Video Anomaly Detection</title><link>https://lartpang.github.io/blog/post/CVPR%202024%20-%20Open-Vocabulary%20Video%20Anomaly%20Detection.html</link><description># CVPR 2024 - Open-Vocabulary Video Anomaly Detection&#13;
 &#13;
 * 论文：&lt;https://arxiv.org/abs/2311.07042&gt;&#13;
 &#13;
@@ -10,8 +10,10 @@
 * 论文：&lt;https://arxiv.org/abs/2404.05687&gt;&#13;
 * 代码：&lt;https://github.com/mlvlab/RALF&gt;&#13;
 &#13;
-本文提出了一种新的开放词汇目标检测方法 Retrieval-Augmented Losses and visual Features (RALF)。</description><guid isPermaLink="true">https://lartpang.github.io/blog/post/CVPR%202024%20-%20Retrieval-Augmented%20Open-Vocabulary%20Object%20Detection.html</guid><pubDate>Wed, 10 Apr 2024 07:50:42 +0000</pubDate></item><item><title>CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts</title><link>https://lartpang.github.io/blog/post/CVPR%202024%20-%20Rethinking%20Interactive%20Image%20Segmentationwith%20Low%20Latency%2C%20High%20Quality%2C%20and%20Diverse%20Prompts.html</link><description>- 论文：https://arxiv.org/bas/2404.00741&#13;
-- 代码：https://github.com/uncbiag/SegNext&#13;
+本文提出了一种新的开放词汇目标检测方法 Retrieval-Augmented Losses and visual Features (RALF)。</description><guid isPermaLink="true">https://lartpang.github.io/blog/post/CVPR%202024%20-%20Retrieval-Augmented%20Open-Vocabulary%20Object%20Detection.html</guid><pubDate>Wed, 10 Apr 2024 07:50:42 +0000</pubDate></item><item><title>CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts</title><link>https://lartpang.github.io/blog/post/CVPR%202024%20-%20Rethinking%20Interactive%20Image%20Segmentationwith%20Low%20Latency%2C%20High%20Quality%2C%20and%20Diverse%20Prompts.html</link><description># CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts&#13;
+&#13;
+* 论文：&lt;https://arxiv.org/bas/2404.00741&gt;&#13;
+* 代码：&lt;https://github.com/uncbiag/SegNext&gt;&#13;
 &#13;
 ![image](https://github.com/lartpang/blog/assets/26847524/70061347-789b-4334-bc13-012d1c713723)&#13;
 &#13;
