@@ -65,18 +65,19 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><ul>
+<div class="markdown-body" id="postBody"><h1>CVPR 2024 - Efficient Deformable ConvNets - Rethinking Dynamic and Sparse Operator for Vision Applications</h1>
+<ul>
 <li>论文：<a href="https://arxiv.org/abs/2401.06197" rel="nofollow">https://arxiv.org/abs/2401.06197</a></li>
 <li>代码：<a href="https://github.com/OpenGVLab/DCNv4">https://github.com/OpenGVLab/DCNv4</a></li>
 </ul>
-<p>本文提出了高效的DCNv4，这是一个专为视觉应用设计的高效有效的运算符。</p>
-<p>DCNv4通过两个关键增强解决了其前身DCNv3的限制：</p>
+<p>本文提出了高效的 DCNv4，这是一个专为视觉应用设计的高效有效的运算符。</p>
+<p>DCNv4 通过两个关键增强解决了其前身 DCNv3 的限制：</p>
 <ul>
-<li>在空间聚合中去除softmax归一化，以增强其动态特性和表达能力；</li>
-<li>优化内存访问，最小化冗余操作以加快速度。通过对现有实现进行指令级内核剖析，发现DCNv3已经很轻量级，计算成本不到1%，而内存访问成本占了99%。因此重新审视运算符实现，并发现许多内存访问在DCN的前向过程中是冗余的，可以通过优化来实现更快的DCNv4实现。</li>
+<li>在空间聚合中去除 softmax 归一化，以增强其动态特性和表达能力；</li>
+<li>优化内存访问，最小化冗余操作以加快速度。通过对现有实现进行指令级内核剖析，发现 DCNv3 已经很轻量级，计算成本不到 1%，而内存访问成本占了 99%。因此重新审视运算符实现，并发现许多内存访问在 DCN 的前向过程中是冗余的，可以通过优化来实现更快的 DCNv4 实现。</li>
 </ul>
-<p>这些改进使得DCNv4与DCNv3相比显示出显著更快的收敛速度，并且处理速度大大提高，DCNv4的速度提高了三倍以上。</p>
-<p>将DCNv4集成到其他现代骨干架构中，包括ConvNeXt和ViT，替换深度可分离卷积和密集自注意力层。值得注意的是，在没有进行任何超参数调整的情况下，这些经过精心设计的网络在使用DCNv4时表现得相当出色，同时速度快得多，显示了动态、稀疏的DCNv4的有效性和效率。</p></div>
+<p>这些改进使得 DCNv4 与 DCNv3 相比显示出显著更快的收敛速度，并且处理速度大大提高，DCNv4 的速度提高了三倍以上。</p>
+<p>将 DCNv4 集成到其他现代骨干架构中，包括 ConvNeXt 和 ViT，替换深度可分离卷积和密集自注意力层。值得注意的是，在没有进行任何超参数调整的情况下，这些经过精心设计的网络在使用 DCNv4 时表现得相当出色，同时速度快得多，显示了动态、稀疏的 DCNv4 的有效性和效率。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
