@@ -474,7 +474,12 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-
+// importing the medium-zoom library for <img>
+    let medium_zoom_script = document.createElement('script');
+    medium_zoom_script.src = 'https://unpkg.com/medium-zoom/dist/medium-zoom.min.js';
+    // only impose medium-zoom to images in the postBody
+    medium_zoom_script.onload = function() {mediumZoom('#postBody img');};
+    document.head.appendChild(medium_zoom_script);
 
 function openComments(){
     cm=document.getElementById("comments");

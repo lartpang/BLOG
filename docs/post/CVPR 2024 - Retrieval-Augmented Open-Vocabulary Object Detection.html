@@ -96,8 +96,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </thead>
 <tbody>
 <tr>
-<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/6b98d3d3-7a4c-4083-9984-bb29e83fd7fe"><img src="https://github.com/lartpang/blog/assets/26847524/6b98d3d3-7a4c-4083-9984-bb29e83fd7fe" alt="image" style="max-width: 100%;"></a></td>
-<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/dceade62-4d39-4246-a6cd-edc389575e45"><img src="https://github.com/lartpang/blog/assets/26847524/dceade62-4d39-4246-a6cd-edc389575e45" alt="image" style="max-width: 100%;"></a></td>
+<td><img src="https://github.com/lartpang/blog/assets/26847524/6b98d3d3-7a4c-4083-9984-bb29e83fd7fe" alt="image" style="max-width: 100%;"></td>
+<td><img src="https://github.com/lartpang/blog/assets/26847524/dceade62-4d39-4246-a6cd-edc389575e45" alt="image" style="max-width: 100%;"></td>
 </tr>
 </tbody>
 </table>
@@ -163,7 +163,12 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-
+// importing the medium-zoom library for <img>
+    let medium_zoom_script = document.createElement('script');
+    medium_zoom_script.src = 'https://unpkg.com/medium-zoom/dist/medium-zoom.min.js';
+    // only impose medium-zoom to images in the postBody
+    medium_zoom_script.onload = function() {mediumZoom('#postBody img');};
+    document.head.appendChild(medium_zoom_script);
 
 function openComments(){
     cm=document.getElementById("comments");

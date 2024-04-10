@@ -86,7 +86,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ul>
 <li>论文：<a href="https://arxiv.org/abs/2311.07042" rel="nofollow">https://arxiv.org/abs/2311.07042</a></li>
 </ul>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/39e42922-523a-4f5f-b350-23fa5164eeab"><img src="https://github.com/lartpang/blog/assets/26847524/39e42922-523a-4f5f-b350-23fa5164eeab" alt="image" style="max-width: 100%;"></a></p>
+<p><img src="https://github.com/lartpang/blog/assets/26847524/39e42922-523a-4f5f-b350-23fa5164eeab" alt="image" style="max-width: 100%;"></p>
 <p>这篇文章主要研究了开放词汇视频异常检测（openvocabulary video anomaly detection，OVVAD）的问题，这是一个具有挑战性但实际重要的问题。</p>
 <p>传统方法不能处理开放词汇场景下的视频异常检测：</p>
 <ul>
@@ -94,7 +94,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>此外，传统方法往往难以充分挖掘和利用视频数据中的时空信息以及外部知识，从而限制了其在开放词汇场景下的性能。</li>
 </ul>
 <p>该研究提出了一种基于预训练大型模型的解决方案。利用语言图像预训练模型，如 CLIP 作为基础，得益于其强大的零样本泛化能力。</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/e861f10f-f36a-4925-9047-769bdb4578c0"><img src="https://github.com/lartpang/blog/assets/26847524/e861f10f-f36a-4925-9047-769bdb4578c0" alt="image" style="max-width: 100%;"></a></p>
+<p><img src="https://github.com/lartpang/blog/assets/26847524/e861f10f-f36a-4925-9047-769bdb4578c0" alt="image" style="max-width: 100%;"></p>
 <p>具体而言，<strong>将开放词汇视频异常检测任务分解为类无关检测（class-agnostic detection）和类特定分类（class-specific categorization）这样两个互补的子任务</strong>，以更好地处理开放词汇视频异常检测问题。并引入了几个专用模块来促进对基线和新异常的检测。</p>
 <ul>
 <li>对于类无关的检测：设计了时序适配器模块（TA）和语义知识注入模块（SKI），主要旨在提高检测性能；
@@ -171,7 +171,12 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-
+// importing the medium-zoom library for <img>
+    let medium_zoom_script = document.createElement('script');
+    medium_zoom_script.src = 'https://unpkg.com/medium-zoom/dist/medium-zoom.min.js';
+    // only impose medium-zoom to images in the postBody
+    medium_zoom_script.onload = function() {mediumZoom('#postBody img');};
+    document.head.appendChild(medium_zoom_script);
 
 function openComments(){
     cm=document.getElementById("comments");
