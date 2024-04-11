@@ -1,5 +1,7 @@
 # CVPR 2024 - OVFoodSeg - Elevating Open-Vocabulary Food Image Segmentation via Image-Informed Textual Representation
 
+* 论文：<https://arxiv.org/abs/2404.01409>
+
 ## 主要内容
 
 大量食材之间的类别差异、新食材的出现以及与大型食物分割数据集相关的高注释成本。现有方法主要采用封闭词汇和静态文本嵌入设置，往往无法有效处理食材，特别是新颖和多样化的食材。为此本文提出了一种新的开放词汇食品图像分割（Open-Vocabulary Food Image Segmentation）框架 OVFoodSeg，通过采用图像感知文本表示来提升开放词汇食品图像分割的能力。这一任务和框架旨在解决现有方法在处理新和多样化的食材时的不足。
