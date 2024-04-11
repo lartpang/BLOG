@@ -9,22 +9,7 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# Rethinking Interactive Image Segmentation Feature Space Annotation
-
-* 论文：<https://arxiv.org/abs/2101.04378>
-* 代码：<https://github.com/LIDS-UNICAMP/rethinking-interactive-image-segmentation>
-
-本文提出了一种新的交互式图像分割方法，通过特征空间注释来同时对多张图像进行分割注释，这与现有的交互式分割方法在图像领域进行注解的方式形成了鲜明对比。">
-<meta property="og:title" content="Rethinking Interactive Image Segmentation: Feature Space Annotation">
-<meta property="og:description" content="# Rethinking Interactive Image Segmentation Feature Space Annotation
-
-* 论文：<https://arxiv.org/abs/2101.04378>
-* 代码：<https://github.com/LIDS-UNICAMP/rethinking-interactive-image-segmentation>
-
-本文提出了一种新的交互式图像分割方法，通过特征空间注释来同时对多张图像进行分割注释，这与现有的交互式分割方法在图像领域进行注解的方式形成了鲜明对比。">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog/post/Rethinking%20Interactive%20Image%20Segmentation-%20Feature%20Space%20Annotation.html">
-<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<meta name="description" content="Rethinking Interactive Image Segmentation: Feature Space Annotation">
 <title>Rethinking Interactive Image Segmentation: Feature Space Annotation</title>
 
 
@@ -149,12 +134,6 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-// importing the medium-zoom library for <img>
-    let medium_zoom_script = document.createElement('script');
-    medium_zoom_script.src = 'https://unpkg.com/medium-zoom/dist/medium-zoom.min.js';
-    // only impose medium-zoom to images in the postBody
-    medium_zoom_script.onload = function() {mediumZoom('#postBody img');};
-    document.head.appendChild(medium_zoom_script);
 
 function openComments(){
     cm=document.getElementById("comments");
@@ -194,5 +173,5 @@ function iFrameLoading(){
 </script>
 
 
-
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks = document.querySelectorAll('a > img');imgLinks.forEach(function(imgLink){var parentLink = imgLink.parentElement;parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);parentLink.parentNode.removeChild(parentLink);});mediumZoom('img');</script>
 </html>

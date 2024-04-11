@@ -9,22 +9,7 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation
-
-* 论文：<https://arxiv.org/abs/2403.00712>
-* 代码：<https://github.com/baegwangbin/DSINE>
-
-该研究重新思考了表面法线估计的归纳偏置，提出了利用逐像素射线方向并学习相邻表面法线之间相对旋转关系的方法。">
-<meta property="og:title" content="CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation">
-<meta property="og:description" content="# CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation
-
-* 论文：<https://arxiv.org/abs/2403.00712>
-* 代码：<https://github.com/baegwangbin/DSINE>
-
-该研究重新思考了表面法线估计的归纳偏置，提出了利用逐像素射线方向并学习相邻表面法线之间相对旋转关系的方法。">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog/post/CVPR%202024%20-%20Rethinking%20Inductive%20Biases%20for%20Surface%20Normal%20Estimation.html">
-<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<meta name="description" content="CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation">
 <title>CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation</title>
 
 
@@ -154,12 +139,6 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-// importing the medium-zoom library for <img>
-    let medium_zoom_script = document.createElement('script');
-    medium_zoom_script.src = 'https://unpkg.com/medium-zoom/dist/medium-zoom.min.js';
-    // only impose medium-zoom to images in the postBody
-    medium_zoom_script.onload = function() {mediumZoom('#postBody img');};
-    document.head.appendChild(medium_zoom_script);
 
 function openComments(){
     cm=document.getElementById("comments");
@@ -199,5 +178,5 @@ function iFrameLoading(){
 </script>
 
 
-
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks = document.querySelectorAll('a > img');imgLinks.forEach(function(imgLink){var parentLink = imgLink.parentElement;parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);parentLink.parentNode.removeChild(parentLink);});mediumZoom('img');</script>
 </html>

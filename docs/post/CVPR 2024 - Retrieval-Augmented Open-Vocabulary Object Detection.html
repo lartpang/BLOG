@@ -9,22 +9,7 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection
-
-* 论文：<https://arxiv.org/abs/2404.05687>
-* 代码：<https://github.com/mlvlab/RALF>
-
-本文提出了一种新的开放词汇目标检测方法 Retrieval-Augmented Losses and visual Features (RALF)。">
-<meta property="og:title" content="CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection">
-<meta property="og:description" content="# CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection
-
-* 论文：<https://arxiv.org/abs/2404.05687>
-* 代码：<https://github.com/mlvlab/RALF>
-
-本文提出了一种新的开放词汇目标检测方法 Retrieval-Augmented Losses and visual Features (RALF)。">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog/post/CVPR%202024%20-%20Retrieval-Augmented%20Open-Vocabulary%20Object%20Detection.html">
-<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<meta name="description" content="CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection">
 <title>CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection</title>
 
 
@@ -96,8 +81,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </thead>
 <tbody>
 <tr>
-<td><img src="https://github.com/lartpang/blog/assets/26847524/6b98d3d3-7a4c-4083-9984-bb29e83fd7fe" alt="image" style="max-width: 100%;"></td>
-<td><img src="https://github.com/lartpang/blog/assets/26847524/dceade62-4d39-4246-a6cd-edc389575e45" alt="image" style="max-width: 100%;"></td>
+<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/6b98d3d3-7a4c-4083-9984-bb29e83fd7fe"><img src="https://github.com/lartpang/blog/assets/26847524/6b98d3d3-7a4c-4083-9984-bb29e83fd7fe" alt="image" style="max-width: 100%;"></a></td>
+<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/dceade62-4d39-4246-a6cd-edc389575e45"><img src="https://github.com/lartpang/blog/assets/26847524/dceade62-4d39-4246-a6cd-edc389575e45" alt="image" style="max-width: 100%;"></a></td>
 </tr>
 </tbody>
 </table>
@@ -163,12 +148,6 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-// importing the medium-zoom library for <img>
-    let medium_zoom_script = document.createElement('script');
-    medium_zoom_script.src = 'https://unpkg.com/medium-zoom/dist/medium-zoom.min.js';
-    // only impose medium-zoom to images in the postBody
-    medium_zoom_script.onload = function() {mediumZoom('#postBody img');};
-    document.head.appendChild(medium_zoom_script);
 
 function openComments(){
     cm=document.getElementById("comments");
@@ -208,5 +187,5 @@ function iFrameLoading(){
 </script>
 
 
-
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks = document.querySelectorAll('a > img');imgLinks.forEach(function(imgLink){var parentLink = imgLink.parentElement;parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);parentLink.parentNode.removeChild(parentLink);});mediumZoom('img');</script>
 </html>

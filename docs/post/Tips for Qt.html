@@ -9,24 +9,7 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="## Set a proper mirror for MaintenanceTool.exe
-
-From: https://mirrors.tuna.tsinghua.edu.cn/help/qt/
-
-```shell
-.\MaintenanceTool.exe --mirror https://mirrors.tuna.tsinghua.edu.cn/qt
-```。">
-<meta property="og:title" content="Tips for Qt">
-<meta property="og:description" content="## Set a proper mirror for MaintenanceTool.exe
-
-From: https://mirrors.tuna.tsinghua.edu.cn/help/qt/
-
-```shell
-.\MaintenanceTool.exe --mirror https://mirrors.tuna.tsinghua.edu.cn/qt
-```。">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog/post/Tips%20for%20Qt.html">
-<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<meta name="description" content="Tips for Qt">
 <title>Tips for Qt</title>
 <link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
@@ -142,12 +125,6 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-// importing the medium-zoom library for <img>
-    let medium_zoom_script = document.createElement('script');
-    medium_zoom_script.src = 'https://unpkg.com/medium-zoom/dist/medium-zoom.min.js';
-    // only impose medium-zoom to images in the postBody
-    medium_zoom_script.onload = function() {mediumZoom('#postBody img');};
-    document.head.appendChild(medium_zoom_script);
 
 function openComments(){
     cm=document.getElementById("comments");
@@ -187,5 +164,5 @@ function iFrameLoading(){
 </script>
 
 
-
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks = document.querySelectorAll('a > img');imgLinks.forEach(function(imgLink){var parentLink = imgLink.parentElement;parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);parentLink.parentNode.removeChild(parentLink);});mediumZoom('img');</script>
 </html>
