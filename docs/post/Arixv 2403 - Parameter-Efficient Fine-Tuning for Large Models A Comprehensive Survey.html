@@ -49,12 +49,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/5" target="_blank" class="btn btn-invisible circle" title="Issue">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathIssue" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-    
 
     <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
         <svg class="octicon" width="16" height="16" >
@@ -436,7 +430,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>加强数据隐私：<strong>信任中心化系统来服务或微调个性化 PEFT 模块是系统开发人员面临的另一个问题。</strong> 信道侧攻击者已成功部署通过劫持中间结果来重建用户数据。未来值得信赖的 LLM 系统设计的一个视角涉及为个人数据以及中间训练和推理结果开发加密协议。</li>
 <li>带模型压缩的 PEFT：模型压缩是使 LLM 在资源有限的设备上可执行的最有效方法之一。然而，<strong>模型压缩技术对硬件上运行的 PEFT 算法性能的影响仍然是另一个系统性挑战。</strong> 量化和剪枝等常见的压缩技术需要专用的硬件平台来加快这一过程，而为压缩模型构建这样的硬件平台是研究人员的另一个方向。</li>
 </ol></div>
-<div style="font-size:small;margin-top:8px;float:right;"></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 </div>
@@ -532,5 +526,5 @@ function iFrameLoading(){
 </script>
 
 
-<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks = document.querySelectorAll('a > img');imgLinks.forEach(function(imgLink){var parentLink = imgLink.parentElement;parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);parentLink.parentNode.removeChild(parentLink);});mediumZoom('img');</script><script>MathJax = {tex: {inlineMath: [["$", "$"]]}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks=document.querySelectorAll('#postBody a > img'); imgLinks.forEach(function (imgLink) {var parentLink=imgLink.parentElement; parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink); parentLink.parentNode.removeChild(parentLink); }); mediumZoom('#postBody img');</script> <script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script><span id='busuanzi_container_site_pv'>本站总访问量<span id='busuanzi_value_site_pv'></span>次</span><script>MathJax = {tex: {inlineMath: [["$", "$"]]}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </html>

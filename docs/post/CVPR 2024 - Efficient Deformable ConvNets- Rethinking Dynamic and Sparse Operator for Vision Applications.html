@@ -49,12 +49,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/9" target="_blank" class="btn btn-invisible circle" title="Issue">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathIssue" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-    
 
     <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
         <svg class="octicon" width="16" height="16" >
@@ -81,7 +75,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/23443e397f92e3f37a6ea344d1778e84805c9a3b68ed56fcfcf103bdb7b078fe/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f66653838663465613965363734366465613066323038643333306432306235612e706e67"><img src="https://camo.githubusercontent.com/23443e397f92e3f37a6ea344d1778e84805c9a3b68ed56fcfcf103bdb7b078fe/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f66653838663465613965363734366465613066323038643333306432306235612e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/direct/fe88f4ea9e6746dea0f208d330d20b5a.png" style="max-width: 100%;"></a></p>
 <p>这些改进使得 DCNv4 与 DCNv3 相比显示出显著更快的收敛速度，并且处理速度大大提高，DCNv4 的速度提高了三倍以上。</p>
 <p>将 DCNv4 集成到其他现代骨干架构中，包括 ConvNeXt 和 ViT，替换深度可分离卷积和密集自注意力层。值得注意的是，在没有进行任何超参数调整的情况下，这些经过精心设计的网络在使用 DCNv4 时表现得相当出色，同时速度快得多，显示了动态、稀疏的 DCNv4 的有效性和效率。</p></div>
-<div style="font-size:small;margin-top:8px;float:right;"></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 </div>
@@ -177,5 +171,5 @@ function iFrameLoading(){
 </script>
 
 
-<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks = document.querySelectorAll('a > img');imgLinks.forEach(function(imgLink){var parentLink = imgLink.parentElement;parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);parentLink.parentNode.removeChild(parentLink);});mediumZoom('img');</script>
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks=document.querySelectorAll('#postBody a > img'); imgLinks.forEach(function (imgLink) {var parentLink=imgLink.parentElement; parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink); parentLink.parentNode.removeChild(parentLink); }); mediumZoom('#postBody img');</script> <script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script><span id='busuanzi_container_site_pv'>本站总访问量<span id='busuanzi_value_site_pv'></span>次</span>
 </html>

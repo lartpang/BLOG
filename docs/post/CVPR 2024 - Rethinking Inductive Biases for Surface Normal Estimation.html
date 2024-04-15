@@ -49,12 +49,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/11" target="_blank" class="btn btn-invisible circle" title="Issue">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathIssue" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-    
 
     <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
         <svg class="octicon" width="16" height="16" >
@@ -82,7 +76,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 其提供了一种理解场景几何结构的方法。通过估计表面法线，我们可以获取到场景中物体表面的局部属性，如平面的法线方向、曲面的光滑程度等。这些信息对于进一步理解场景和进行后续处理（如深度估计、物体识别等）非常有用。<br>
 表面法线估计通常通过深度学习方法实现。通过对大量带有标注的表面法线图像进行训练，神经网络可以学习到一种从 RGB 图像中估计表面法线的方法。然而，由于表面法线估计任务的输出空间是三维的（即单位球面），因此存在一些挑战，如输出空间的非一致性、难以收集带有标注的数据等。</p>
 </blockquote></div>
-<div style="font-size:small;margin-top:8px;float:right;"></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 </div>
@@ -178,5 +172,5 @@ function iFrameLoading(){
 </script>
 
 
-<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks = document.querySelectorAll('a > img');imgLinks.forEach(function(imgLink){var parentLink = imgLink.parentElement;parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);parentLink.parentNode.removeChild(parentLink);});mediumZoom('img');</script>
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks=document.querySelectorAll('#postBody a > img'); imgLinks.forEach(function (imgLink) {var parentLink=imgLink.parentElement; parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink); parentLink.parentNode.removeChild(parentLink); }); mediumZoom('#postBody img');</script> <script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script><span id='busuanzi_container_site_pv'>本站总访问量<span id='busuanzi_value_site_pv'></span>次</span>
 </html>
