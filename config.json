@@ -1,11 +1,11 @@
 {
-    "title":"Simpler, Better",
-    "subTitle":"Just for fun.",
-    "avatarUrl":"https://github.githubassets.com/favicons/favicon.svg",
-    "GMEEK_VERSION":"last",
-    "urlMode":"pinyin",
-    "showPostSource":"1",
-    "bottomText":"转载请注明出处 (*❦ω❦)",
-    "script":"<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks = document.querySelectorAll('#postBody a > img'); imgLinks.forEach(function(imgLink) {var parentLink = imgLink.parentElement; parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink); parentLink.parentNode.removeChild(parentLink);}); mediumZoom('#postBody img');</script>  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_pv">当前总访问量<span id="busuanzi_value_site_pv"></span>次</span>",
+    "title": "Simpler, Better",
+    "subTitle": "Just for fun.",
+    "avatarUrl": "https://github.githubassets.com/favicons/favicon.svg",
+    "GMEEK_VERSION": "last",
+    "urlMode": "pinyin",
+    "showPostSource": "1",
+    "bottomText": "转载请注明出处 (*❦ω❦)",
+    "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks=document.querySelectorAll('#postBody a > img'); imgLinks.forEach(function (imgLink) {var parentLink=imgLink.parentElement; parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink); parentLink.parentNode.removeChild(parentLink); }); mediumZoom('#postBody img');</script> <script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script><span id='busuanzi_container_site_pv'>本站总访问量<span id='busuanzi_value_site_pv'></span>次</span>",
     "style": "<style>#postBody img {display: block; margin-left: auto; margin-right: auto;}</style>"
 }
