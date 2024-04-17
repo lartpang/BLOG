@@ -3,10 +3,11 @@
     1. 需要准备电子照片，相关要求可见：<https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/photos.html>
         1. [美国签证DS160照片和要携带面试上交的照片必须要同一张吗？](https://www.meiguo-qianzheng.com/qitaqianzhengwenti/393.html)
     2. 考虑选择申请 B1 签证。
-    3. 邀请函中提供了填写 DS-160 需要的美国当地的联系人信息。
-    4. 中文姓名电码查询，注意电码必须四位，如果连续的多个，可以用空格隔开：<https://apps.chasedream.com/chinese-commercial-code>
-    5. 会议地址的信息可以从会议中心的官网上找到：<https://seattleconventioncenter.com>
-    6. 过程中会用到很多信息和选项，可以参考这些帖子：
+    3. Passport Book Number（似乎可以不填）：[办理美国签证护照本编号是什么](https://www.citicbank.com/about/companynews/citicwiki/visafees/202502/t20250208_840231.html)
+    4. 邀请函中提供了填写 DS-160 需要的美国当地的联系人信息。
+    5. 中文姓名电码查询，注意电码必须四位，如果连续的多个，可以用空格隔开：<https://apps.chasedream.com/chinese-commercial-code>
+    6. 会议地址的信息可以从会议中心的官网上找到：<https://seattleconventioncenter.com>
+    7. 过程中会用到很多信息和选项，可以参考这些帖子：
         1. 各种填写细节：[赴美签证DS160表格填写说明](https://www.zhihu.com/tardis/zm/art/238155975)
         2. 关于社交账号：[如何回答DS-160表格上“你是否有社交网络账号”的问题](https://sevissavvy.com/ds-160-social-media-presence-cn/)
 3. 【申请面签】：<https://www.ustraveldocs.com/cn/zh/nonimmigrant-visa>
