@@ -15,6 +15,6 @@
 
 ---
 
-一些建议的材料：
+[一些建议的材料（有点旧了）](https://zhuanlan.zhihu.com/p/35256544)：
 
 ![](https://pic3.zhimg.com/80/v2-ea7a4a454735e9874a8b2cc27cd87972_720w.webp)
