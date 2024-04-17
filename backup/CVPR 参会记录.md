@@ -1,6 +1,7 @@
 1. 【获得邀请函】在 CVPR 官网参会注册后即可申请：<https://cvpr.thecvf.com>
 2. 【申请美签】填写 DS-160：<https://ceac.state.gov/genniv>
     1. 需要准备电子照片，相关要求可见：<https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/photos.html>
+        1. [美国签证DS160照片和要携带面试上交的照片必须要同一张吗？](https://www.meiguo-qianzheng.com/qitaqianzhengwenti/393.html)
     2. 考虑选择申请 B1 签证。
     3. 邀请函中提供了填写 DS-160 需要的美国当地的联系人信息。
     4. 中文姓名电码查询，注意电码必须四位，如果连续的多个，可以用空格隔开：<https://apps.chasedream.com/chinese-commercial-code>
