@@ -12,6 +12,7 @@
         2. 关于社交账号：[如何回答DS-160表格上“你是否有社交网络账号”的问题](https://sevissavvy.com/ds-160-social-media-presence-cn/)
 3. 【申请面签】：<https://www.ustraveldocs.com/cn/zh/nonimmigrant-visa>
     1. 关于 B1 签证的一些要求：<https://www.ustraveldocs.com/cn/zh/business-visa>
+    2. 关于费用支付的一些信息：<https://www.ustraveldocs.com/cn/zh/payment-options>
 
 ---
 
