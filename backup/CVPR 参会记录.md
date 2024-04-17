@@ -8,11 +8,13 @@
     5. 中文姓名电码查询，注意电码必须四位，如果连续的多个，可以用空格隔开：<https://apps.chasedream.com/chinese-commercial-code>
     6. 会议地址的信息可以从会议中心的官网上找到：<https://seattleconventioncenter.com>
     7. 过程中会用到很多信息和选项，可以参考这些帖子：
-        1. 各种填写细节：[赴美签证DS160表格填写说明](https://www.zhihu.com/tardis/zm/art/238155975)
-        2. 关于社交账号：[如何回答DS-160表格上“你是否有社交网络账号”的问题](https://sevissavvy.com/ds-160-social-media-presence-cn/)
-3. 【申请面签】：<https://www.ustraveldocs.com/cn/zh/nonimmigrant-visa>
+        1. 各种填写细节：
+            1. [赴美签证DS160表格填写说明](https://www.zhihu.com/tardis/zm/art/238155975)
+            2. [如何填写美国B1-B2申请表（DS-160）](http://www.ailvxing.com/info-103-22538-0.html)
+        3. 关于社交账号：[如何回答DS-160表格上“你是否有社交网络账号”的问题](https://sevissavvy.com/ds-160-social-media-presence-cn/)
+4. 【申请面签】：<https://www.ustraveldocs.com/cn/zh/nonimmigrant-visa>
     1. 关于 B1 签证的一些要求：<https://www.ustraveldocs.com/cn/zh/business-visa>
-    2. 关于费用支付的一些信息：<https://www.ustraveldocs.com/cn/zh/payment-options>
+    3. 关于费用支付的一些信息：<https://www.ustraveldocs.com/cn/zh/payment-options>
 
 ---
 
