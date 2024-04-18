@@ -11,10 +11,16 @@
         1. 各种填写细节：
             1. [赴美签证DS160表格填写说明](https://www.zhihu.com/tardis/zm/art/238155975)
             2. [如何填写美国B1-B2申请表（DS-160）](http://www.ailvxing.com/info-103-22538-0.html)
-        3. 关于社交账号：[如何回答DS-160表格上“你是否有社交网络账号”的问题](https://sevissavvy.com/ds-160-social-media-presence-cn/)
-4. 【申请面签】：<https://www.ustraveldocs.com/cn/zh/nonimmigrant-visa>
+            3. [美国签证DS160表格填写样本](https://www.meilvtong.com/viewthread.php?tid=19)
+        4. 关于社交账号：[如何回答DS-160表格上“你是否有社交网络账号”的问题](https://sevissavvy.com/ds-160-social-media-presence-cn/)
+5. 【申请面签】页面为 <https://www.ustraveldocs.com/cn/zh/nonimmigrant-visa>
     1. 关于 B1 签证的一些要求：<https://www.ustraveldocs.com/cn/zh/business-visa>
-    3. 关于费用支付的一些信息：<https://www.ustraveldocs.com/cn/zh/payment-options>
+    2. 关于费用支付的一些信息：<https://www.ustraveldocs.com/cn/zh/payment-options>
+    3. 【注意事项】
+        1. 费用支付后，记住支付码，后面取消预约后还可以在新的预约中使用这个码。
+        2. 预约系统有防止滥用预约的机制，尽量不要反复操作，容易被封号72小时。如果被封了，期间不要再登录系统，容易继续延长。
+6. 【面签过程】
+    1. [美国签证被CHECK怎么办？一定会被拒吗？哪种情况会导致CHECK?](https://www.sohu.com/a/624182528_121061754)
 
 ---
 
