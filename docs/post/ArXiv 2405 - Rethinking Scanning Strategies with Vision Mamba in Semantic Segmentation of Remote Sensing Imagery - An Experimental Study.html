@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# Rethinking Scanning Strategies with Vision Mamba in Semantic Segmentation of Remote Sensing Imagery - An Experimental Study
+
+![image.png](https://cdn.nlark.com/yuque/0/2024/png/192314/1715940900574-31a0605b-a575-435a-b812-95c9a914d28f.png#averageHue=%23e2e2e1&clientId=u366ffa07-da0f-4&from=paste&height=255&id=u2f6d91e6&originHeight=319&originWidth=1207&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=106541&status=done&style=none&taskId=uec6996b9-51be-4818-b72c-9c843e4f91b&title=&width=965.6)
+
+* 论文：[https://arxiv.org/pdf/2405.08493](https://arxiv.org/pdf/2405.08493)
+* 原始文档：<https://github.com/lartpang/blog/issues/19>
+
+深度学习方法，尤其是卷积神经网络 (CNN) 和视觉变换器 (ViT)，经常用于执行高分辨率遥感图像的语义分割。">
+<meta property="og:title" content="ArXiv 2405 - Rethinking Scanning Strategies with Vision Mamba in Semantic Segmentation of Remote Sensing Imagery - An Experimental Study">
+<meta property="og:description" content="# Rethinking Scanning Strategies with Vision Mamba in Semantic Segmentation of Remote Sensing Imagery - An Experimental Study
+
+![image.png](https://cdn.nlark.com/yuque/0/2024/png/192314/1715940900574-31a0605b-a575-435a-b812-95c9a914d28f.png#averageHue=%23e2e2e1&clientId=u366ffa07-da0f-4&from=paste&height=255&id=u2f6d91e6&originHeight=319&originWidth=1207&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=106541&status=done&style=none&taskId=uec6996b9-51be-4818-b72c-9c843e4f91b&title=&width=965.6)
+
+* 论文：[https://arxiv.org/pdf/2405.08493](https://arxiv.org/pdf/2405.08493)
+* 原始文档：<https://github.com/lartpang/blog/issues/19>
+
+深度学习方法，尤其是卷积神经网络 (CNN) 和视觉变换器 (ViT)，经常用于执行高分辨率遥感图像的语义分割。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://lartpang.github.io/blog/post/ArXiv%202405%20-%20Rethinking%20Scanning%20Strategies%20with%20Vision%20Mamba%20in%20Semantic%20Segmentation%20of%20Remote%20Sensing%20Imagery%20-%20An%20Experimental%20Study.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>ArXiv 2405 - Rethinking Scanning Strategies with Vision Mamba in Semantic Segmentation of Remote Sensing Imagery - An Experimental Study</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+<style>#postBody img {display: block; margin-left: auto; margin-right: auto;}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">ArXiv 2405 - Rethinking Scanning Strategies with Vision Mamba in Semantic Segmentation of Remote Sensing Imagery - An Experimental Study</h1>
+<div class="title-right">
+    <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/lartpang/blog/issues/19" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>Rethinking Scanning Strategies with Vision Mamba in Semantic Segmentation of Remote Sensing Imagery - An Experimental Study</h1>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7553fed7d4acbbe0ee567c991ec40da8fac2f84ea2b1317d9e7253c021292478/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934303930303537342d33316130363035622d613537352d343335612d623831322d3935633961393134643238662e706e6723617665726167654875653d25323365326532653126636c69656e7449643d7533363666666130372d646130662d342666726f6d3d7061737465266865696768743d3235352669643d753266366439316536266f726967696e4865696768743d333139266f726967696e57696474683d31323037266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313036353431267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7565633639393662392d353162652d343831382d623732632d3963383433653466393162267469746c653d2677696474683d3936352e36"><img src="https://camo.githubusercontent.com/7553fed7d4acbbe0ee567c991ec40da8fac2f84ea2b1317d9e7253c021292478/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934303930303537342d33316130363035622d613537352d343335612d623831322d3935633961393134643238662e706e6723617665726167654875653d25323365326532653126636c69656e7449643d7533363666666130372d646130662d342666726f6d3d7061737465266865696768743d3235352669643d753266366439316536266f726967696e4865696768743d333139266f726967696e57696474683d31323037266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313036353431267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7565633639393662392d353162652d343831382d623732632d3963383433653466393162267469746c653d2677696474683d3936352e36" alt="image.png" data-canonical-src="https://cdn.nlark.com/yuque/0/2024/png/192314/1715940900574-31a0605b-a575-435a-b812-95c9a914d28f.png#averageHue=%23e2e2e1&amp;clientId=u366ffa07-da0f-4&amp;from=paste&amp;height=255&amp;id=u2f6d91e6&amp;originHeight=319&amp;originWidth=1207&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=106541&amp;status=done&amp;style=none&amp;taskId=uec6996b9-51be-4818-b72c-9c843e4f91b&amp;title=&amp;width=965.6" style="max-width: 100%;"></a></p>
+<ul>
+<li>论文：<a href="https://arxiv.org/pdf/2405.08493" rel="nofollow">https://arxiv.org/pdf/2405.08493</a></li>
+<li>原始文档：<a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="2302444918" data-permission-text="Title is private" data-url="https://github.com/lartpang/blog/issues/19" data-hovercard-type="issue" data-hovercard-url="/lartpang/blog/issues/19/hovercard" href="https://github.com/lartpang/blog/issues/19">lartpang/blog#19</a></li>
+</ul>
+<p>深度学习方法，尤其是卷积神经网络 (CNN) 和视觉变换器 (ViT)，经常用于执行高分辨率遥感图像的语义分割。然而，cnn 受到其有限的接受领域的限制，而 vit 由于其二次复杂性而面临挑战。最近，具有线性复杂性和全局感受野的 mamba 模型在视觉任务中获得了广泛的关注。在此类任务中，需要对图像进行序列化以形成与 mamba 模型兼容的序列。许多研究工作已经探索了扫描策略来序列化图像，旨在增强 Mamba 模型对图像的理解。然而，这些扫描策略的有效性仍然不确定。</p>
+<p>在这项研究中，我们对主流扫描方向及其组合对遥感图像语义分割的影响进行了全面的实验研究。通过在 LoveDA，ISPRS Potsdam 和 ISPRS Vaihingen 数据集上进行的广泛实验，我们证明，**无论其复杂性或所涉及的扫描方向数量如何，都没有单一的扫描策略能胜过其他扫描策略。简单的单个扫描方向被认为足以对高分辨率遥感图像进行语义分割。**还建议了未来研究的相关方向。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4850c495080032bfa84e6a9751d35a4978aa01b741112e866d945db4455dc1d6/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934313632393135302d38656161336431632d336362612d346331632d383835392d3864623064366437306162352e706e6723617665726167654875653d25323361656165613226636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3534332669643d5a35325257266f726967696e4865696768743d363739266f726967696e57696474683d373830266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d373536353934267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7535623530666338622d346330352d343336632d623833392d6134336563326530313335267469746c653d2677696474683d363234"><img src="https://camo.githubusercontent.com/4850c495080032bfa84e6a9751d35a4978aa01b741112e866d945db4455dc1d6/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934313632393135302d38656161336431632d336362612d346331632d383835392d3864623064366437306162352e706e6723617665726167654875653d25323361656165613226636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3534332669643d5a35325257266f726967696e4865696768743d363739266f726967696e57696474683d373830266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d373536353934267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7535623530666338622d346330352d343336632d623833392d6134336563326530313335267469746c653d2677696474683d363234" alt="image.png" data-canonical-src="https://cdn.nlark.com/yuque/0/2024/png/192314/1715941629150-8eaa3d1c-3cba-4c1c-8859-8db0d6d70ab5.png#averageHue=%23aeaea2&amp;clientId=uf978a707-8366-4&amp;from=paste&amp;height=543&amp;id=Z52RW&amp;originHeight=679&amp;originWidth=780&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=756594&amp;status=done&amp;style=none&amp;taskId=u5b50fc8b-4c05-436c-b839-a43ec2e0135&amp;title=&amp;width=624" style="max-width: 100%;"></a></p>
+<p>这份工作主要做了两点内容：</p>
+<ul>
+<li>总结了现有视觉 mamba 中常用的 12 种独立的序列化扫描方向，并实验了 22 中不同策略（12 个独立的和 10 个组合变体）。</li>
+<li>第一次基于特定设计的实验架构，在三个数据集上定量对比探究了视觉 mamba 不同扫描策略对遥感图像的语义分割准确性的影响。</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/074396c1a6d96d5b19aaf6df8a130dba103212a7bfc05eee17a523fcf96acf87/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934313738343939332d62383238313630322d346635312d343931642d386331382d3763336133376361363864652e706e6723617665726167654875653d25323366396639663826636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3736342669643d753935393266666161266f726967696e4865696768743d393535266f726967696e57696474683d31323835266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d333335353331267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7565636364306163322d383634662d346434382d396639372d6233373337336666353261267469746c653d2677696474683d31303238"><img src="https://camo.githubusercontent.com/074396c1a6d96d5b19aaf6df8a130dba103212a7bfc05eee17a523fcf96acf87/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934313738343939332d62383238313630322d346635312d343931642d386331382d3763336133376361363864652e706e6723617665726167654875653d25323366396639663826636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3736342669643d753935393266666161266f726967696e4865696768743d393535266f726967696e57696474683d31323835266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d333335353331267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7565636364306163322d383634662d346434382d396639372d6233373337336666353261267469746c653d2677696474683d31303238" alt="image.png" data-canonical-src="https://cdn.nlark.com/yuque/0/2024/png/192314/1715941784993-b8281602-4f51-491d-8c18-7c3a37ca68de.png#averageHue=%23f9f9f8&amp;clientId=uf978a707-8366-4&amp;from=paste&amp;height=764&amp;id=u9592ffaa&amp;originHeight=955&amp;originWidth=1285&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=335531&amp;status=done&amp;style=none&amp;taskId=ueccd0ac2-864f-4d48-9f97-b37373ff52a&amp;title=&amp;width=1028" style="max-width: 100%;"></a></p>
+<p>展示了现有方法的几种不同策略</p>
+<p>**这些努力都是基于这样的假设，即图像补丁的不同扫描方向可以潜在地增强 Mamba 对图像的理解。**但是，在他们的工作中，缺乏对不同扫描方向下的模型性能进行全面和定量的比较。</p>
+<ul>
+<li>Vim 和 PlainMamba 缺乏必要的消融研究来验证其扫描方法。</li>
+<li>在 VMamba 中，水平扫描组合的结果 (即，D1 和 D2) 没有报告，而四方向扫描 (即，与单向扫描 D1 相比，D1、D2、D3 和 D4) 在 ImageNet 上仅实现了 0.3% 高的精度。考虑到训练过程中模型性能的可能波动，这种边际改进不足以证实多向扫描的有效性。</li>
+</ul>
+<p>而在分割任务的研究中，一些工作考虑了不同的扫描策略来测试它们对 mamba 图像理解能力的影响。</p>
+<ul>
+<li>U-Mamba 代表了将 Mamba 与 UNet 架构合并以进行医学图像语义分割的首次尝试。但是，由于其简单的建筑设计，其性能不及当时最先进的分割方法。</li>
+<li>随后，出现了几种增强的方法使用 Vim 的双向扫描和/或使用 VMamba 的四向扫描。</li>
+<li>在遥感领域，Samba 是第一个将 Mamba 引入遥感图像语义分割的研究，其中图像补丁以与 ViT 相同的方式进行展平，如图 2(a)。</li>
+<li>后来，RS3Mamba 使用 VMamba 的四向扫描方法，构造了一个用于语义分割的辅助编码器。</li>
+<li>同样，RSMamba 在的编码器 - 解码器体系结构中添加四个额外的对角线方向 (即，D5，D6，D7 和 D8) 。</li>
+</ul>
+<h2>实验设置</h2>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/973574855079ace97a3b2758febaf3490a1b54c00c8975ffaf489269121e3954/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934313535373430362d37303534303535622d306264372d343131662d383338382d6338306264633635303664622e706e6723617665726167654875653d25323366336563643126636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3530302669643d644446424a266f726967696e4865696768743d363235266f726967696e57696474683d383035266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313536333631267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7566653738353830332d663434322d343732392d393761322d3931393737626666306132267469746c653d2677696474683d363434"><img src="https://camo.githubusercontent.com/973574855079ace97a3b2758febaf3490a1b54c00c8975ffaf489269121e3954/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934313535373430362d37303534303535622d306264372d343131662d383338382d6338306264633635303664622e706e6723617665726167654875653d25323366336563643126636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3530302669643d644446424a266f726967696e4865696768743d363235266f726967696e57696474683d383035266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313536333631267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7566653738353830332d663434322d343732392d393761322d3931393737626666306132267469746c653d2677696474683d363434" alt="image.png" data-canonical-src="https://cdn.nlark.com/yuque/0/2024/png/192314/1715941557406-7054055b-0bd7-411f-8388-c80bdc6506db.png#averageHue=%23f3ecd1&amp;clientId=uf978a707-8366-4&amp;from=paste&amp;height=500&amp;id=dDFBJ&amp;originHeight=625&amp;originWidth=805&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=156361&amp;status=done&amp;style=none&amp;taskId=ufe785803-f442-4729-97a2-91977bff0a2&amp;title=&amp;width=644" style="max-width: 100%;"></a></p>
+<p>实验所使用的架构形式</p>
+<p>图像划分为 patch，序列送入四个 VMS（Vision Mamba Scan）模块顺次下采样。并使用 UperNet 作为解码器预测分割结果。这里为了使用单个模型兼容所有的扫描组合形式，当所考虑的扫描方向的数目为 1、2 或 4 时，扫描方向分别重复 8、4 和 2 次，以填充八个潜在的扫描方向。（这个重复是否会对最终的性能有影响尚未可知）</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ee5eec3928b97c481cc264e9019b84f663871113a207bee7df7dd858444099dc/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934323638323437392d66616239393335622d373232312d343834332d393730362d3230616635383863663464382e706e6723617665726167654875653d25323366396638663726636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3339312669643d753136396562626265266f726967696e4865696768743d343839266f726967696e57696474683d31313139266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d3838363836267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7534343133643161622d636130662d343036632d616464312d6663626164386533663637267469746c653d2677696474683d3839352e32"><img src="https://camo.githubusercontent.com/ee5eec3928b97c481cc264e9019b84f663871113a207bee7df7dd858444099dc/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934323638323437392d66616239393335622d373232312d343834332d393730362d3230616635383863663464382e706e6723617665726167654875653d25323366396638663726636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3339312669643d753136396562626265266f726967696e4865696768743d343839266f726967696e57696474683d31313139266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d3838363836267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7534343133643161622d636130662d343036632d616464312d6663626164386533663637267469746c653d2677696474683d3839352e32" alt="image.png" data-canonical-src="https://cdn.nlark.com/yuque/0/2024/png/192314/1715942682479-fab9935b-7221-4843-9706-20af588cf4d8.png#averageHue=%23f9f8f7&amp;clientId=uf978a707-8366-4&amp;from=paste&amp;height=391&amp;id=u169ebbbe&amp;originHeight=489&amp;originWidth=1119&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=88686&amp;status=done&amp;style=none&amp;taskId=u4413d1ab-ca0f-406c-add1-fcbad8e3f67&amp;title=&amp;width=895.2" style="max-width: 100%;"></a></p>
+<p>三个数据集的训练设置</p>
+<ul>
+<li>Random resize, random crop, random flip, and photometric distortion are consistently applied for data augmentation in our experiments.</li>
+<li>Experiments are performed using two RTX 4090D GPUs.</li>
+</ul>
+<h2>对 patch 和 stride 的实验</h2>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ee75d3b188619679a9899de72415f92eda83252e5aec0152559c8aa8173681c8/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934323733383730372d38653633633632322d626530372d343032662d383539652d3036393336363435333163322e706e6723617665726167654875653d25323366376635663426636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3336302669643d753962346132336636266f726967696e4865696768743d343530266f726967696e57696474683d31323832266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313237363833267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7535613631653934322d393733652d343930652d613932302d6235653231366535646137267469746c653d2677696474683d313032352e36"><img src="https://camo.githubusercontent.com/ee75d3b188619679a9899de72415f92eda83252e5aec0152559c8aa8173681c8/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934323733383730372d38653633633632322d626530372d343032662d383539652d3036393336363435333163322e706e6723617665726167654875653d25323366376635663426636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3336302669643d753962346132336636266f726967696e4865696768743d343530266f726967696e57696474683d31323832266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313237363833267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7535613631653934322d393733652d343930652d613932302d6235653231366535646137267469746c653d2677696474683d313032352e36" alt="image.png" data-canonical-src="https://cdn.nlark.com/yuque/0/2024/png/192314/1715942738707-8e63c622-be07-402f-859e-0693664531c2.png#averageHue=%23f7f5f4&amp;clientId=uf978a707-8366-4&amp;from=paste&amp;height=360&amp;id=u9b4a23f6&amp;originHeight=450&amp;originWidth=1282&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=127683&amp;status=done&amp;style=none&amp;taskId=u5a61e942-973e-490e-a920-b5e216e5da7&amp;title=&amp;width=1025.6" style="max-width: 100%;"></a></p>
+<p>**用于图像裁剪的补丁大小和扫描过程中使用的步幅也会影响实验结果。**目前，大多数基于 mamba 的视觉任务都采用 4×4 大小的 patch 和 4 的步幅。为了探索最适合后续实验的补丁大小和步幅，本研究在三个数据集上进行了各种变体的消融实验。<strong>为了进行一致的比较，在消融实验中使用了 D1 扫描方向。</strong></p>
+<p>**步幅也起着至关重要的作用，因为它会影响序列的长度和计算负荷。**这里使用 FLOPs 量化计算负载，这是使用一个随机生成的 512×512 图像作为输入来计算的。加倍步幅将需要计算的像素数减少了四倍，从而使计算减少了大约四倍。</p>
+<p>考虑到实用性，实验中最小步幅设为 4，较小步幅需要过高的计算资源，因此在两个 24G GPU 上进行训练是不切实际的。实验中考虑的 patch 大小包括 4×4、8×8、16×16 和 32×32，每个配对的步幅与相应的 patch 大小相同，用于分割整个图像。此外，还考虑了小于 patch 尺寸的步幅，这可以允许图像的重叠扫描。</p>
+<p>表 II 列出了由各种修补尺寸和步幅组合的分割精度。从三个数据集的性能分析中可以看到一致的发现：当处理 512×512 的图像输入尺寸时，步幅为 4 的 4×4 补丁大小可产生所有三个数据集的最高分割精度。当将步幅依次减小到 4 并保持固定的 patch 大小，mamba 在处理这些长序列时没有出现瓶颈，这表明它有潜力有效处理更小的步幅。因此，mamba 在处理较小步幅的长序列方面显示出希望。固定步幅后，减小 patch 大小可改善分割性能，这表明 mamba 架构更擅长处理更精细的图像补丁。基于这些发现，在随后的实验中始终使用 4x4 的 patch 大小和 4 的步幅 (即，实验 1- 实验 22)。</p>
+<h2>对扫描策略的实验</h2>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c4bd4d54b9e9282b1f65cb5b59a80b74675a962f0ba2b3f9237686007f57ba06/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934323736303738352d38363439323431302d643464652d346237632d386430652d6135313265636637326433322e706e6723617665726167654875653d25323365356535653526636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3332332669643d756631316361646435266f726967696e4865696768743d343034266f726967696e57696474683d31323530266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313937373636267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7531643538366166332d386261642d343661362d386233612d6365396266666631633136267469746c653d2677696474683d31303030"><img src="https://camo.githubusercontent.com/c4bd4d54b9e9282b1f65cb5b59a80b74675a962f0ba2b3f9237686007f57ba06/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934323736303738352d38363439323431302d643464652d346237632d386430652d6135313265636637326433322e706e6723617665726167654875653d25323365356535653526636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3332332669643d756631316361646435266f726967696e4865696768743d343034266f726967696e57696474683d31323530266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313937373636267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7531643538366166332d386261642d343661362d386233612d6365396266666631633136267469746c653d2677696474683d31303030" alt="image.png" data-canonical-src="https://cdn.nlark.com/yuque/0/2024/png/192314/1715942760785-86492410-d4de-4b7c-8d0e-a512ecf72d32.png#averageHue=%23e5e5e5&amp;clientId=uf978a707-8366-4&amp;from=paste&amp;height=323&amp;id=uf11cadd5&amp;originHeight=404&amp;originWidth=1250&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=197766&amp;status=done&amp;style=none&amp;taskId=u1d586af3-8bad-46a6-8b3a-ce9bfff1c16&amp;title=&amp;width=1000" style="max-width: 100%;"></a></p>
+<p>实验中对应的不同扫描组合形式</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/79daf4b20637e0c57df3758013c11e7504ff1a422fc0fef6390ddce4ff520f9a/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934333134303039312d35376433303036302d326638382d343766622d626565352d3366333262356534333934302e706e6723617665726167654875653d25323366386637663526636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3434312669643d756530353666383634266f726967696e4865696768743d353531266f726967696e57696474683d373132266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313234353931267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7539303536653238362d376436302d346465382d613333362d6339393963623438383633267469746c653d2677696474683d3536392e36"><img src="https://camo.githubusercontent.com/79daf4b20637e0c57df3758013c11e7504ff1a422fc0fef6390ddce4ff520f9a/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934333134303039312d35376433303036302d326638382d343766622d626565352d3366333262356534333934302e706e6723617665726167654875653d25323366386637663526636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3434312669643d756530353666383634266f726967696e4865696768743d353531266f726967696e57696474683d373132266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313234353931267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7539303536653238362d376436302d346465382d613333362d6339393963623438383633267469746c653d2677696474683d3536392e36" alt="image.png" data-canonical-src="https://cdn.nlark.com/yuque/0/2024/png/192314/1715943140091-57d30060-2f88-47fb-bee5-3f32b5e43940.png#averageHue=%23f8f7f5&amp;clientId=uf978a707-8366-4&amp;from=paste&amp;height=441&amp;id=ue056f864&amp;originHeight=551&amp;originWidth=712&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=124591&amp;status=done&amp;style=none&amp;taskId=u9056e286-7d60-4de8-a336-c999cb48863&amp;title=&amp;width=569.6" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/55ef2e20958dad936d9ed8fba3cdb89e0cab703463a90e14dd31c313820abf71/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934333135303634302d36613732303162352d623336352d346435382d626338322d3234623936633865303431612e706e6723617665726167654875653d25323366396637663526636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3433392669643d756339663531336465266f726967696e4865696768743d353439266f726967696e57696474683d373139266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313232303034267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7533343764616531362d653431352d343938362d623861382d3436303632306530336363267469746c653d2677696474683d3537352e32"><img src="https://camo.githubusercontent.com/55ef2e20958dad936d9ed8fba3cdb89e0cab703463a90e14dd31c313820abf71/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934333135303634302d36613732303162352d623336352d346435382d626338322d3234623936633865303431612e706e6723617665726167654875653d25323366396637663526636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3433392669643d756339663531336465266f726967696e4865696768743d353439266f726967696e57696474683d373139266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313232303034267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7533343764616531362d653431352d343938362d623861382d3436303632306530336363267469746c653d2677696474683d3537352e32" alt="image.png" data-canonical-src="https://cdn.nlark.com/yuque/0/2024/png/192314/1715943150640-6a7201b5-b365-4d58-bc82-24b96c8e041a.png#averageHue=%23f9f7f5&amp;clientId=uf978a707-8366-4&amp;from=paste&amp;height=439&amp;id=uc9f513de&amp;originHeight=549&amp;originWidth=719&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=122004&amp;status=done&amp;style=none&amp;taskId=u347dae16-e415-4986-b8a8-460620e03cc&amp;title=&amp;width=575.2" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/68ea476fa8c48f99e0c0ab82883f2d158b1d7ce1ef40a3925db7f755e618f38c/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934333136303036312d30356639373136342d356163652d346632632d383734612d6166396533323933383531612e706e6723617665726167654875653d25323366386636663426636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3434302669643d756166653634636561266f726967696e4865696768743d353530266f726967696e57696474683d373535266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313432323437267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7536373832393464302d653733382d346539642d616562312d3434353164643132323838267469746c653d2677696474683d363034"><img src="https://camo.githubusercontent.com/68ea476fa8c48f99e0c0ab82883f2d158b1d7ce1ef40a3925db7f755e618f38c/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032342f706e672f3139323331342f313731353934333136303036312d30356639373136342d356163652d346632632d383734612d6166396533323933383531612e706e6723617665726167654875653d25323366386636663426636c69656e7449643d7566393738613730372d383336362d342666726f6d3d7061737465266865696768743d3434302669643d756166653634636561266f726967696e4865696768743d353530266f726967696e57696474683d373535266f726967696e616c547970653d62696e61727926726174696f3d312e323526726f746174696f6e3d302673686f775469746c653d66616c73652673697a653d313432323437267374617475733d646f6e65267374796c653d6e6f6e65267461736b49643d7536373832393464302d653733382d346539642d616562312d3434353164643132323838267469746c653d2677696474683d363034" alt="image.png" data-canonical-src="https://cdn.nlark.com/yuque/0/2024/png/192314/1715943160061-05f97164-5ace-4f2c-874a-af9e3293851a.png#averageHue=%23f8f6f4&amp;clientId=uf978a707-8366-4&amp;from=paste&amp;height=440&amp;id=uafe64cea&amp;originHeight=550&amp;originWidth=755&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=142247&amp;status=done&amp;style=none&amp;taskId=u678294d0-e738-4e9d-aeb1-4451dd12288&amp;title=&amp;width=604" style="max-width: 100%;"></a></p>
+<p>在实验中使用的所有三个数据集上观察到一个有趣的现象。22 种扫描策略产生的分割精度似乎相似。考虑到每个数据集内不同扫描策略之间的小性能差异，以及单个扫描策略在所有三个数据集中的性能差异，没有明显迹象表明任何特定的扫描策略都优于其他方法，无论它们的复杂性或涉及单个或多个扫描方向。观察到的任何轻微的性能波动都可能归因于训练过程的随机性。</p>
+<h2>总结</h2>
+<p>对于高分辨率遥感图像的语义分割，利用特定的扫描方向或不同扫描方向的组合，如现有的基于 mamba 的方法所提出的策略，并不能有效提高分割精度。因此，在 vision mamba 框架中，使用类似 ViT 的扁平化方法 (即，D1 扫描) 对于此类图像的语义分割仍然有效。此外，采用单向扫描策略 (例如 D1) 也降低了计算需求，从而允许在有限的计算资源内进行更深的网络堆叠。</p>
+<p>探索语言模型在视觉任务上的泛化能力对于深度学习的发展至关重要。基于循环模型的最新进展 [Mamba, RWKV] 中，对将其集成到视觉任务中的有效方法进行着持续探索。当前的工作重点是设计扫描图像 patch 的策略，以增强模型对图像序列的理解。但是本文中对远程感知图像的语义分割的调查表明，基于 mamba 的模型对不同的扫描策略并不敏感。因此，可以说，应该将努力放到探索更有效的方式，而不是探索不同的扫描策略，以增强 mamba 模型对远程感知图像的理解。</p>
+<p>我们的工作并不是要否定 Vision Mamba 为改进扫描策略所做的大量努力，而是要证明这些改进对遥感图像的语义分割效果有限。这种现象是可以解释的：遥感图像在特征方面与传统图像不同。</p>
+<ul>
+<li>一方面，与人物图片等传统图像相比，遥感图像中代表相同语义的斑块在转换成序列时差异很小。</li>
+<li>另一方面，其序列的因果联系也弱于传统图像。</li>
+</ul>
+<p>不过，在其他类型的数据集（如 COCO-Stuff 和 Cityscapes）中，不同的扫描策略在序列中的因果关系更为明显，其有效性还有待验证，这也是未来工作的一个有趣领域。</p>
+<p>在对不同 patch 方法的实验中，我们发现了一个有趣的现象：减小步长可以提高分割精度，但代价是增加了计算需求。这表明，在处理 512×512 像素的图像时，Mamba 在使用比实验中使用的最小步长 4 更小的步长时可能会有更好的表现。但是，由于计算资源有限，较小的步长会使序列长度呈指数增长，因此无法使用这些较小的步长进行实验。研究更高效的计算方法以适应更密集的扫描是未来研究的一个有意义的方向。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://lartpang.github.io/blog"> Simpler, Better </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","lartpang/blog");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks=document.querySelectorAll('#postBody a > img'); imgLinks.forEach(function (imgLink) {var parentLink=imgLink.parentElement; parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink); parentLink.parentNode.removeChild(parentLink); }); mediumZoom('#postBody img');</script>
+</html>
