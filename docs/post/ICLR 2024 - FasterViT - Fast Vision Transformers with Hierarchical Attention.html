@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# FasterViT: Fast Vision Transformers with Hierarchical Attention
+
+* 论文：<https://arxiv.org/abs//2306.06189>
+* 代码：<https://github.com/NVlabs/FasterViT>
+* 解读：<https://mp.weixin.qq.com/s/0AXri6EUrXd6Hwf2HU5Wmg>
+* 原始文档：<https://github.com/lartpang/blog/issues/18>
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/e9f2421929424984accddf8035351204.png)
+
+本文提出了一种 CNN 和 ViT 的混合架构，即 FasterViT。">
+<meta property="og:title" content="ICLR 2024 - FasterViT - Fast Vision Transformers with Hierarchical Attention">
+<meta property="og:description" content="# FasterViT: Fast Vision Transformers with Hierarchical Attention
+
+* 论文：<https://arxiv.org/abs//2306.06189>
+* 代码：<https://github.com/NVlabs/FasterViT>
+* 解读：<https://mp.weixin.qq.com/s/0AXri6EUrXd6Hwf2HU5Wmg>
+* 原始文档：<https://github.com/lartpang/blog/issues/18>
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/e9f2421929424984accddf8035351204.png)
+
+本文提出了一种 CNN 和 ViT 的混合架构，即 FasterViT。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://lartpang.github.io/blog/post/ICLR%202024%20-%20FasterViT%20-%20Fast%20Vision%20Transformers%20with%20Hierarchical%20Attention.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>ICLR 2024 - FasterViT - Fast Vision Transformers with Hierarchical Attention</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+<style>#postBody img {display: block; margin-left: auto; margin-right: auto;}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">ICLR 2024 - FasterViT - Fast Vision Transformers with Hierarchical Attention</h1>
+<div class="title-right">
+    <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/lartpang/blog/issues/18" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>FasterViT: Fast Vision Transformers with Hierarchical Attention</h1>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs//2306.06189" rel="nofollow">https://arxiv.org/abs//2306.06189</a></li>
+<li>代码：<a href="https://github.com/NVlabs/FasterViT">https://github.com/NVlabs/FasterViT</a></li>
+<li>解读：<a href="https://mp.weixin.qq.com/s/0AXri6EUrXd6Hwf2HU5Wmg" rel="nofollow">https://mp.weixin.qq.com/s/0AXri6EUrXd6Hwf2HU5Wmg</a></li>
+<li>原始文档：<a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="2302224438" data-permission-text="Title is private" data-url="https://github.com/lartpang/blog/issues/18" data-hovercard-type="issue" data-hovercard-url="/lartpang/blog/issues/18/hovercard" href="https://github.com/lartpang/blog/issues/18">lartpang/blog#18</a></li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/dbe74e8348408a3776f5d677a11857904c3f35a1f232c57e4354efbd2a308cf8/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f65396632343231393239343234393834616363646466383033353335313230342e706e67"><img src="https://camo.githubusercontent.com/dbe74e8348408a3776f5d677a11857904c3f35a1f232c57e4354efbd2a308cf8/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f65396632343231393239343234393834616363646466383033353335313230342e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/e9f2421929424984accddf8035351204.png" style="max-width: 100%;"></a></p>
+<p>本文提出了一种 CNN 和 ViT 的混合架构，即 FasterViT。这样的混合架构可以快速生成高质量 token，然后基于 Transformer 块来进一步处理这些 token。其重点在于结合架构组合和高效的注意力模块的设计，从而优化 ViT 模型的计算效率，提高图像的吞吐率，加强对于高分辨率图像的适应能力。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a00697d119052c615d004f5b4401b7a55a040589b0f2fa89713fa18837b9c43d/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f38653338636135623832643934343035623764313234633134643834383836612e706e67"><img src="https://camo.githubusercontent.com/a00697d119052c615d004f5b4401b7a55a040589b0f2fa89713fa18837b9c43d/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f38653338636135623832643934343035623764313234633134643834383836612e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/8e38ca5b82d94405b7d124c14d84886a.png" style="max-width: 100%;"></a></p>
+<h2>模型设计</h2>
+<p>关于模型设计，作者写了一段具有参考价值的经验性分析，并在这些见解的指导下设计了所提架构，所有阶段均可从加速计算硬件受益。</p>
+<blockquote>
+<p>我们专注于 GPU 等主流现成硬件上的计算机视觉任务的最高吞吐量这在并行计算方面表现出色。在这种情况下，计算涉及一组流式多处理器（SM），以 CUDA 和 Tensor cores 作为计算单元。它需要频繁的数据传输来计算，并可能受到数据移动带宽的影响。因此，受计算限制的操作是计算受限的，而那些受内存传输限制的操作是内存受限的。需要两者之间仔细平衡才能最大化吞吐量。</p>
+<p>在分层视觉模型中，中间表示的空间维度随着推理过程而缩小。</p>
+<ul>
+<li>初始网络层大多具有较大的空间维度和较少的通道（例如 112x112x64)，这使它们是内存受限的。这使得这里更适合计算密集型操作，例如密集卷积而不是会增加额外传输成本的深度/稀疏卷积。也不可用矩阵操作形式表示的操作，例如非线性操作，池化，批归一化。这类操作也是内存受限的，应减少使用。</li>
+<li>相反，后面层的操作往往是计算受限的，且运算成本高昂。例如，分层 CNN 具有尺寸为 14x14 的特征图和高维卷积核。这为更具表达性的操作留下了空间，例如层归一化、SE 模块，或注意力，并对吞吐量影响相当小。</li>
+</ul>
+</blockquote>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/aa9b313906a46a88072996c4bc56ac4079c0a24a0e1d6d225f754397df402cb0/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f61623063373436353235633734346132623930353666383039633937366231622e706e67"><img src="https://camo.githubusercontent.com/aa9b313906a46a88072996c4bc56ac4079c0a24a0e1d6d225f754397df402cb0/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f61623063373436353235633734346132623930353666383039633937366231622e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/ab0c746525c744a2b9056f809c976b1b.png" style="max-width: 100%;"></a></p>
+<ul>
+<li>stem 层：输入图像利用两个连续的跨步为 2 的 3x3 卷积转换为重叠的 patch。每个卷积层之后 BN 和 ReLU 被插入处理 token。</li>
+<li>下采样：遵循封层结构，每个 stage 下采样 1/2。应用 2D LN 并跟一个跨步为 2 的 3xe 卷积来降低特征分辨率以及加倍通道数。</li>
+<li>Conv Block：在高分辨率 stage（即 stage 1、2）使用残差卷积块。<code class="notranslate">x = x + BN(Conv3x3(GELU(BN(Conv3x3(x)))))</code>。</li>
+<li>Hierarchical Attention：在低分辨率 stage（即 stage 3、4）使用 Transformer 块。对于每个 Transformer 块，论文提出<strong>分层注意力块</strong>来提取长短距离空间关系，进行有效的跨窗口交互。</li>
+</ul>
+<h2>分层注意力 HAT</h2>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/dc6560ac327c061f337ea07181698742128d16d186a20614817d0054264adb70/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f32316635393238343438623434316436383437616239333537353236346139382e706e67"><img src="https://camo.githubusercontent.com/dc6560ac327c061f337ea07181698742128d16d186a20614817d0054264adb70/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f32316635393238343438623434316436383437616239333537353236346139382e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/21f5928448b441d6847ab93575264a98.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c1ea0b51733d38c0b7fb02e99ea1345dbc71d3f4980eef0acffc026bd7e7f4df/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f32343638656461623535343834303232613036653234646265623666623862332e706e67"><img src="https://camo.githubusercontent.com/c1ea0b51733d38c0b7fb02e99ea1345dbc71d3f4980eef0acffc026bd7e7f4df/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f32343638656461623535343834303232613036653234646265623666623862332e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/2468edab55484022a06e24dbeb6fb8b3.png" style="max-width: 100%;"></a></p>
+<p>这个模块使用的是<strong>粗细 token 组合</strong>的方式进行的设计。核心即<strong>为每个局部窗口学习专用的 carrier tokens</strong>参与到窗口内部和跨窗口的信息交互，基于 carrier token 对窗口之间的交互模式进行建模。由于其通过组合有固定窗口的注局部意力和随区域数量增加而线性增加的窗口 carrier tokens，分层注意力的计算复杂度几乎随输入图像分辨率线性增长。因此，它是捕获高分辨率特征的远距离关系的高效且有效的方法。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/0d9c133b1bdca26b2d3a0fdd630143d51b243f2a6e937f4eb23cb2974db5fc39/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f33656236373965303662616334303466623861353231326438663264613931372e706e67"><img src="https://camo.githubusercontent.com/0d9c133b1bdca26b2d3a0fdd630143d51b243f2a6e937f4eb23cb2974db5fc39/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f33656236373965303662616334303466623861353231326438663264613931372e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/3eb679e06bac404fb8a5212d8f2da917.png" style="max-width: 100%;"></a></p>
+<p>整体模块细节图如图 4 所示。在原始的局部注意力之上额外引入了与每个窗口相对应的 carrier token（CT）。这些 CT 用于总结对应的局部窗口。具体流程如下：</p>
+<ol>
+<li>从原始的特征图中初始化 CT。这些 token 可以看做是一种更高阶的 token。初始化过程使用 <code class="notranslate">卷积位置编码-&gt;平均池化</code> 的组合缩小特征空间维度。每个窗口对应生成 $L$ 个 CT（$L &lt;&lt; k$，k 是窗口的边长），共计 $n^2$ 个窗口，所以一共有 $n^2L$ 个 CT。</li>
+<li>CT 通过独立的序列自注意力块（$x2=x1+\gamma_2(MLP(LN(x1))), x1=x+\gamma_1 MHSA(LN(x))$，$\gamma$ 是一个可学习的逐通道放缩量）总结并传播全局信息。这里由于注意力自身对位置的不敏感，所以需要引入位置编码。这里受 SwinV2 启发，利用 2 层的 MLP 嵌入 token 的<strong>绝对位置信息</strong>到特征维度上加到 CT 上。这里也对图像 token 补充了<strong>绝对位置信息</strong>。</li>
+<li>局部窗口的 token 与对应的 CT 拼接后形成新的序列，计算窗口内部的序列自注意力块（与前面的类似）。实现低成本的局部和全局的信息传播。同时，为了促进图像局部归纳偏置，这里也在注意力操作中引入了来自于 SwinV2 的基于 2 层 MLP 的对数空间相对位置编码。这确保了 token 的相对位置贡献到共享的注意力模式上。<strong>这种方法在图像大小（如位置）方面具有灵活性，因为位置编码被由 MLP 插值，因此训练好的模型可以应用于任何输入分辨率。</strong>
+</li>
+<li>（CT 自己的全局交互和窗口内部的交互两部分构成了分层注意力）</li>
+<li>之后将更新后的序列中局部 token 和 CT 进行拆分，并将 CT 上采样到原始分辨率，同时将图像 token 重组会原始形式。之后二者加和获得更新后的特征图。</li>
+<li>HAT 整体计算复杂度为 $k^2H^2d+LH^2d+\frac{H^4}{k^4}L^2d$
+</li>
+</ol>
+<h2>实验性能</h2>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/adf264d99918d190b73b78e5d576bca96dff090dbf1f873de0ac1c100f9c681b/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f37363266656366363166386234366131626133306537636233373833623737312e706e67"><img src="https://camo.githubusercontent.com/adf264d99918d190b73b78e5d576bca96dff090dbf1f873de0ac1c100f9c681b/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f37363266656366363166386234366131626133306537636233373833623737312e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/762fecf61f8b46a1ba30e7cb3783b771.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/42067c78a46734e0470e63a434e78faab695f1acaa857408e65ae502c0f033d9/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f33656639306339613836376634373837396233623837373539323735313630622e706e67"><img src="https://camo.githubusercontent.com/42067c78a46734e0470e63a434e78faab695f1acaa857408e65ae502c0f033d9/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f33656639306339613836376634373837396233623837373539323735313630622e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/3ef90c9a867f47879b3b87759275160b.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c19b0f9babea6a14457710955573cfd22b6a1b63075d0b75ac08fc6d42ddccee/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f32363530383733363665376134633436383439616331323233316439633833322e706e67"><img src="https://camo.githubusercontent.com/c19b0f9babea6a14457710955573cfd22b6a1b63075d0b75ac08fc6d42ddccee/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f32363530383733363665376134633436383439616331323233316439633833322e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/265087366e7a4c46849ac12231d9c832.png" style="max-width: 100%;"></a></p>
+<p>这里是在 ImageNet1K 上初始训练 256 大小（I）300 个 epoch，后面测试了使用不同的尺寸和窗口大小（W）进行微调的结果。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e60680483bc074454841f0aebee58c3ac2a88afacc3bd6c56da6d308e1e13340/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f65336631663766356566393634363965613366626562303432616434303135342e706e67"><img src="https://camo.githubusercontent.com/e60680483bc074454841f0aebee58c3ac2a88afacc3bd6c56da6d308e1e13340/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f65336631663766356566393634363965613366626562303432616434303135342e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/e3f1f7f5ef96469ea3fbeb042ad40154.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a660717c64aa79a6dc92b41e95b9330fc084459f4abd0ab7aa5720cfa177c9a6/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f39636335646631366332663234383932396161626364653965393363623432612e706e67"><img src="https://camo.githubusercontent.com/a660717c64aa79a6dc92b41e95b9330fc084459f4abd0ab7aa5720cfa177c9a6/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f39636335646631366332663234383932396161626364653965393363623432612e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/9cc5df16c2f248929aabcde9e93cb42a.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c62c5b80dc3ef5b80e0fa536eacb2948c68311ed8b5f0f3aa98545835bd74835/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f31646632666165626632623334663032396563353539353037343431343564622e706e67"><img src="https://camo.githubusercontent.com/c62c5b80dc3ef5b80e0fa536eacb2948c68311ed8b5f0f3aa98545835bd74835/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f31646632666165626632623334663032396563353539353037343431343564622e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/1df2faebf2b34f029ec55950744145db.png" style="max-width: 100%;"></a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://lartpang.github.io/blog"> Simpler, Better </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","lartpang/blog");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks=document.querySelectorAll('#postBody a > img'); imgLinks.forEach(function (imgLink) {var parentLink=imgLink.parentElement; parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink); parentLink.parentNode.removeChild(parentLink); }); mediumZoom('#postBody img');</script><script>MathJax = {tex: {inlineMath: [["$", "$"]]}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</html>

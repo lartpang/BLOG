@@ -1,5 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Simpler, Better</title><link>https://lartpang.github.io/blog</link><description>Just for fun.</description><copyright>Simpler, Better</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://lartpang.github.io/blog</link></image><lastBuildDate>Wed, 17 Apr 2024 09:27:13 +0000</lastBuildDate><managingEditor>Simpler, Better</managingEditor><ttl>60</ttl><webMaster>Simpler, Better</webMaster><item><title>CVPR 参会记录</title><link>https://lartpang.github.io/blog/post/CVPR%20-can-hui-ji-lu.html</link><description>1. 【获得邀请函】在 CVPR 官网参会注册后即可申请：&lt;https://cvpr.thecvf.com&gt;&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Simpler, Better</title><link>https://lartpang.github.io/blog</link><description>Just for fun.</description><copyright>Simpler, Better</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://lartpang.github.io/blog</link></image><lastBuildDate>Fri, 17 May 2024 09:21:41 +0000</lastBuildDate><managingEditor>Simpler, Better</managingEditor><ttl>60</ttl><webMaster>Simpler, Better</webMaster><item><title>ICLR 2024 - FasterViT - Fast Vision Transformers with Hierarchical Attention</title><link>https://lartpang.github.io/blog/post/ICLR%202024%20-%20FasterViT%20-%20Fast%20Vision%20Transformers%20with%20Hierarchical%20Attention.html</link><description># FasterViT: Fast Vision Transformers with Hierarchical Attention&#13;
+&#13;
+* 论文：&lt;https://arxiv.org/abs//2306.06189&gt;&#13;
+* 代码：&lt;https://github.com/NVlabs/FasterViT&gt;&#13;
+* 解读：&lt;https://mp.weixin.qq.com/s/0AXri6EUrXd6Hwf2HU5Wmg&gt;&#13;
+* 原始文档：&lt;https://github.com/lartpang/blog/issues/18&gt;&#13;
+&#13;
+![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/e9f2421929424984accddf8035351204.png)&#13;
+&#13;
+本文提出了一种 CNN 和 ViT 的混合架构，即 FasterViT。</description><guid isPermaLink="true">https://lartpang.github.io/blog/post/ICLR%202024%20-%20FasterViT%20-%20Fast%20Vision%20Transformers%20with%20Hierarchical%20Attention.html</guid><pubDate>Fri, 17 May 2024 09:21:14 +0000</pubDate></item><item><title>CVPR 参会记录</title><link>https://lartpang.github.io/blog/post/CVPR%20-can-hui-ji-lu.html</link><description>1. 【获得邀请函】在 CVPR 官网参会注册后即可申请：&lt;https://cvpr.thecvf.com&gt;&#13;
 2. 【申请美签】填写 DS-160：&lt;https://ceac.state.gov/genniv&gt;&#13;
     1. 需要准备电子照片，相关要求可见：&lt;https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/photos.html&gt;&#13;
         1. [美国签证DS160照片和要携带面试上交的照片必须要同一张吗？](https://www.meiguo-qianzheng.com/qitaqianzhengwenti/393.html)&#13;
