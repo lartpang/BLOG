@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
-    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/26847524"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
@@ -281,5 +281,18 @@ function searchShow(){
 
 </script>
 
-<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks=document.querySelectorAll('#postBody a > img'); imgLinks.forEach(function (imgLink) {var parentLink=imgLink.parentElement; parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink); parentLink.parentNode.removeChild(parentLink); }); mediumZoom('#postBody img');</script>
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>
+<script>
+  var imgLinks = document.querySelectorAll('#postBody a > img');
+  imgLinks.forEach(
+    function (imgLink) {
+      var parentLink = imgLink.parentElement;
+      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);
+      parentLink.parentNode.removeChild(parentLink);
+    }
+  );
+  mediumZoom('#postBody img');
+</script>
+
+
 </html>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
-    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/26847524"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
@@ -22,7 +22,7 @@
     2. 考虑选择申请 B1 签证。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://lartpang.github.io/blog/post/CVPR%20-can-hui-ji-lu.html">
-<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
 <title>CVPR 参会记录</title>
 
 
@@ -48,7 +48,16 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     .postTitle{font-size:24px;}
 }
 </style>
-<style>#postBody img {display: block; margin-left: auto; margin-right: auto;}</style>
+<style>
+  #postBody img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+</style>
+
+
 
 
 
@@ -225,5 +234,18 @@ function iFrameLoading(){
 </script>
 
 
-<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks=document.querySelectorAll('#postBody a > img'); imgLinks.forEach(function (imgLink) {var parentLink=imgLink.parentElement; parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink); parentLink.parentNode.removeChild(parentLink); }); mediumZoom('#postBody img');</script>
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>
+<script>
+  var imgLinks = document.querySelectorAll('#postBody a > img');
+  imgLinks.forEach(
+    function (imgLink) {
+      var parentLink = imgLink.parentElement;
+      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);
+      parentLink.parentNode.removeChild(parentLink);
+    }
+  );
+  mediumZoom('#postBody img');
+</script>
+
+
 </html>
