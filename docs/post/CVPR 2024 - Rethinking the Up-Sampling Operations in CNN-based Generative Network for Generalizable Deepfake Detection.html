@@ -9,23 +9,9 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection
-
-* 论文：<https://arxiv.org/abs/2312.10461>
-* 代码：<https://github.com/chuangchuangtan/NPR-DeepfakeDetection>
-
-![image](https://github.com/lartpang/blog/assets/26847524/0c7f34a2-8f24-458e-84c9-37b8253deb5c)
-
-本文主要研究了基于 CNN 的生成网络中的上采样操作，以实现通用的深度伪造检测。">
+<meta name="description" content="">
 <meta property="og:title" content="CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection">
-<meta property="og:description" content="# CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection
-
-* 论文：<https://arxiv.org/abs/2312.10461>
-* 代码：<https://github.com/chuangchuangtan/NPR-DeepfakeDetection>
-
-![image](https://github.com/lartpang/blog/assets/26847524/0c7f34a2-8f24-458e-84c9-37b8253deb5c)
-
-本文主要研究了基于 CNN 的生成网络中的上采样操作，以实现通用的深度伪造检测。">
+<meta property="og:description" content="">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://lartpang.github.io/blog/post/CVPR%202024%20-%20Rethinking%20the%20Up-Sampling%20Operations%20in%20CNN-based%20Generative%20Network%20for%20Generalizable%20Deepfake%20Detection.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
@@ -41,17 +27,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </style>
 
 <style>
-.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.post_title{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
 .title-right .circle{padding: 14px 16px;margin-right:8px;}
-#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
-#postBody hr{height:2px;}
+#post_body{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#post_body hr{height:2px;}
 #cmButton{height:48px;margin-top:48px;}
 #comments{margin-top:64px;}
 .g-emoji{font-size:24px;}
 @media (max-width: 600px) {
     body {padding: 8px;}
-    .postTitle{font-size:24px;}
+    .post_title{font-size:24px;}
 }
 </style>
 <style>
@@ -69,7 +55,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection</h1>
+<h1 class="post_title">CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -93,7 +79,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection</h1>
+<div class="markdown-body" id="post_body"><h1>CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection</h1>
 <ul>
 <li>论文：<a href="https://arxiv.org/abs/2312.10461" rel="nofollow">https://arxiv.org/abs/2312.10461</a></li>
 <li>代码：<a href="https://github.com/chuangchuangtan/NPR-DeepfakeDetection">https://github.com/chuangchuangtan/NPR-DeepfakeDetection</a></li>
@@ -126,8 +112,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <script>
 if(""!=""){
     var now=new Date();
-    var startSite=new Date("");
-    var diff=now.getTime()-startSite.getTime();
+    var start_site=new Date("");
+    var diff=now.getTime()-start_site.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
     document.getElementById("year").innerHTML=now.getFullYear();
     if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}

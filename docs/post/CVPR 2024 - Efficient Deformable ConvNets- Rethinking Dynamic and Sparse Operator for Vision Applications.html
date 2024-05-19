@@ -9,23 +9,9 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# CVPR 2024 - Efficient Deformable ConvNets - Rethinking Dynamic and Sparse Operator for Vision Applications
-
-![](https://img-blog.csdnimg.cn/direct/91218b5449e44dc08281d227cb980f2e.png)
-
-* 论文：<https://arxiv.org/abs/2401.06197>
-* 代码：<https://github.com/OpenGVLab/DCNv4>
-
-本文提出了高效的 DCNv4，这是一个专为视觉应用设计的高效有效的运算符。">
+<meta name="description" content="">
 <meta property="og:title" content="CVPR 2024 - Efficient Deformable ConvNets: Rethinking Dynamic and Sparse Operator for Vision Applications">
-<meta property="og:description" content="# CVPR 2024 - Efficient Deformable ConvNets - Rethinking Dynamic and Sparse Operator for Vision Applications
-
-![](https://img-blog.csdnimg.cn/direct/91218b5449e44dc08281d227cb980f2e.png)
-
-* 论文：<https://arxiv.org/abs/2401.06197>
-* 代码：<https://github.com/OpenGVLab/DCNv4>
-
-本文提出了高效的 DCNv4，这是一个专为视觉应用设计的高效有效的运算符。">
+<meta property="og:description" content="">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://lartpang.github.io/blog/post/CVPR%202024%20-%20Efficient%20Deformable%20ConvNets-%20Rethinking%20Dynamic%20and%20Sparse%20Operator%20for%20Vision%20Applications.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
@@ -41,17 +27,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </style>
 
 <style>
-.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.post_title{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
 .title-right .circle{padding: 14px 16px;margin-right:8px;}
-#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
-#postBody hr{height:2px;}
+#post_body{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#post_body hr{height:2px;}
 #cmButton{height:48px;margin-top:48px;}
 #comments{margin-top:64px;}
 .g-emoji{font-size:24px;}
 @media (max-width: 600px) {
     body {padding: 8px;}
-    .postTitle{font-size:24px;}
+    .post_title{font-size:24px;}
 }
 </style>
 <style>
@@ -69,7 +55,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">CVPR 2024 - Efficient Deformable ConvNets: Rethinking Dynamic and Sparse Operator for Vision Applications</h1>
+<h1 class="post_title">CVPR 2024 - Efficient Deformable ConvNets: Rethinking Dynamic and Sparse Operator for Vision Applications</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -93,7 +79,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>CVPR 2024 - Efficient Deformable ConvNets - Rethinking Dynamic and Sparse Operator for Vision Applications</h1>
+<div class="markdown-body" id="post_body"><h1>CVPR 2024 - Efficient Deformable ConvNets - Rethinking Dynamic and Sparse Operator for Vision Applications</h1>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2b6165118d97502db23fac7662021318cc3d2a0c8b4393fccd75ae4afe85778c/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f39313231386235343439653434646330383238316432323763623938306632652e706e67"><img src="https://camo.githubusercontent.com/2b6165118d97502db23fac7662021318cc3d2a0c8b4393fccd75ae4afe85778c/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f39313231386235343439653434646330383238316432323763623938306632652e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/direct/91218b5449e44dc08281d227cb980f2e.png" style="max-width: 100%;"></a></p>
 <ul>
 <li>论文：<a href="https://arxiv.org/abs/2401.06197" rel="nofollow">https://arxiv.org/abs/2401.06197</a></li>
@@ -121,8 +107,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <script>
 if(""!=""){
     var now=new Date();
-    var startSite=new Date("");
-    var diff=now.getTime()-startSite.getTime();
+    var start_site=new Date("");
+    var diff=now.getTime()-start_site.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
     document.getElementById("year").innerHTML=now.getFullYear();
     if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}

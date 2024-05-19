@@ -9,301 +9,9 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# Six methods of indexing pixels of Mat in OpenCV
-
-## `.at<>()`
-
-```cpp
-// modify the pixel directly
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols; ++w) {
-        image.at<Vec3b>(h, w)[0] = 255;
-        image.at<Vec3b>(h, w)[1] = 0;
-        image.at<Vec3b>(h, w)[2] = 0;
-    }
-}
-
-// modify the pixel by the reference
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols; ++w) {
-        Vec3b& bgr = image.at<Vec3b>(h, w);
-        bgr.val[0] = 0;
-        bgr.val[1] = 255;
-        bgr.val[2] = 0;
-    }
-}
-
-// the image has one channel
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols / 2; ++w) {
-        image.at<uchar>(h, w) = 128;
-    }
-}
-```
-
-## `.ptr<>()`
-
-```cpp
-// use uchar type
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols / 2; ++w) {
-        uchar* ptr = image.ptr<uchar>(h, w);
-        ptr[0] = 255;
-        ptr[1] = 0;
-        ptr[2] = 0;
-    }
-}
-// use cv::Vec3b type
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols / 2; ++w) {
-        Vec3b* ptr = image.ptr<Vec3b>(h, w);
-        ptr->val[0] = 0;
-        ptr->val[1] = 255;
-        ptr->val[2] = 0;
-    }
-}
-
-// use the row pointer and the image has one channel
-for (int h = 0; h < image.rows; ++h) {
-    uchar* ptr = image.ptr(h);
-    for (int w = 0; w < image.cols / 2; ++w) {
-        ptr[w] = 128;
-    }
-}
-
-// use the pixel pointer and the image has one channel
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols / 2; ++w) {
-        uchar* ptr = image.ptr<uchar>(h, w);
-        *ptr = 255;
-    }
-}
-```
-
-## `iterator`
-
-```cpp
-// the image has three channels
-Mat_<Vec3b>::iterator it = image.begin<Vec3b>();
-Mat_<Vec3b>::iterator itend = image.end<Vec3b>();
-for (; it != itend; ++it) {
-    (*it)[0] = 255;
-    (*it)[1] = 0;
-    (*it)[2] = 0;
-}
-
-// the image has one channel
-Mat_<uchar>::iterator it1 = image.begin<uchar>();
-Mat_<uchar>::iterator itend1 = image.end<uchar>();
-for (; it1 != itend1; ++it1) {
-    (*it1) = 128;
-}
-```
-
-## `.data` pointer
-
-```cpp
-// 3 channels
-uchar* data = image.data;
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols / 2; ++w) {
-        *data++ = 128;
-        *data++ = 128;
-        *data++ = 128;
-    }
-}
-
-// 1 channel
-uchar* data = image.data;
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols / 2; ++w) {
-        *data++ = 128;
-    }
-}
-```
-
-## `.row()` and `.col()`
-
-```cpp
-for (int i = 0; i < 100; ++i) {
-    image.row(i).setTo(Scalar(0, 0, 0)); // modify the i th row data
-    image.col(i).setTo(Scalar(0, 0, 0)); // modify the i th column data
-}
-```
-
-## when `isContinuous()` is true
-
-```cpp
-Mat image = imread("...");
-int nRows = image.rows;
-int nCols = image.cols * image.channels();
-
-if (image.isContinuous()) {
-    nCols = nRows * nCols;
-    nRows = 1;
-}
-
-for (int h = 0; h < nRows; ++h) {
-    uchar* ptr = image.ptr<uchar>(h);
-    for (int w = 0; w < nCols; ++w) {
-        // ptr[w] = 128 ;
-        *ptr++ = 128;
-    }
-}
-```
-
-## Reference
-
-- http://t.csdn.cn/bSDNn
-。">
+<meta name="description" content="">
 <meta property="og:title" content="Six methods of indexing pixels of Mat in OpenCV">
-<meta property="og:description" content="# Six methods of indexing pixels of Mat in OpenCV
-
-## `.at<>()`
-
-```cpp
-// modify the pixel directly
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols; ++w) {
-        image.at<Vec3b>(h, w)[0] = 255;
-        image.at<Vec3b>(h, w)[1] = 0;
-        image.at<Vec3b>(h, w)[2] = 0;
-    }
-}
-
-// modify the pixel by the reference
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols; ++w) {
-        Vec3b& bgr = image.at<Vec3b>(h, w);
-        bgr.val[0] = 0;
-        bgr.val[1] = 255;
-        bgr.val[2] = 0;
-    }
-}
-
-// the image has one channel
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols / 2; ++w) {
-        image.at<uchar>(h, w) = 128;
-    }
-}
-```
-
-## `.ptr<>()`
-
-```cpp
-// use uchar type
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols / 2; ++w) {
-        uchar* ptr = image.ptr<uchar>(h, w);
-        ptr[0] = 255;
-        ptr[1] = 0;
-        ptr[2] = 0;
-    }
-}
-// use cv::Vec3b type
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols / 2; ++w) {
-        Vec3b* ptr = image.ptr<Vec3b>(h, w);
-        ptr->val[0] = 0;
-        ptr->val[1] = 255;
-        ptr->val[2] = 0;
-    }
-}
-
-// use the row pointer and the image has one channel
-for (int h = 0; h < image.rows; ++h) {
-    uchar* ptr = image.ptr(h);
-    for (int w = 0; w < image.cols / 2; ++w) {
-        ptr[w] = 128;
-    }
-}
-
-// use the pixel pointer and the image has one channel
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols / 2; ++w) {
-        uchar* ptr = image.ptr<uchar>(h, w);
-        *ptr = 255;
-    }
-}
-```
-
-## `iterator`
-
-```cpp
-// the image has three channels
-Mat_<Vec3b>::iterator it = image.begin<Vec3b>();
-Mat_<Vec3b>::iterator itend = image.end<Vec3b>();
-for (; it != itend; ++it) {
-    (*it)[0] = 255;
-    (*it)[1] = 0;
-    (*it)[2] = 0;
-}
-
-// the image has one channel
-Mat_<uchar>::iterator it1 = image.begin<uchar>();
-Mat_<uchar>::iterator itend1 = image.end<uchar>();
-for (; it1 != itend1; ++it1) {
-    (*it1) = 128;
-}
-```
-
-## `.data` pointer
-
-```cpp
-// 3 channels
-uchar* data = image.data;
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols / 2; ++w) {
-        *data++ = 128;
-        *data++ = 128;
-        *data++ = 128;
-    }
-}
-
-// 1 channel
-uchar* data = image.data;
-for (int h = 0; h < image.rows; ++h) {
-    for (int w = 0; w < image.cols / 2; ++w) {
-        *data++ = 128;
-    }
-}
-```
-
-## `.row()` and `.col()`
-
-```cpp
-for (int i = 0; i < 100; ++i) {
-    image.row(i).setTo(Scalar(0, 0, 0)); // modify the i th row data
-    image.col(i).setTo(Scalar(0, 0, 0)); // modify the i th column data
-}
-```
-
-## when `isContinuous()` is true
-
-```cpp
-Mat image = imread("...");
-int nRows = image.rows;
-int nCols = image.cols * image.channels();
-
-if (image.isContinuous()) {
-    nCols = nRows * nCols;
-    nRows = 1;
-}
-
-for (int h = 0; h < nRows; ++h) {
-    uchar* ptr = image.ptr<uchar>(h);
-    for (int w = 0; w < nCols; ++w) {
-        // ptr[w] = 128 ;
-        *ptr++ = 128;
-    }
-}
-```
-
-## Reference
-
-- http://t.csdn.cn/bSDNn
-。">
+<meta property="og:description" content="">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://lartpang.github.io/blog/post/Six%20methods%20of%20indexing%20pixels%20of%20Mat%20in%20OpenCV.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
@@ -319,17 +27,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </style>
 
 <style>
-.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.post_title{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
 .title-right .circle{padding: 14px 16px;margin-right:8px;}
-#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
-#postBody hr{height:2px;}
+#post_body{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#post_body hr{height:2px;}
 #cmButton{height:48px;margin-top:48px;}
 #comments{margin-top:64px;}
 .g-emoji{font-size:24px;}
 @media (max-width: 600px) {
     body {padding: 8px;}
-    .postTitle{font-size:24px;}
+    .post_title{font-size:24px;}
 }
 </style>
 <style>
@@ -347,7 +55,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">Six methods of indexing pixels of Mat in OpenCV</h1>
+<h1 class="post_title">Six methods of indexing pixels of Mat in OpenCV</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -371,7 +79,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>Six methods of indexing pixels of Mat in OpenCV</h1>
+<div class="markdown-body" id="post_body"><h1>Six methods of indexing pixels of Mat in OpenCV</h1>
 <h2><code class="notranslate">.at&lt;&gt;()</code></h2>
 <div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> modify the pixel directly</span>
 <span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
@@ -505,8 +213,8 @@ uchar* data = image.data;
 <script>
 if(""!=""){
     var now=new Date();
-    var startSite=new Date("");
-    var diff=now.getTime()-startSite.getTime();
+    var start_site=new Date("");
+    var diff=now.getTime()-start_site.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
     document.getElementById("year").innerHTML=now.getFullYear();
     if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}

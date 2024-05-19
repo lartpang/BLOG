@@ -9,159 +9,9 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# Snippets of OpenVINO-CPP for Model Inference
-
-## Header File
-
-```cpp
-#include <openvino/openvino.hpp>
-```
-
-## Create Infer Request
-
-```cpp
-void preprocessing(std::shared_ptr<ov::Model> model) {
-  ov::preprocess::PrePostProcessor ppp(model);
-  ppp.input().tensor().set_layout("NHWC"); // input data is NHWC from OpenCV Mat
-  ppp.input().model().set_layout("NCHW"); // In the model, the layout is NCHW
-  model = ppp.build();
-}
-
-ov::Core core;
-
-auto model = core.read_model(model_path); # can use onnx or openvino's xml file
-preprocessing(model);
-
-auto compiled_model = core.compile_model(model, "CPU");  // Or without `"CPU"`
-auto input_port = compiled_model.input();
-auto infer_request = compiled_model.create_infer_request();
-```
-
-## Input and Output
-
-- single input
-
-```cpp
-infer_request.set_input_tensor(blob);
-infer_request.crop_net.infer();
-```
-
-- single output
-
-```cpp
-ov::Tensor single_output = this->point_net.get_output_tensor(0);
-```
-
-- multiple outputs
-
-```cpp
-ov::Tensor multi_outputs0 = this->point_net.get_output_tensor(0);
-ov::Tensor multi_outputs1 = this->point_net.get_output_tensor(1);
-```
-
-## OpenCV `cv::Mat` <-> OpenVINO `ov::Tensor`
-
-The key to these steps is the alignment of the data layout.
-
-### `cv::Mat` -> `ov::Tensor`
-
-```cpp
-// converting the uint8 3-channels image mat to a float32 tensor
-image.convertTo(image, CV_32FC3, 1.0 / 255);
-// NHWC layout as mentioned above. (N=1, C=3)
-ov::Tensor blob(input_port.get_element_type(), input_port.get_shape(), (float *)image.data);
-```
-
-### `ov::Tensor` -> `cv::Mat`
-
-```cpp
-// tensor follows the NCHW layout, so tensor_shape is (N,C,H,W)
-ov::Shape tensor_shape = tensor.get_shape();
-// Due to N=1 and C=1, we can directly assign all data to a new mat.
-cv::Mat mat(tensor_shape[2], tensor_shape[3], CV_32F, tensor.data());
-```
-
-## Reference
-
-- https://github.com/OpenVINO-dev-contest/YOLOv7_OpenVINO_cpp-python/blob/main/cpp/main_preprocessing.cpp
-- https://github.com/openvinotoolkit/openvino/blob/master/samples/cpp/hello_classification/main.cpp。">
+<meta name="description" content="">
 <meta property="og:title" content="Snippets of OpenVINO-CPP for Model Inference">
-<meta property="og:description" content="# Snippets of OpenVINO-CPP for Model Inference
-
-## Header File
-
-```cpp
-#include <openvino/openvino.hpp>
-```
-
-## Create Infer Request
-
-```cpp
-void preprocessing(std::shared_ptr<ov::Model> model) {
-  ov::preprocess::PrePostProcessor ppp(model);
-  ppp.input().tensor().set_layout("NHWC"); // input data is NHWC from OpenCV Mat
-  ppp.input().model().set_layout("NCHW"); // In the model, the layout is NCHW
-  model = ppp.build();
-}
-
-ov::Core core;
-
-auto model = core.read_model(model_path); # can use onnx or openvino's xml file
-preprocessing(model);
-
-auto compiled_model = core.compile_model(model, "CPU");  // Or without `"CPU"`
-auto input_port = compiled_model.input();
-auto infer_request = compiled_model.create_infer_request();
-```
-
-## Input and Output
-
-- single input
-
-```cpp
-infer_request.set_input_tensor(blob);
-infer_request.crop_net.infer();
-```
-
-- single output
-
-```cpp
-ov::Tensor single_output = this->point_net.get_output_tensor(0);
-```
-
-- multiple outputs
-
-```cpp
-ov::Tensor multi_outputs0 = this->point_net.get_output_tensor(0);
-ov::Tensor multi_outputs1 = this->point_net.get_output_tensor(1);
-```
-
-## OpenCV `cv::Mat` <-> OpenVINO `ov::Tensor`
-
-The key to these steps is the alignment of the data layout.
-
-### `cv::Mat` -> `ov::Tensor`
-
-```cpp
-// converting the uint8 3-channels image mat to a float32 tensor
-image.convertTo(image, CV_32FC3, 1.0 / 255);
-// NHWC layout as mentioned above. (N=1, C=3)
-ov::Tensor blob(input_port.get_element_type(), input_port.get_shape(), (float *)image.data);
-```
-
-### `ov::Tensor` -> `cv::Mat`
-
-```cpp
-// tensor follows the NCHW layout, so tensor_shape is (N,C,H,W)
-ov::Shape tensor_shape = tensor.get_shape();
-// Due to N=1 and C=1, we can directly assign all data to a new mat.
-cv::Mat mat(tensor_shape[2], tensor_shape[3], CV_32F, tensor.data());
-```
-
-## Reference
-
-- https://github.com/OpenVINO-dev-contest/YOLOv7_OpenVINO_cpp-python/blob/main/cpp/main_preprocessing.cpp
-- https://github.com/openvinotoolkit/openvino/blob/master/samples/cpp/hello_classification/main.cpp。">
+<meta property="og:description" content="">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://lartpang.github.io/blog/post/Snippets%20of%20OpenVINO-CPP%20for%20Model%20Inference.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
@@ -177,17 +27,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </style>
 
 <style>
-.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.post_title{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
 .title-right .circle{padding: 14px 16px;margin-right:8px;}
-#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
-#postBody hr{height:2px;}
+#post_body{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#post_body hr{height:2px;}
 #cmButton{height:48px;margin-top:48px;}
 #comments{margin-top:64px;}
 .g-emoji{font-size:24px;}
 @media (max-width: 600px) {
     body {padding: 8px;}
-    .postTitle{font-size:24px;}
+    .post_title{font-size:24px;}
 }
 </style>
 <style>
@@ -205,7 +55,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">Snippets of OpenVINO-CPP for Model Inference</h1>
+<h1 class="post_title">Snippets of OpenVINO-CPP for Model Inference</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -229,7 +79,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>Snippets of OpenVINO-CPP for Model Inference</h1>
+<div class="markdown-body" id="post_body"><h1>Snippets of OpenVINO-CPP for Model Inference</h1>
 <h2>Header File</h2>
 <div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>openvino/openvino.hpp<span class="pl-pds">&gt;</span></span></pre></div>
 <h2>Create Infer Request</h2>
@@ -292,8 +142,8 @@ cv::Mat <span class="pl-en">mat</span>(tensor_shape[<span class="pl-c1">2</span>
 <script>
 if(""!=""){
     var now=new Date();
-    var startSite=new Date("");
-    var diff=now.getTime()-startSite.getTime();
+    var start_site=new Date("");
+    var diff=now.getTime()-start_site.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
     document.getElementById("year").innerHTML=now.getFullYear();
     if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}

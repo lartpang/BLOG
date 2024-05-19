@@ -9,21 +9,9 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization
-
-![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/c97dafb81fc74a22ba6b43d48dd2f2da.png)
-
-* 论文：<https://arxiv.org/abs/2305.15253>
-
-这篇文章主要讨论了领域泛化评估协议的重新思考，特别是如何处理可能存在的测试数据信息泄露风险。">
+<meta name="description" content="">
 <meta property="og:title" content="CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization">
-<meta property="og:description" content="# CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization
-
-![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/c97dafb81fc74a22ba6b43d48dd2f2da.png)
-
-* 论文：<https://arxiv.org/abs/2305.15253>
-
-这篇文章主要讨论了领域泛化评估协议的重新思考，特别是如何处理可能存在的测试数据信息泄露风险。">
+<meta property="og:description" content="">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://lartpang.github.io/blog/post/CVPR%202024%20-%20Rethinking%20the%20Evaluation%20Protocol%20of%20Domain%20Generalization.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
@@ -39,17 +27,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </style>
 
 <style>
-.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.post_title{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
 .title-right .circle{padding: 14px 16px;margin-right:8px;}
-#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
-#postBody hr{height:2px;}
+#post_body{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#post_body hr{height:2px;}
 #cmButton{height:48px;margin-top:48px;}
 #comments{margin-top:64px;}
 .g-emoji{font-size:24px;}
 @media (max-width: 600px) {
     body {padding: 8px;}
-    .postTitle{font-size:24px;}
+    .post_title{font-size:24px;}
 }
 </style>
 <style>
@@ -67,7 +55,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1 class="postTitle">CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization</h1>
+<h1 class="post_title">CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -91,7 +79,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization</h1>
+<div class="markdown-body" id="post_body"><h1>CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization</h1>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/90779ee642ff75cb76e4dbd49c82512cb1bc052168defb997b98d262e7659da7/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f63393764616662383166633734613232626136623433643438646432663264612e706e67"><img src="https://camo.githubusercontent.com/90779ee642ff75cb76e4dbd49c82512cb1bc052168defb997b98d262e7659da7/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f63393764616662383166633734613232626136623433643438646432663264612e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/c97dafb81fc74a22ba6b43d48dd2f2da.png" style="max-width: 100%;"></a></p>
 <ul>
 <li>论文：<a href="https://arxiv.org/abs/2305.15253" rel="nofollow">https://arxiv.org/abs/2305.15253</a></li>
@@ -114,8 +102,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <script>
 if(""!=""){
     var now=new Date();
-    var startSite=new Date("");
-    var diff=now.getTime()-startSite.getTime();
+    var start_site=new Date("");
+    var diff=now.getTime()-start_site.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
     document.getElementById("year").innerHTML=now.getFullYear();
     if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
