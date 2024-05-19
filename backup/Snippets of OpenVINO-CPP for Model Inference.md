@@ -1,3 +1,5 @@
+# Snippets of OpenVINO-CPP for Model Inference
+
 ## Header File
 
 ```cpp

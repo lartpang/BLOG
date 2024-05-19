@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
-    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/26847524"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
@@ -26,7 +26,7 @@
 大量食材之间的类别差异、新食材的出现以及与大型食物分割数据集相关的高注释成本。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://lartpang.github.io/blog/post/CVPR%202024%20-%20OVFoodSeg%20-%20Elevating%20Open-Vocabulary%20Food%20Image%20Segmentation%20via%20Image-Informed%20Textual%20Representation.html">
-<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
 <title>CVPR 2024 - OVFoodSeg - Elevating Open-Vocabulary Food Image Segmentation via Image-Informed Textual Representation</title>
 
 
@@ -52,7 +52,16 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     .postTitle{font-size:24px;}
 }
 </style>
-<style>#postBody img {display: block; margin-left: auto; margin-right: auto;}</style>
+<style>
+  #postBody img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+</style>
+
+
 
 
 
@@ -215,5 +224,18 @@ function iFrameLoading(){
 </script>
 
 
-<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script><script>var imgLinks=document.querySelectorAll('#postBody a > img'); imgLinks.forEach(function (imgLink) {var parentLink=imgLink.parentElement; parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink); parentLink.parentNode.removeChild(parentLink); }); mediumZoom('#postBody img');</script>
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>
+<script>
+  var imgLinks = document.querySelectorAll('#postBody a > img');
+  imgLinks.forEach(
+    function (imgLink) {
+      var parentLink = imgLink.parentElement;
+      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);
+      parentLink.parentNode.removeChild(parentLink);
+    }
+  );
+  mediumZoom('#postBody img');
+</script>
+
+
 </html>
