@@ -1,10 +1,9 @@
 {
-    "title": "Simpler, Better",
-    "subTitle": "Just for fun.",
-    "avatarUrl": "https://avatars.githubusercontent.com/u/26847524",
     "GMEEK_VERSION": "last",
-    "urlMode": "pinyin",
-    "bottomText": "转载请注明出处 (*❦ω❦)",
+    "title": "Simpler, Better",
+    "sub_title": "Just for fun.",
+    "avatar_url": "https://avatars.githubusercontent.com/u/26847524",
+    "bottom_text": "转载请注明出处 (*❦ω❦)",
     "script": "myscript.html",
     "style": "mystyle.html"
 }
