@@ -1,3 +1,5 @@
+# Six methods of indexing pixels of Mat in OpenCV
+
 ## `.at<>()`
 
 ```cpp
