@@ -16,29 +16,83 @@
 <meta property="og:url" content="https://lartpang.github.io/blog/post/Snippets%20of%20OpenVINO-CPP%20for%20Model%20Inference.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
 <title>Snippets of OpenVINO-CPP for Model Inference</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 </head>
 <style>
-body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
-#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
-#footer {margin-top:64px; text-align: center;font-size: small;}
-
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      padding: 15px 50px; /* 上边下边 | 左边右边 */
+      font-size: 16px;
+      font-family: sans-serif;
+      line-height: 1.25;
+    }
+    #header {
+      display: flex;
+      justify-content: center; /* 水平居中 */
+      align-items: center; /* 垂直居中 */
+      padding: 0px 30px 10px; /* 上边 | 左边右边 | 下边 */
+      margin: 0px auto; /* 上边下边 | 左边右边 */
+      border-bottom: 1px solid
+        var(--borderColor-muted, var(--color-border-muted));
+      width: 100%; /* 宽度设为100% */
+    }
+    #content {
+      max-width: 900px; /* 限制内容的最大宽度 */
+      margin: 10px auto; /* 水平居中 */
+      padding: 0 25px;
+    }
+    #footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: small;
+    }
 </style>
 
 <style>
-.post_title{margin: auto 0;font-size:40px;font-weight:bold;}
-.title-right{display:flex;margin:auto 0 0 auto;}
-.title-right .circle{padding: 14px 16px;margin-right:8px;}
-#post_body{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
-#post_body hr{height:2px;}
-#cmButton{height:48px;margin-top:48px;}
-#comments{margin-top:64px;}
-.g-emoji{font-size:24px;}
-@media (max-width: 600px) {
-    body {padding: 8px;}
-    .post_title{font-size:24px;}
-}
+    .post_title {
+        margin: auto 0;
+        font-size: 30px;
+        font-weight: bold;
+        white-space: nowrap; /* 禁止换行 */
+        overflow: hidden; /* 隐藏超出部分 */
+        text-overflow: ellipsis; /* 显示省略号 */
+        max-width: 100%; /* 确保宽度不超过父元素 */
+    }
+    .title-right {
+        display: flex;
+        margin: auto 0 0 auto;
+    }
+    .title-right .circle {
+        padding: 14px 16px;
+        margin-right: 8px;
+    }
+    #post_body {
+        border-bottom: 1px solid var(--color-border-default);
+        padding-bottom: 36px;
+    }
+    #post_body hr {
+        height: 2px;
+    }
+    #cmButton {
+        height: 48px;
+        margin-top: 48px;
+    }
+    #comments {
+        margin-top: 64px;
+    }
+    .g-emoji {
+        font-size: 24px;
+    }
+    @media (max-width: 600px) {
+        body {
+            padding: 8px;
+        }
+        .post_title {
+            font-size: 24px;
+        }
+    }
 </style>
 <style>
   #postBody img {
@@ -81,50 +135,57 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div class="markdown-body" id="post_body"><h1>Snippets of OpenVINO-CPP for Model Inference</h1>
 <h2>Header File</h2>
-<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>openvino/openvino.hpp<span class="pl-pds">&gt;</span></span></pre></div>
+<pre lang="cpp" class="notranslate"><code class="notranslate">#include &lt;openvino/openvino.hpp&gt;
+</code></pre>
 <h2>Create Infer Request</h2>
-<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">void</span> <span class="pl-en">preprocessing</span>(std::shared_ptr&lt;ov::Model&gt; model) {
-  ov::preprocess::PrePostProcessor <span class="pl-smi">ppp</span>(model);
-  ppp.<span class="pl-c1">input</span>().<span class="pl-c1">tensor</span>().<span class="pl-c1">set_layout</span>(<span class="pl-s"><span class="pl-pds">"</span>NHWC<span class="pl-pds">"</span></span>); <span class="pl-c"><span class="pl-c">//</span> input data is NHWC from OpenCV Mat</span>
-  ppp.<span class="pl-c1">input</span>().<span class="pl-c1">model</span>().<span class="pl-c1">set_layout</span>(<span class="pl-s"><span class="pl-pds">"</span>NCHW<span class="pl-pds">"</span></span>); <span class="pl-c"><span class="pl-c">//</span> In the model, the layout is NCHW</span>
-  model = ppp.<span class="pl-c1">build</span>();
+<pre lang="cpp" class="notranslate"><code class="notranslate">void preprocessing(std::shared_ptr&lt;ov::Model&gt; model) {
+  ov::preprocess::PrePostProcessor ppp(model);
+  ppp.input().tensor().set_layout("NHWC"); // input data is NHWC from OpenCV Mat
+  ppp.input().model().set_layout("NCHW"); // In the model, the layout is NCHW
+  model = ppp.build();
 }
 
 ov::Core core;
 
-<span class="pl-k">auto</span> model = core.read_model(model_path); # can use onnx <span class="pl-k">or</span> openvino<span class="pl-s"><span class="pl-pds">'</span>s xml file</span>
-<span class="pl-s">preprocessing(model);</span>
-<span class="pl-s"></span>
-<span class="pl-s">auto compiled_model = core.compile_model(model, "CPU");  // Or without `"CPU"`</span>
-<span class="pl-s">auto input_port = compiled_model.input();</span>
-<span class="pl-s">auto infer_request = compiled_model.create_infer_request();</span></pre></div>
+auto model = core.read_model(model_path); # can use onnx or openvino's xml file
+preprocessing(model);
+
+auto compiled_model = core.compile_model(model, "CPU");  // Or without `"CPU"`
+auto input_port = compiled_model.input();
+auto infer_request = compiled_model.create_infer_request();
+</code></pre>
 <h2>Input and Output</h2>
 <ul>
 <li>single input</li>
 </ul>
-<div class="highlight highlight-source-c++"><pre class="notranslate">infer_request.set_input_tensor(blob);
-infer_request.crop_net.infer();</pre></div>
+<pre lang="cpp" class="notranslate"><code class="notranslate">infer_request.set_input_tensor(blob);
+infer_request.crop_net.infer();
+</code></pre>
 <ul>
 <li>single output</li>
 </ul>
-<div class="highlight highlight-source-c++"><pre class="notranslate">ov::Tensor single_output = <span class="pl-c1">this</span>-&gt;point_net.get_output_tensor(<span class="pl-c1">0</span>);</pre></div>
+<pre lang="cpp" class="notranslate"><code class="notranslate">ov::Tensor single_output = this-&gt;point_net.get_output_tensor(0);
+</code></pre>
 <ul>
 <li>multiple outputs</li>
 </ul>
-<div class="highlight highlight-source-c++"><pre class="notranslate">ov::Tensor multi_outputs0 = <span class="pl-c1">this</span>-&gt;point_net.get_output_tensor(<span class="pl-c1">0</span>);
-ov::Tensor multi_outputs1 = <span class="pl-c1">this</span>-&gt;point_net.get_output_tensor(<span class="pl-c1">1</span>);</pre></div>
+<pre lang="cpp" class="notranslate"><code class="notranslate">ov::Tensor multi_outputs0 = this-&gt;point_net.get_output_tensor(0);
+ov::Tensor multi_outputs1 = this-&gt;point_net.get_output_tensor(1);
+</code></pre>
 <h2>OpenCV <code class="notranslate">cv::Mat</code> &lt;-&gt; OpenVINO <code class="notranslate">ov::Tensor</code></h2>
 <p>The key to these steps is the alignment of the data layout.</p>
 <h3><code class="notranslate">cv::Mat</code> -&gt; <code class="notranslate">ov::Tensor</code></h3>
-<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> converting the uint8 3-channels image mat to a float32 tensor</span>
-image.convertTo(image, CV_32FC3, <span class="pl-c1">1.0</span> / <span class="pl-c1">255</span>);
-<span class="pl-c"><span class="pl-c">//</span> NHWC layout as mentioned above. (N=1, C=3)</span>
-ov::Tensor <span class="pl-en">blob</span>(input_port.get_element_type(), input_port.get_shape(), (<span class="pl-k">float</span> *)image.data);</pre></div>
+<pre lang="cpp" class="notranslate"><code class="notranslate">// converting the uint8 3-channels image mat to a float32 tensor
+image.convertTo(image, CV_32FC3, 1.0 / 255);
+// NHWC layout as mentioned above. (N=1, C=3)
+ov::Tensor blob(input_port.get_element_type(), input_port.get_shape(), (float *)image.data);
+</code></pre>
 <h3><code class="notranslate">ov::Tensor</code> -&gt; <code class="notranslate">cv::Mat</code></h3>
-<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> tensor follows the NCHW layout, so tensor_shape is (N,C,H,W)</span>
+<pre lang="cpp" class="notranslate"><code class="notranslate">// tensor follows the NCHW layout, so tensor_shape is (N,C,H,W)
 ov::Shape tensor_shape = tensor.get_shape();
-<span class="pl-c"><span class="pl-c">//</span> Due to N=1 and C=1, we can directly assign all data to a new mat.</span>
-cv::Mat <span class="pl-en">mat</span>(tensor_shape[<span class="pl-c1">2</span>], tensor_shape[<span class="pl-c1">3</span>], CV_32F, tensor.data());</pre></div>
+// Due to N=1 and C=1, we can directly assign all data to a new mat.
+cv::Mat mat(tensor_shape[2], tensor_shape[3], CV_32F, tensor.data());
+</code></pre>
 <h2>Reference</h2>
 <ul>
 <li><a href="https://github.com/OpenVINO-dev-contest/YOLOv7_OpenVINO_cpp-python/blob/main/cpp/main_preprocessing.cpp">https://github.com/OpenVINO-dev-contest/YOLOv7_OpenVINO_cpp-python/blob/main/cpp/main_preprocessing.cpp</a></li>

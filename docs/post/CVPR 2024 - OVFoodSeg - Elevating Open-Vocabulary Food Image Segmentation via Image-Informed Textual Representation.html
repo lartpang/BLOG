@@ -20,25 +20,79 @@
 
 </head>
 <style>
-body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
-#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
-#footer {margin-top:64px; text-align: center;font-size: small;}
-
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      padding: 15px 50px; /* 上边下边 | 左边右边 */
+      font-size: 16px;
+      font-family: sans-serif;
+      line-height: 1.25;
+    }
+    #header {
+      display: flex;
+      justify-content: center; /* 水平居中 */
+      align-items: center; /* 垂直居中 */
+      padding: 0px 30px 10px; /* 上边 | 左边右边 | 下边 */
+      margin: 0px auto; /* 上边下边 | 左边右边 */
+      border-bottom: 1px solid
+        var(--borderColor-muted, var(--color-border-muted));
+      width: 100%; /* 宽度设为100% */
+    }
+    #content {
+      max-width: 900px; /* 限制内容的最大宽度 */
+      margin: 10px auto; /* 水平居中 */
+      padding: 0 25px;
+    }
+    #footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: small;
+    }
 </style>
 
 <style>
-.post_title{margin: auto 0;font-size:40px;font-weight:bold;}
-.title-right{display:flex;margin:auto 0 0 auto;}
-.title-right .circle{padding: 14px 16px;margin-right:8px;}
-#post_body{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
-#post_body hr{height:2px;}
-#cmButton{height:48px;margin-top:48px;}
-#comments{margin-top:64px;}
-.g-emoji{font-size:24px;}
-@media (max-width: 600px) {
-    body {padding: 8px;}
-    .post_title{font-size:24px;}
-}
+    .post_title {
+        margin: auto 0;
+        font-size: 30px;
+        font-weight: bold;
+        white-space: nowrap; /* 禁止换行 */
+        overflow: hidden; /* 隐藏超出部分 */
+        text-overflow: ellipsis; /* 显示省略号 */
+        max-width: 100%; /* 确保宽度不超过父元素 */
+    }
+    .title-right {
+        display: flex;
+        margin: auto 0 0 auto;
+    }
+    .title-right .circle {
+        padding: 14px 16px;
+        margin-right: 8px;
+    }
+    #post_body {
+        border-bottom: 1px solid var(--color-border-default);
+        padding-bottom: 36px;
+    }
+    #post_body hr {
+        height: 2px;
+    }
+    #cmButton {
+        height: 48px;
+        margin-top: 48px;
+    }
+    #comments {
+        margin-top: 64px;
+    }
+    .g-emoji {
+        font-size: 24px;
+    }
+    @media (max-width: 600px) {
+        body {
+            padding: 8px;
+        }
+        .post_title {
+            font-size: 24px;
+        }
+    }
 </style>
 <style>
   #postBody img {
