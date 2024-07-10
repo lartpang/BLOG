@@ -140,7 +140,7 @@
 </ul>
 <p>本文提出了一种新的开放词汇目标检测方法 Retrieval-Augmented Losses and visual Features (RALF)。RALF 通过从大型词汇库中检索词汇并增强损失函数和视觉特征来提高检测器对新类别的泛化能力。</p>
 <p>该方法由两个部分组成：检索增强损失（RAL）和检索增强视觉特征（RAF）。</p>
-<table role="table">
+<markdown-accessiblity-table><table role="table">
 <thead>
 <tr>
 <th>RAL</th>
@@ -153,7 +153,7 @@
 <td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/dceade62-4d39-4246-a6cd-edc389575e45"><img src="https://github.com/lartpang/blog/assets/26847524/dceade62-4d39-4246-a6cd-edc389575e45" alt="image" style="max-width: 100%;"></a></td>
 </tr>
 </tbody>
-</table>
+</table></markdown-accessiblity-table>
 <ul>
 <li>RAL 通过使用与负词汇库的语义相似性的距离来优化嵌入空间。通过从大型词汇库中，按照语义相似性检索与真实类别标签相关的难负词汇和易负词汇。然后，RAL 使用这些词汇和真实框嵌入来定义难负损失和易负损失。</li>
 <li>RAF 则利用大型语言模型（LLM）生成关于大型词汇库的描述，并从中提取有关目标的详细信息，以增强视觉特征。RAF 首先在离线阶段从目标提案中生成视觉特征。然后，在推理阶段，RAF 使用概念检索器和增强器从概念存储库中检索相关概念，并使用这些概念来增强视觉特征。</li>

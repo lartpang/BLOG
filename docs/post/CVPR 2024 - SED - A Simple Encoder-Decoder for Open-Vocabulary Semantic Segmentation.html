@@ -149,7 +149,7 @@
 <h2>模型细节</h2>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/0b093332-8726-409b-af5f-db6e5ed13a11"><img src="https://github.com/lartpang/blog/assets/26847524/0b093332-8726-409b-af5f-db6e5ed13a11" alt="image" style="max-width: 100%;"></a></p>
 <p>SED 方法包括一个 hierarchical encoder-based cost map generation 和一个带有 category early rejection strategy 的 gradual fusion decoder。</p>
-<table role="table">
+<markdown-accessiblity-table><table role="table">
 <thead>
 <tr>
 <th>Gradual Fusion Decoder</th>
@@ -162,7 +162,7 @@
 <td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/020d6c4e-820e-4e77-88a5-75da1555412d"><img src="https://github.com/lartpang/blog/assets/26847524/020d6c4e-820e-4e77-88a5-75da1555412d" alt="image" style="max-width: 100%;"></a></td>
 </tr>
 </tbody>
-</table>
+</table></markdown-accessiblity-table>
 <ul>
 <li>hierarchical encoder：不使用普通的直筒型 ViT 视觉编码器，而是基于分层的 ConvNeXt 视觉编码器，从而帮助更好地捕捉不同层次的空间信息，增强局部性，并且与输入大小成线性复杂度。利用其可以获得多层级特征图 $F_2, F_3, F_4, F_5$。其中的 $F_5$ 利用最后的 MLP 层转换获得图像嵌入 $F_v \in \mathbb{R}^{H_v \times W_v \times D_t}$，结合文本嵌入集合（对应 $N$ 类，每类 $P$ 个模板，设计与 CAT-Seg 一致） $E \in \mathbb{R}^{N \times P \times D_t}$ 获得像素级的 4D image-text cost map $F_{cv} \in \mathbb{R}^{H_v \times W_v \times N \times P}$ 。</li>
 <li>gradual fusion decoder：解码器采用自顶向下的结构将 cost map 和不同级别的 backbone 特征图结合起来进行分割。通过级联特征聚合模块（FAM）和跳层融合模块（SFM）来逐步组合视觉编码器的多层级特征图 $F_2, F_3, F_4$ 从而生成高分辨率特征图 $F_h$，这通过一个输出层转换为不同类别的分割图预测。需要注意的是，<strong>CAT-Seg 中观察到，直接对图像编码器回传梯度会破坏 open-vocabulary semantic segmentation 性能。所以这里对 skip-layer fusion 模块到图像编码器的梯度进行了截断。</strong>
@@ -200,7 +200,7 @@
 </ul>
 </li>
 </ul>
-<table role="table">
+<markdown-accessiblity-table><table role="table">
 <thead>
 <tr>
 <th>Vision Encoder 形式和微调策略的消融</th>
@@ -215,7 +215,7 @@
 <td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/0fe7a5e1-173e-446e-b384-55eab2101490"><img src="https://github.com/lartpang/blog/assets/26847524/0fe7a5e1-173e-446e-b384-55eab2101490" alt="image" style="max-width: 100%;"></a><br></td>
 </tr>
 </tbody>
-</table></div>
+</table></markdown-accessiblity-table></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
