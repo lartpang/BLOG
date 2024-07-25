@@ -1,4 +1,14 @@
 {
+  "P20": {
+    "labels": [
+      "machine learning"
+    ],
+    "post_title": "\u3010\u8bd1\u3011\u96c6\u6210\u6a21\u578b\uff1a\u5b83\u4eec\u662f\u4ec0\u4e48\u4ee5\u53ca\u4f55\u65f6\u5e94\u8be5\u4f7f\u7528\u5b83\u4eec\uff1f",
+    "post_url": "post/%E3%80%90-yi-%E3%80%91-ji-cheng-mo-xing-%EF%BC%9A-ta-men-shi-shen-me-yi-ji-he-shi-ying-gai-shi-yong-ta-men-%EF%BC%9F.html",
+    "created_date": "2024-07-25",
+    "dateLabelColor": "#bc4c00",
+    "md_path": "backup/\u3010\u8bd1\u3011\u96c6\u6210\u6a21\u578b\uff1a\u5b83\u4eec\u662f\u4ec0\u4e48\u4ee5\u53ca\u4f55\u65f6\u5e94\u8be5\u4f7f\u7528\u5b83\u4eec\uff1f.md"
+  },
   "P19": {
     "labels": [
       "paper"
@@ -190,18 +200,10 @@
     "md_path": "backup/Build OpenCV and OpenVINO for Windows 10 with VS 2022.md"
   },
   "label_color_info": {
-    "bug": "#d73a4a",
-    "documentation": "#0075ca",
-    "duplicate": "#cfd3d7",
-    "enhancement": "#a2eeef",
-    "good first issue": "#7057ff",
-    "help wanted": "#008672",
-    "invalid": "#e4e669",
     "life": "#4FBE48",
+    "machine learning": "#B2CD03",
     "opencv": "#3108A9",
     "paper": "#78A3A1",
-    "qt": "#5B7F97",
-    "question": "#d876e3",
-    "wontfix": "#ffffff"
+    "qt": "#5B7F97"
   }
 }

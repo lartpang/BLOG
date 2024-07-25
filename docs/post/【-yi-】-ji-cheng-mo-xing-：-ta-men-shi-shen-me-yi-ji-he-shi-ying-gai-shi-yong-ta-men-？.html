@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/26847524"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="">
+<meta property="og:title" content="【译】集成模型：它们是什么以及何时应该使用它们？">
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://lartpang.github.io/blog/post/%E3%80%90-yi-%E3%80%91-ji-cheng-mo-xing-%EF%BC%9A-ta-men-shi-shen-me-yi-ji-he-shi-ying-gai-shi-yong-ta-men-%EF%BC%9F.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
+<title>【译】集成模型：它们是什么以及何时应该使用它们？</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      padding: 15px 50px; /* 上边下边 | 左边右边 */
+      font-size: 16px;
+      font-family: sans-serif;
+      line-height: 1.25;
+    }
+    #header {
+      display: flex;
+      justify-content: center; /* 水平居中 */
+      align-items: center; /* 垂直居中 */
+      padding: 0px 30px 10px; /* 上边 | 左边右边 | 下边 */
+      margin: 0px auto; /* 上边下边 | 左边右边 */
+      border-bottom: 1px solid
+        var(--borderColor-muted, var(--color-border-muted));
+      width: 100%; /* 宽度设为100% */
+    }
+    #content {
+      max-width: 900px; /* 限制内容的最大宽度 */
+      margin: 10px auto; /* 水平居中 */
+      padding: 0 25px;
+    }
+    #footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: small;
+    }
+</style>
+
+<style>
+    .post_title {
+        margin: auto 0;
+        font-size: 30px;
+        font-weight: bold;
+        white-space: nowrap; /* 禁止换行 */
+        overflow: hidden; /* 隐藏超出部分 */
+        text-overflow: ellipsis; /* 显示省略号 */
+        max-width: 100%; /* 确保宽度不超过父元素 */
+    }
+    .title-right {
+        display: flex;
+        margin: auto 0 0 auto;
+    }
+    .title-right .circle {
+        padding: 14px 16px;
+        margin-right: 8px;
+    }
+    #post_body {
+        border-bottom: 1px solid var(--color-border-default);
+        padding-bottom: 36px;
+    }
+    #post_body hr {
+        height: 2px;
+    }
+    #cmButton {
+        height: 48px;
+        margin-top: 48px;
+    }
+    #comments {
+        margin-top: 64px;
+    }
+    .g-emoji {
+        font-size: 24px;
+    }
+    @media (max-width: 600px) {
+        body {
+            padding: 8px;
+        }
+        .post_title {
+            font-size: 24px;
+        }
+    }
+</style>
+<style>
+  #postBody img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+</style>
+
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="post_title">【译】集成模型：它们是什么以及何时应该使用它们？</h1>
+<div class="title-right">
+    <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/lartpang/blog/issues/20" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="post_body"><div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>原文：<a href="https://builtin.com/machine-learning/ensemble-model" rel="nofollow">https://builtin.com/machine-learning/ensemble-model</a></p>
+</div>
+<blockquote>
+<p><em>有时，一个模型是不够的。在这篇集成模型指南中，我将向您介绍如何（以及何时）对机器学习模型使用集成技术。</em></p>
+</blockquote>
+<p>每当我们试图做出重要决定时，我们都会尝试收集尽可能多的信息，并向专家寻求建议。我们可以收集的信息越多，我们（和我们周围的人）就越信任决策过程。</p>
+<p>机器学习预测遵循类似的行为。模型处理给定的输入并产生结果。结果是根据模型在训练过程中看到的模式进行预测。</p>
+<p>在许多情况下，一个模型是不够的，本文阐明了这一点。我们何时以及为何需要多个模型？我们如何训练这些模型？这些模型应该提供什么样的多样性？所以，让我们直接进入。</p>
+<p><em>如果你想看一个如何构建集成模型的例子，你可以跳到最后！</em></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p><strong>什么是集成模型？</strong></p>
+<p>集成模型是一种机器学习方法，用于在预测过程中结合多个其他模型。这些模型称为基础估计器。集成模型提供了一种解决方案，可以克服构建单个估计器的技术挑战。</p>
+</div>
+<p>构建单一估计器的技术挑战包括：</p>
+<ul>
+<li>高方差：模型对为学习特征提供的输入非常敏感。</li>
+<li>准确性低：一个模型（或一种算法）无法拟合整个训练数据，可能无法为您提供项目所需的细微差别。</li>
+<li>具有噪声和偏差的特征：模型在进行预测时严重依赖于太少的特征。</li>
+</ul>
+<h1>集成算法</h1>
+<p>单一算法可能无法对给定的数据集做出完美的预测。机器学习算法有其局限性，生成高精度的模型具有挑战性。如果我们构建并组合多个模型，我们就有机会提高整体准确性。然后，我们通过将每个模型的输出与两个目标聚合来实现模型组合：</p>
+<ul>
+<li>减少模型误差</li>
+<li>保持模型的泛化</li>
+</ul>
+<p>您可以使用不同的技术（有时称为元算法）来实现此类聚合。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c541a3ab23ec639bda68ad320194f4605a565be514abf364e497fca0fb9d6c29/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f315f656e73656d626c652d6d6f64656c2e706e67"><img src="https://camo.githubusercontent.com/c541a3ab23ec639bda68ad320194f4605a565be514abf364e497fca0fb9d6c29/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f315f656e73656d626c652d6d6f64656c2e706e67" alt="集成模型" data-canonical-src="http://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/1_ensemble-model.png" style="max-width: 100%;"></a></p>
+<p><em>图 1：使用多种算法使模型预测多样化</em></p>
+<h1>集成学习</h1>
+<p>当我们构建集成模型时，我们不仅要关注算法的方差。例如，我们可以构建多个 C45 模型，其中每个模型都在学习专门用于预测任何给定事物的特定模式。我们可以用来获得元模型的模型称为弱学习器。在这种集成学习架构中，输入被传递给每个弱学习器，同时还收集他们的预测。我们可以使用组合预测来构建最终的集成模型。</p>
+<p>值得一提的是，弱学习者可以采用不同的方式将特征与变体决策边界进行映射。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/08edd3ec87068c5e80bb618b1191888a5533b9c01a7c9b15c45442a32c2f1d93/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f325f656e73656d626c652d6d6f64656c2e706e67"><img src="https://camo.githubusercontent.com/08edd3ec87068c5e80bb618b1191888a5533b9c01a7c9b15c45442a32c2f1d93/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f325f656e73656d626c652d6d6f64656c2e706e67" alt="集成模型" data-canonical-src="http://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/2_ensemble-model.png" style="max-width: 100%;"></a></p>
+<p><em>图 2：使用同一算法的多个弱学习器的聚合预测</em></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>集成建模技术的类型</p>
+<ul>
+<li>Bagging</li>
+<li>Boosting</li>
+<li>Stacking</li>
+<li>Blending</li>
+</ul>
+</div>
+<h1>集成技术</h1>
+<h2>Bagging</h2>
+<p>bagging 的想法是基于使训练数据可用于迭代学习过程。每个模型都使用训练数据集的略有不同的子集来学习前一个模型产生的误差。bagging 可减少 <a href="https://builtin.com/data-science/bias-variance-tradeoff" rel="nofollow">方差</a> 并最大程度地减少 <a href="https://builtin.com/data-science/model-fit" rel="nofollow">过拟合</a>。这种技术的一个例子是 <a href="https://builtin.com/data-science/random-forest-python" rel="nofollow">随机森林</a> 算法。</p>
+<h3>Bootstrap Aggregation (Bagging)</h3>
+<p>此技术基于自举采样技术 (bootstrapping sampling technique)。bootstrapping 会创建多组原始训练数据并进行替换。替换允许在一组中复制样本实例。每个子集都具有相同的相等大小，可用于并行训练模型。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/6a01017583083e1519bd2a1daa4add2801982a5c257bae39ae707347891bc5c9/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f335f656e73656d626c652d6d6f64656c2e706e67"><img src="https://camo.githubusercontent.com/6a01017583083e1519bd2a1daa4add2801982a5c257bae39ae707347891bc5c9/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f335f656e73656d626c652d6d6f64656c2e706e67" alt="集成模型" data-canonical-src="http://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/3_ensemble-model.png" style="max-width: 100%;"></a></p>
+<p><em>图 3：通过结合来自多个模型的预测来做出最终预测的 Bagging 技术</em></p>
+<h3>随机森林 (Random Forest)</h3>
+<p>此技术使用训练样本的子集以及特征的子集来构建多个分割树。构建了多个决策树以适应每个训练集。样本/特征的分布通常以随机模式实现。</p>
+<h3>Extra-Trees Ensemble</h3>
+<p>这是另一种集成技术，其中来自许多 <a href="https://builtin.com/data-science/classification-tree" rel="nofollow">决策树</a> 的预测组合在一起。与随机森林类似，它结合了大量的决策树。但是，额外的树在随机选择分割时使用整个样本。</p>
+<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>相关阅读:</p>
+<ul>
+<li><a href="https://builtin.com/data-science/random-forest-python" rel="nofollow">在 Python 中实现随机森林回归：简介</a><br>
+<a href="https://builtin.com/data-science/random-forest-python-deep-dive" rel="nofollow">深入了解在 Python 中实现随机森林分类</a></li>
+</ul>
+</div>
+<h2>Boosting</h2>
+<h3>Adaptive Boosting (AdaBoost)</h3>
+<p>这是一个算法集合，我们在 <a href="https://www.sciencedirect.com/science/article/pii/S002200009791504X" rel="nofollow">几个弱学习器</a> 的顶部构建模型。正如我们前面提到的，这些学习器被称为弱学习器，因为它们通常很简单，预测能力有限。AdaBoost 的适应能力使该技术成为最早成功的二元分类器之一。</p>
+<h3>顺序决策树 (Sequential Decision Trees)</h3>
+<p>这些是这种适应性的核心，每棵树都根据先验的精度知识调整其权重。因此，我们以顺序（而不是并行）过程执行这种技术的训练。在这种技术中，对于给定的迭代次数或当错误率没有显着变化时，可以重复训练和测量估计误差的过程。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/01c1fefb3389be7594a5e8c0e07a8e29340d5031066a594f4606cd01cef6edc6/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f345f656e73656d626c652d6d6f64656c2e706e67"><img src="https://camo.githubusercontent.com/01c1fefb3389be7594a5e8c0e07a8e29340d5031066a594f4606cd01cef6edc6/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f345f656e73656d626c652d6d6f64656c2e706e67" alt="集成模型" data-canonical-src="http://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/4_ensemble-model.png" style="max-width: 100%;"></a></p>
+<p><em>图 4：AdaBoost 的顺序学习产生更强的学习模型</em></p>
+<h3>梯度提升 (Gradient Boosting)</h3>
+<p>梯度提升算法是具有高预测性能的出色技术。 <a href="https://dl.acm.org/doi/10.1145/2939672.2939785" rel="nofollow">Xgboost</a>、<a href="https://proceedings.neurips.cc/paper/2017/file/6449f44a102fde848669bdd9eb6b76fa-Paper.pdf" rel="nofollow">LightGBM</a> 和 CatBoost 是可用于回归和分类问题的常用提升算法。在他们证明有能力 <a href="https://www.are.na/block/952502" rel="nofollow">赢得一些 Kaggle 比赛</a> 后，他们的受欢迎程度显着增加。</p>
+<h2>Stacking</h2>
+<p>堆叠类似于提升模型; 它们产生更稳健的预测因子。堆叠是一个学习如何从所有弱学习者的预测中创建这样一个更强大的模型的过程。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a0499ad812a78519a2f32eb05848c4d43cc4f3d1c5eaf9668371bb8c83719a6f/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f355f656e73656d626c652d6d6f64656c2e706e67"><img src="https://camo.githubusercontent.com/a0499ad812a78519a2f32eb05848c4d43cc4f3d1c5eaf9668371bb8c83719a6f/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f355f656e73656d626c652d6d6f64656c2e706e67" alt="集成模型" data-canonical-src="http://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/5_ensemble-model.png" style="max-width: 100%;"></a></p>
+<p><em>图 5：用于在集成架构中进行最终预测的堆叠技术</em></p>
+<p>请注意，该算法正在从每个模型（作为特征）中学习预测。</p>
+<p><a href="https://www.youtube.com/watch?v=Un9zObFjBH0" rel="nofollow">Ensemble Learners Tutorial | Video: Udacity</a></p>
+<h2>Blending</h2>
+<p>blending 类似于 stacking 方法，不同之处在于最终模型正在学习验证和测试数据集以及预测。因此，所使用的特征被扩展为包括验证集。</p>
+<h2>分类问题</h2>
+<p>分类只是一个分类过程。如果我们有多个标签，我们需要决定：我们是否应该构建一个单一的多标签分类器？或者我们是否应该构建多个二元分类器？如果我们决定构建多个二元分类器，我们需要解释每个模型预测。例如，如果我们想要识别四个对象，每个模型都会告诉您输入数据是否是该类别的成员。因此，每个模型都提供了隶属的概率。同样，我们可以构建一个结合这些分类器的最终集成模型。</p>
+<h2>回归问题</h2>
+<p>在上一个函数中，我们使用所得概率确定了最佳拟合隶属度。在回归问题中，我们不是在处理“是”或“否”的问题。相反，我们需要找到最佳预测的数值，然后我们可以对收集的预测值进行平均。</p>
+<h2>聚合预测</h2>
+<p>当我们集成多个算法以调整预测过程以组合多个模型时，我们需要一种聚合方法。我们可以使用三种主要技术：</p>
+<ul>
+<li>最大投票：此技术的最终预测是基于对分类问题的多数投票做出的。</li>
+<li>平均：此技术通常用于对预测进行平均的回归问题。我们也可以使用概率，例如，通过对最终分类进行平均。</li>
+<li>加权平均：有时，在生成最终预测时，我们需要为某些模型/算法赋予权重。</li>
+</ul>
+<h2>如何构建集成模型：示例</h2>
+<p>我们将使用以下示例来说明如何构建集成模型。我们将使用泰坦尼克号数据集，并尝试使用不同的技术预测泰坦尼克号的生存情况。图六和图七显示了数据集的样本和目标列对乘客年龄的分布。如果你想跟着做，你可以在我的 <a href="https://github.com/malhamid/Ensemble-Models">GitHub</a> 上找到示例代码。</p>
+<p>泰坦尼克号数据集是需要大量特征工程的分类问题之一。我们将尝试只关注模型构建以及如何将集成模型应用于此用例。</p>
+<p>我们将使用不同的算法和技术; 因此，我们将创建一个模型对象来提高代码的可重用性。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># Model Class to be used for different ML algorithms</span>
+<span class="pl-k">class</span> <span class="pl-v">ClassifierModel</span>(<span class="pl-s1">object</span>):
+    <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">clf</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-c1">None</span>):
+        <span class="pl-s1">self</span>.<span class="pl-s1">clf</span> <span class="pl-c1">=</span> <span class="pl-en">clf</span>(<span class="pl-c1">**</span><span class="pl-s1">params</span>)
+
+<span class="pl-k">def</span> <span class="pl-en">train</span>(<span class="pl-s1">self</span>, <span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>):
+        <span class="pl-s1">self</span>.<span class="pl-s1">clf</span>.<span class="pl-en">fit</span>(<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>)
+    
+    <span class="pl-k">def</span> <span class="pl-en">fit</span>(<span class="pl-s1">self</span>,<span class="pl-s1">x</span>,<span class="pl-s1">y</span>):
+        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-s1">clf</span>.<span class="pl-en">fit</span>(<span class="pl-s1">x</span>,<span class="pl-s1">y</span>)
+    
+    <span class="pl-k">def</span> <span class="pl-en">feature_importances</span>(<span class="pl-s1">self</span>,<span class="pl-s1">x</span>,<span class="pl-s1">y</span>):
+        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-s1">clf</span>.<span class="pl-en">fit</span>(<span class="pl-s1">x</span>,<span class="pl-s1">y</span>).<span class="pl-s1">feature_importances_</span>
+    
+    <span class="pl-k">def</span> <span class="pl-en">predict</span>(<span class="pl-s1">self</span>, <span class="pl-s1">x</span>):
+        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-s1">clf</span>.<span class="pl-en">predict</span>(<span class="pl-s1">x</span>)
+
+<span class="pl-k">def</span> <span class="pl-en">trainModel</span>(<span class="pl-s1">model</span>, <span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">x_test</span>, <span class="pl-s1">n_folds</span>, <span class="pl-s1">seed</span>):
+    <span class="pl-s1">cv</span> <span class="pl-c1">=</span> <span class="pl-v">KFold</span>(<span class="pl-s1">n_splits</span><span class="pl-c1">=</span> <span class="pl-s1">n_folds</span>, <span class="pl-s1">random_state</span><span class="pl-c1">=</span><span class="pl-s1">seed</span>)
+    <span class="pl-s1">scores</span> <span class="pl-c1">=</span> <span class="pl-en">cross_val_score</span>(<span class="pl-s1">model</span>.<span class="pl-s1">clf</span>, <span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">scoring</span><span class="pl-c1">=</span><span class="pl-s">'accuracy'</span>, <span class="pl-s1">cv</span><span class="pl-c1">=</span><span class="pl-s1">cv</span>, <span class="pl-s1">n_jobs</span><span class="pl-c1">=</span><span class="pl-c1">-</span><span class="pl-c1">1</span>)
+    <span class="pl-k">return</span> <span class="pl-s1">scores</span></pre></div>
+<h3>Random Forest Classifier</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># Random Forest parameters</span>
+<span class="pl-s1">rf_params</span> <span class="pl-c1">=</span> {
+    <span class="pl-s">'n_estimators'</span>: <span class="pl-c1">400</span>,
+    <span class="pl-s">'max_depth'</span>: <span class="pl-c1">5</span>,
+    <span class="pl-s">'min_samples_leaf'</span>: <span class="pl-c1">3</span>,
+    <span class="pl-s">'max_features'</span> : <span class="pl-s">'sqrt'</span>,
+}
+<span class="pl-s1">rfc_model</span> <span class="pl-c1">=</span> <span class="pl-v">ClassifierModel</span>(<span class="pl-s1">clf</span><span class="pl-c1">=</span><span class="pl-v">RandomForestClassifier</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-s1">rf_params</span>)
+<span class="pl-s1">rfc_scores</span> <span class="pl-c1">=</span> <span class="pl-en">trainModel</span>(<span class="pl-s1">rfc_model</span>,<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">x_test</span>, <span class="pl-c1">5</span>, <span class="pl-c1">0</span>)</pre></div>
+<h3>Extra Trees Classifier</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># Extra Trees Parameters</span>
+<span class="pl-s1">et_params</span> <span class="pl-c1">=</span> {
+    <span class="pl-s">'n_jobs'</span>: <span class="pl-c1">-</span><span class="pl-c1">1</span>,
+    <span class="pl-s">'n_estimators'</span>:<span class="pl-c1">400</span>,
+    <span class="pl-s">'max_depth'</span>: <span class="pl-c1">5</span>,
+    <span class="pl-s">'min_samples_leaf'</span>: <span class="pl-c1">2</span>,
+}
+<span class="pl-s1">etc_model</span> <span class="pl-c1">=</span> <span class="pl-v">ClassifierModel</span>(<span class="pl-s1">clf</span><span class="pl-c1">=</span><span class="pl-v">ExtraTreesClassifier</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-s1">et_params</span>)
+<span class="pl-s1">etc_scores</span> <span class="pl-c1">=</span> <span class="pl-en">trainModel</span>(<span class="pl-s1">etc_model</span>,<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">x_test</span>, <span class="pl-c1">5</span>, <span class="pl-c1">0</span>)</pre></div>
+<h3>AdaBoost Classifier</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># AdaBoost parameters</span>
+<span class="pl-s1">ada_params</span> <span class="pl-c1">=</span> {
+    <span class="pl-s">'n_estimators'</span>: <span class="pl-c1">400</span>,
+    <span class="pl-s">'learning_rate'</span> : <span class="pl-c1">0.65</span>
+}
+<span class="pl-s1">ada_model</span> <span class="pl-c1">=</span> <span class="pl-v">ClassifierModel</span>(<span class="pl-s1">clf</span><span class="pl-c1">=</span><span class="pl-v">AdaBoostClassifier</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-s1">ada_params</span>)
+<span class="pl-s1">ada_scores</span> <span class="pl-c1">=</span> <span class="pl-en">trainModel</span>(<span class="pl-s1">ada_model</span>,<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">x_test</span>, <span class="pl-c1">5</span>, <span class="pl-c1">0</span>)</pre></div>
+<h3>XGBoost Classifier</h3>
+<h1>Gradient Boosting parameters</h1>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># Gradient Boosting parameters</span>
+<span class="pl-s1">gb_params</span> <span class="pl-c1">=</span> {
+    <span class="pl-s">'n_estimators'</span>: <span class="pl-c1">400</span>,
+    <span class="pl-s">'max_depth'</span>: <span class="pl-c1">6</span>,
+}
+<span class="pl-s1">gbc_model</span> <span class="pl-c1">=</span> <span class="pl-v">ClassifierModel</span>(<span class="pl-s1">clf</span><span class="pl-c1">=</span><span class="pl-v">GradientBoostingClassifier</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-s1">gb_params</span>)
+<span class="pl-s1">gbc_scores</span> <span class="pl-c1">=</span> <span class="pl-en">trainModel</span>(<span class="pl-s1">gbc_model</span>,<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">x_test</span>, <span class="pl-c1">5</span>, <span class="pl-c1">0</span>)</pre></div>
+<p>让我们将所有模型交叉验证精度结合在五个折上。</p>
+<p>现在，让我们构建一个堆叠模型，其中一个新的更强的模型从所有这些弱学习器中学习预测。我们用于训练先前模型的标签向量将保持不变。特征是从每个分类器收集的预测。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">x_train</span> <span class="pl-c1">=</span> <span class="pl-s1">np</span>.<span class="pl-en">column_stack</span>((<span class="pl-s1">etc_train_pred</span>, <span class="pl-s1">rfc_train_pred</span>, <span class="pl-s1">ada_train_pred</span>, <span class="pl-s1">gbc_train_pred</span>, <span class="pl-s1">svc_train_pred</span>))</pre></div>
+<p>现在，让我们看看构建 XGBoost 模型仅学习生成的预测是否会表现得更好。但首先，我们将快速了解分类器预测之间的相关性。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/91be2174a6566f82efac598e83be06683e9962379650bb94bafc425120aa1f81/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f31305f656e73656d626c652d6d6f64656c2e706e67"><img src="https://camo.githubusercontent.com/91be2174a6566f82efac598e83be06683e9962379650bb94bafc425120aa1f81/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f31305f656e73656d626c652d6d6f64656c2e706e67" alt="集成模型" data-canonical-src="http://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/10_ensemble-model.png" style="max-width: 100%;"></a></p>
+<p><em>图 9：分类器投票标签之间的 Pearson 相关性</em></p>
+<p>现在，我们将构建一个模型来组合来自多个贡献分类器的预测。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">trainStackModel</span>(<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">x_test</span>, <span class="pl-s1">n_folds</span>, <span class="pl-s1">seed</span>):
+    <span class="pl-s1">cv</span> <span class="pl-c1">=</span> <span class="pl-v">KFold</span>(<span class="pl-s1">n_splits</span><span class="pl-c1">=</span><span class="pl-s1">n_folds</span>, <span class="pl-s1">random_state</span><span class="pl-c1">=</span><span class="pl-s1">seed</span>)
+    <span class="pl-s1">gbm</span> <span class="pl-c1">=</span> <span class="pl-s1">xgb</span>.<span class="pl-v">XGBClassifier</span>(
+        <span class="pl-s1">n_estimators</span><span class="pl-c1">=</span><span class="pl-c1">2000</span>,
+        <span class="pl-s1">max_depth</span><span class="pl-c1">=</span><span class="pl-c1">4</span>,
+        <span class="pl-s1">min_child_weight</span><span class="pl-c1">=</span><span class="pl-c1">2</span>,
+        <span class="pl-s1">gamma</span><span class="pl-c1">=</span><span class="pl-c1">0.9</span>,                        
+        <span class="pl-s1">subsample</span><span class="pl-c1">=</span><span class="pl-c1">0.8</span>,
+        <span class="pl-s1">colsample_bytree</span><span class="pl-c1">=</span><span class="pl-c1">0.8</span>,
+        <span class="pl-s1">objective</span><span class="pl-c1">=</span><span class="pl-s">'binary:logistic'</span>,
+        <span class="pl-s1">scale_pos_weight</span><span class="pl-c1">=</span><span class="pl-c1">1</span>).<span class="pl-en">fit</span>(<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>)
+    
+    <span class="pl-s1">scores</span> <span class="pl-c1">=</span> <span class="pl-en">cross_val_score</span>(<span class="pl-s1">gbm</span>, <span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">scoring</span><span class="pl-c1">=</span><span class="pl-s">'accuracy'</span>, <span class="pl-s1">cv</span><span class="pl-c1">=</span><span class="pl-s1">cv</span>)
+    <span class="pl-k">return</span> <span class="pl-s1">scores</span></pre></div>
+<p>之前创建的基础分类器表示 Level-0 模型，新的 XGBoost 模型表示 Level-1 模型。该组合说明了在样本数据的预测上训练的元模型。您可以在下面看到新堆叠模型的准确性与基础分类器之间的快速比较：</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/90a6c7ab4c629cd0341511daca0d182ae538af099e94a26cc8d5f19a14751e8a/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f31315f656e73656d626c652d6d6f64656c2e706e67"><img src="https://camo.githubusercontent.com/90a6c7ab4c629cd0341511daca0d182ae538af099e94a26cc8d5f19a14751e8a/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f31315f656e73656d626c652d6d6f64656c2e706e67" alt="集成模型" data-canonical-src="http://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/11_ensemble-model.png" style="max-width: 100%;"></a></p>
+<h2>仔细考虑</h2>
+<ul>
+<li>噪声、<a href="https://builtin.com/data-science/bias-variance-tradeoff" rel="nofollow">偏差和方差</a>：来自多个模型的决策组合有助于提高整体性能。因此，使用集成模型的关键原因之一是克服噪声、偏差和方差。如果集成模型没有提供集体经验来提高这种情况下的准确性，那么有必要仔细重新考虑是否有必要使用。</li>
+<li>简单性和可 <a href="https://builtin.com/artificial-intelligence/ai-right-explanation" rel="nofollow">解释</a> 性：机器学习模型，尤其是那些投入生产环境的模型，应该易于解释。当您使用集成模型时，您能够解释最终模型决策的机会会大大降低。</li>
+<li>泛化：有许多说法认为集成模型具有更强的泛化能力，但其他报告的用例显示出更多的泛化错误。因此，如果没有仔细的训练过程，集成模型可能会快速产生高过拟合模型。</li>
+<li>推理时间：尽管我们可能不愿意接受更长的模型训练时间，但推理时间仍然很关键。将集成模型部署到生产环境中时，传递多个模型所需的时间会增加，并且可能会减慢预测任务的吞吐量。</li>
+</ul>
+<p>集成模型是机器学习的一种极好的方法，因为它们为分类和回归问题提供了各种技术。现在您了解了集成模型的类型，我们如何构建简单的集成模型，以及它们如何提高模型的准确性。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://lartpang.github.io/blog"> Simpler, Better </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var start_site=new Date("");
+    var diff=now.getTime()-start_site.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","lartpang/blog");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>
+<script>
+  var imgLinks = document.querySelectorAll('#postBody a > img');
+  imgLinks.forEach(
+    function (imgLink) {
+      var parentLink = imgLink.parentElement;
+      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);
+      parentLink.parentNode.removeChild(parentLink);
+    }
+  );
+  mediumZoom('#postBody img');
+</script>
+
+
+</html>

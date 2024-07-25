@@ -403,6 +403,26 @@
       "created_date": "2024-03-25",
       "dateLabelColor": "#bc4c00",
       "md_path": "backup/Build OpenCV and OpenVINO for Windows 10 with VS 2022.md"
+    },
+    "P20": {
+      "html_dir": "docs/post/\u3010-yi-\u3011-ji-cheng-mo-xing-\uff1a-ta-men-shi-shen-me-yi-ji-he-shi-ying-gai-shi-yong-ta-men-\uff1f.html",
+      "labels": [
+        "machine learning"
+      ],
+      "post_title": "\u3010\u8bd1\u3011\u96c6\u6210\u6a21\u578b\uff1a\u5b83\u4eec\u662f\u4ec0\u4e48\u4ee5\u53ca\u4f55\u65f6\u5e94\u8be5\u4f7f\u7528\u5b83\u4eec\uff1f",
+      "post_url": "post/%E3%80%90-yi-%E3%80%91-ji-cheng-mo-xing-%EF%BC%9A-ta-men-shi-shen-me-yi-ji-he-shi-ying-gai-shi-yong-ta-men-%EF%BC%9F.html",
+      "post_source_url": "https://github.com/lartpang/blog/issues/20",
+      "num_comments": 0,
+      "top": 0,
+      "num_words": 8366,
+      "description": "",
+      "created_time": 1721896328,
+      "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
+      "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
+      "og_image": "https://avatars.githubusercontent.com/u/26847524",
+      "created_date": "2024-07-25",
+      "dateLabelColor": "#bc4c00",
+      "md_path": "backup/\u3010\u8bd1\u3011\u96c6\u6210\u6a21\u578b\uff1a\u5b83\u4eec\u662f\u4ec0\u4e48\u4ee5\u53ca\u4f55\u65f6\u5e94\u8be5\u4f7f\u7528\u5b83\u4eec\uff1f.md"
     }
   },
   "sub_pages": {},
