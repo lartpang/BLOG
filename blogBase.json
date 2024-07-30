@@ -423,6 +423,26 @@
       "created_date": "2024-03-25",
       "dateLabelColor": "#bc4c00",
       "md_path": "backup/Build OpenCV and OpenVINO for Windows 10 with VS 2022.md"
+    },
+    "P21": {
+      "html_dir": "docs/post/\u3010-yi-\u3011-shi-yong-bian-xi-mo-shi-de-VSCode.html",
+      "labels": [
+        "tool"
+      ],
+      "post_title": "\u3010\u8bd1\u3011\u4f7f\u7528\u4fbf\u643a\u6a21\u5f0f\u7684VSCode",
+      "post_url": "post/%E3%80%90-yi-%E3%80%91-shi-yong-bian-xi-mo-shi-de-VSCode.html",
+      "post_source_url": "https://github.com/lartpang/blog/issues/21",
+      "num_comments": 0,
+      "top": 0,
+      "num_words": 2765,
+      "description": "",
+      "created_time": 1722323862,
+      "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
+      "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
+      "og_image": "https://avatars.githubusercontent.com/u/26847524",
+      "created_date": "2024-07-30",
+      "dateLabelColor": "#bc4c00",
+      "md_path": "backup/\u3010\u8bd1\u3011\u4f7f\u7528\u4fbf\u643a\u6a21\u5f0f\u7684VSCode.md"
     }
   },
   "sub_pages": {},

@@ -1,4 +1,14 @@
 {
+  "P21": {
+    "labels": [
+      "tool"
+    ],
+    "post_title": "\u3010\u8bd1\u3011\u4f7f\u7528\u4fbf\u643a\u6a21\u5f0f\u7684VSCode",
+    "post_url": "post/%E3%80%90-yi-%E3%80%91-shi-yong-bian-xi-mo-shi-de-VSCode.html",
+    "created_date": "2024-07-30",
+    "dateLabelColor": "#bc4c00",
+    "md_path": "backup/\u3010\u8bd1\u3011\u4f7f\u7528\u4fbf\u643a\u6a21\u5f0f\u7684VSCode.md"
+  },
   "P20": {
     "labels": [
       "machine learning"
@@ -204,6 +214,7 @@
     "machine learning": "#B2CD03",
     "opencv": "#3108A9",
     "paper": "#78A3A1",
-    "qt": "#5B7F97"
+    "qt": "#5B7F97",
+    "tool": "#f9d0c4"
   }
 }
