@@ -57,7 +57,6 @@ class Convertor:
             "theme_mode": "manual",
             "day_theme": "light",
             "night_theme": "dark",
-            "url_mode": "title",
             "script": "",
             "style": "",
             "bottom_text": "",
@@ -293,10 +292,7 @@ class Convertor:
         if useLabel:
             fileName = issue.labels[0].name
         else:
-            if self.blogBase["url_mode"] == "title":
-                fileName = issue.title
-            else:
-                fileName = str(issue.number)
+            fileName = str(issue.number)
         return re.sub(r"[<>:/\\|?*\"]|[\0-\31]", "-", fileName)
 
     def update_post_info(self, issue: Issue):
