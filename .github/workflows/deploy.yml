@@ -1,4 +1,4 @@
-name: build Gmeek
+name: build the website
 
 on:
   workflow_dispatch:
@@ -26,14 +26,11 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install dependencies
+      - name: Install dependencies and Generate new html
         run: |
           cd scripts/
           pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: Generate new html
-        run: |
           python issue2md.py ${{ secrets.GITHUB_TOKEN }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
 
       - name: update html
