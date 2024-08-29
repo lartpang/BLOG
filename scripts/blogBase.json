@@ -14,7 +14,7 @@
   "theme_mode": "manual",
   "day_theme": "light",
   "night_theme": "dark",
-  "url_mode": "pinyin",
+  "url_mode": "title",
   "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
   "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
   "bottom_text": "\u8f6c\u8f7d\u8bf7\u6ce8\u660e\u51fa\u5904 (*\u2766\u03c9\u2766)",
@@ -25,12 +25,12 @@
   "extra_links": {},
   "posts": {
     "P21": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/\u3010-yi-\u3011-shi-yong-bian-xi-mo-shi-de-VSCode.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/\u3010\u8bd1\u3011\u4f7f\u7528\u4fbf\u643a\u6a21\u5f0f\u7684VSCode.html",
       "labels": [
         "tool"
       ],
       "post_title": "\u3010\u8bd1\u3011\u4f7f\u7528\u4fbf\u643a\u6a21\u5f0f\u7684VSCode",
-      "post_url": "/post/%E3%80%90-yi-%E3%80%91-shi-yong-bian-xi-mo-shi-de-VSCode.html",
+      "post_url": "/post/%E3%80%90%E8%AF%91%E3%80%91%E4%BD%BF%E7%94%A8%E4%BE%BF%E6%90%BA%E6%A8%A1%E5%BC%8F%E7%9A%84VSCode.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/21",
       "num_comments": 0,
       "top": 0,
@@ -45,12 +45,12 @@
       "md_path": "/home/runner/work/blog/blog/backup/\u3010\u8bd1\u3011\u4f7f\u7528\u4fbf\u643a\u6a21\u5f0f\u7684VSCode.md"
     },
     "P20": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/\u3010-yi-\u3011-ji-cheng-mo-xing-\uff1a-ta-men-shi-shen-me-yi-ji-he-shi-ying-gai-shi-yong-ta-men-\uff1f.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/\u3010\u8bd1\u3011\u96c6\u6210\u6a21\u578b\uff1a\u5b83\u4eec\u662f\u4ec0\u4e48\u4ee5\u53ca\u4f55\u65f6\u5e94\u8be5\u4f7f\u7528\u5b83\u4eec\uff1f.html",
       "labels": [
         "machine learning"
       ],
       "post_title": "\u3010\u8bd1\u3011\u96c6\u6210\u6a21\u578b\uff1a\u5b83\u4eec\u662f\u4ec0\u4e48\u4ee5\u53ca\u4f55\u65f6\u5e94\u8be5\u4f7f\u7528\u5b83\u4eec\uff1f",
-      "post_url": "/post/%E3%80%90-yi-%E3%80%91-ji-cheng-mo-xing-%EF%BC%9A-ta-men-shi-shen-me-yi-ji-he-shi-ying-gai-shi-yong-ta-men-%EF%BC%9F.html",
+      "post_url": "/post/%E3%80%90%E8%AF%91%E3%80%91%E9%9B%86%E6%88%90%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%AE%83%E4%BB%AC%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A5%E5%8F%8A%E4%BD%95%E6%97%B6%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%AE%83%E4%BB%AC%EF%BC%9F.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/20",
       "num_comments": 0,
       "top": 0,
@@ -105,12 +105,12 @@
       "md_path": "/home/runner/work/blog/blog/backup/ICLR 2024 - FasterViT - Fast Vision Transformers with Hierarchical Attention.md"
     },
     "P17": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/CVPR -can-hui-ji-lu.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/CVPR \u53c2\u4f1a\u8bb0\u5f55.html",
       "labels": [
         "life"
       ],
       "post_title": "CVPR \u53c2\u4f1a\u8bb0\u5f55",
-      "post_url": "/post/CVPR%20-can-hui-ji-lu.html",
+      "post_url": "/post/CVPR%20%E5%8F%82%E4%BC%9A%E8%AE%B0%E5%BD%95.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/17",
       "num_comments": 0,
       "top": 0,
