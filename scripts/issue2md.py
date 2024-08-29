@@ -17,7 +17,6 @@ from github import Github
 from github.Issue import Issue
 from github.Repository import Repository
 from jinja2 import Environment, FileSystemLoader
-from xpinyin import Pinyin
 
 from constant import I18N, ICONS, NEWLINE_CHAR
 
@@ -58,7 +57,7 @@ class Convertor:
             "theme_mode": "manual",
             "day_theme": "light",
             "night_theme": "dark",
-            "url_mode": "pinyin",
+            "url_mode": "title",
             "script": "",
             "style": "",
             "bottom_text": "",
@@ -294,10 +293,10 @@ class Convertor:
         if useLabel:
             fileName = issue.labels[0].name
         else:
-            if self.blogBase["url_mode"] == "issue":
-                fileName = str(issue.number)
+            if self.blogBase["url_mode"] == "title":
+                fileName = issue.title
             else:
-                fileName = Pinyin().get_pinyin(issue.title)
+                fileName = str(issue.number)
         return re.sub(r"[<>:/\\|?*\"]|[\0-\31]", "-", fileName)
 
     def update_post_info(self, issue: Issue):
