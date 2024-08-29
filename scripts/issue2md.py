@@ -77,10 +77,18 @@ class Convertor:
         with open(USER_CONFIG_FILE, "r", encoding="utf-8") as f:
             user_cfg = json.load(f)
         if user_cfg["script"].endswith(".html"):
-            with open(user_cfg["script"], "r", encoding="utf-8") as f:
+            with open(
+                os.path.join(GITHUB_WORKSPACE, user_cfg["script"]),
+                mode="r",
+                encoding="utf-8",
+            ) as f:
                 user_cfg["script"] = f.read() + NEWLINE_CHAR
         if user_cfg["style"].endswith(".html"):
-            with open(user_cfg["style"], "r", encoding="utf-8") as f:
+            with open(
+                os.path.join(GITHUB_WORKSPACE, user_cfg["style"]),
+                mode="r",
+                encoding="utf-8",
+            ) as f:
                 user_cfg["style"] = f.read() + NEWLINE_CHAR
         self.blogBase.update(user_cfg)
 
