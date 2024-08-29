@@ -10,12 +10,12 @@
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="">
-<meta property="og:title" content="Six methods of indexing pixels of Mat in OpenCV">
+<meta property="og:title" content="Snippets of OpenVINO-CPP for Model Inference">
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog//post/Six%20methods%20of%20indexing%20pixels%20of%20Mat%20in%20OpenCV.html">
+<meta property="og:url" content="https://lartpang.github.io/blog//post/2.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
-<title>Six methods of indexing pixels of Mat in OpenCV</title>
+<title>Snippets of OpenVINO-CPP for Model Inference</title>
 <link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 </head>
@@ -109,7 +109,7 @@
 
 <body>
     <div id="header">
-<h1 class="post_title">Six methods of indexing pixels of Mat in OpenCV</h1>
+<h1 class="post_title">Snippets of OpenVINO-CPP for Model Inference</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -117,7 +117,7 @@
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/3" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/lartpang/blog/issues/2" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -133,127 +133,56 @@
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="post_body"><h1>Six methods of indexing pixels of Mat in OpenCV</h1>
-<h2><code class="notranslate">.at&lt;&gt;()</code></h2>
-<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> modify the pixel directly</span>
-<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span>; ++w) {
-        image.<span class="pl-smi">at</span>&lt;Vec3b&gt;(h, w)[<span class="pl-c1">0</span>] = <span class="pl-c1">255</span>;
-        image.<span class="pl-smi">at</span>&lt;Vec3b&gt;(h, w)[<span class="pl-c1">1</span>] = <span class="pl-c1">0</span>;
-        image.<span class="pl-smi">at</span>&lt;Vec3b&gt;(h, w)[<span class="pl-c1">2</span>] = <span class="pl-c1">0</span>;
-    }
+<div class="markdown-body" id="post_body"><h1>Snippets of OpenVINO-CPP for Model Inference</h1>
+<h2>Header File</h2>
+<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>openvino/openvino.hpp<span class="pl-pds">&gt;</span></span></pre></div>
+<h2>Create Infer Request</h2>
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">void</span> <span class="pl-en">preprocessing</span>(std::shared_ptr&lt;ov::Model&gt; model) {
+  ov::preprocess::PrePostProcessor <span class="pl-smi">ppp</span>(model);
+  ppp.<span class="pl-c1">input</span>().<span class="pl-c1">tensor</span>().<span class="pl-c1">set_layout</span>(<span class="pl-s"><span class="pl-pds">"</span>NHWC<span class="pl-pds">"</span></span>); <span class="pl-c"><span class="pl-c">//</span> input data is NHWC from OpenCV Mat</span>
+  ppp.<span class="pl-c1">input</span>().<span class="pl-c1">model</span>().<span class="pl-c1">set_layout</span>(<span class="pl-s"><span class="pl-pds">"</span>NCHW<span class="pl-pds">"</span></span>); <span class="pl-c"><span class="pl-c">//</span> In the model, the layout is NCHW</span>
+  model = ppp.<span class="pl-c1">build</span>();
 }
 
-<span class="pl-c"><span class="pl-c">//</span> modify the pixel by the reference</span>
-<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span>; ++w) {
-        Vec3b&amp; bgr = image.<span class="pl-smi">at</span>&lt;Vec3b&gt;(h, w);
-        bgr.<span class="pl-smi">val</span>[<span class="pl-c1">0</span>] = <span class="pl-c1">0</span>;
-        bgr.<span class="pl-smi">val</span>[<span class="pl-c1">1</span>] = <span class="pl-c1">255</span>;
-        bgr.<span class="pl-smi">val</span>[<span class="pl-c1">2</span>] = <span class="pl-c1">0</span>;
-    }
-}
+ov::Core core;
 
-<span class="pl-c"><span class="pl-c">//</span> the image has one channel</span>
-<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
-        image.<span class="pl-smi">at</span>&lt;uchar&gt;(h, w) = <span class="pl-c1">128</span>;
-    }
-}</pre></div>
-<h2><code class="notranslate">.ptr&lt;&gt;()</code></h2>
-<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> use uchar type</span>
-<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
-        uchar* ptr = image.<span class="pl-smi">ptr</span>&lt;uchar&gt;(h, w);
-        ptr[<span class="pl-c1">0</span>] = <span class="pl-c1">255</span>;
-        ptr[<span class="pl-c1">1</span>] = <span class="pl-c1">0</span>;
-        ptr[<span class="pl-c1">2</span>] = <span class="pl-c1">0</span>;
-    }
-}
-<span class="pl-c"><span class="pl-c">//</span> use cv::Vec3b type</span>
-<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
-        Vec3b* ptr = image.<span class="pl-smi">ptr</span>&lt;Vec3b&gt;(h, w);
-        ptr-&gt;<span class="pl-smi">val</span>[<span class="pl-c1">0</span>] = <span class="pl-c1">0</span>;
-        ptr-&gt;<span class="pl-smi">val</span>[<span class="pl-c1">1</span>] = <span class="pl-c1">255</span>;
-        ptr-&gt;<span class="pl-smi">val</span>[<span class="pl-c1">2</span>] = <span class="pl-c1">0</span>;
-    }
-}
-
-<span class="pl-c"><span class="pl-c">//</span> use the row pointer and the image has one channel</span>
-<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
-    uchar* ptr = image.<span class="pl-c1">ptr</span>(h);
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
-        ptr[w] = <span class="pl-c1">128</span>;
-    }
-}
-
-<span class="pl-c"><span class="pl-c">//</span> use the pixel pointer and the image has one channel</span>
-<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
-        uchar* ptr = image.<span class="pl-smi">ptr</span>&lt;uchar&gt;(h, w);
-        *ptr = <span class="pl-c1">255</span>;
-    }
-}</pre></div>
-<h2><code class="notranslate">iterator</code></h2>
-<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> the image has three channels</span>
-Mat_&lt;Vec3b&gt;::iterator it = image.begin&lt;Vec3b&gt;();
-Mat_&lt;Vec3b&gt;::iterator itend = image.end&lt;Vec3b&gt;();
-<span class="pl-k">for</span> (; it != itend; ++it) {
-    (*it)[<span class="pl-c1">0</span>] = <span class="pl-c1">255</span>;
-    (*it)[<span class="pl-c1">1</span>] = <span class="pl-c1">0</span>;
-    (*it)[<span class="pl-c1">2</span>] = <span class="pl-c1">0</span>;
-}
-
-<span class="pl-c"><span class="pl-c">//</span> the image has one channel</span>
-Mat_&lt;uchar&gt;::iterator it1 = image.begin&lt;uchar&gt;();
-Mat_&lt;uchar&gt;::iterator itend1 = image.end&lt;uchar&gt;();
-<span class="pl-k">for</span> (; it1 != itend1; ++it1) {
-    (*it1) = <span class="pl-c1">128</span>;
-}</pre></div>
-<h2><code class="notranslate">.data</code> pointer</h2>
-<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> 3 channels</span>
-uchar* data = image.data;
-<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
-        *data++ = <span class="pl-c1">128</span>;
-        *data++ = <span class="pl-c1">128</span>;
-        *data++ = <span class="pl-c1">128</span>;
-    }
-}
-
-<span class="pl-c"><span class="pl-c">//</span> 1 channel</span>
-uchar* data = image.data;
-<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
-        *data++ = <span class="pl-c1">128</span>;
-    }
-}</pre></div>
-<h2><code class="notranslate">.row()</code> and <code class="notranslate">.col()</code></h2>
-<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; <span class="pl-c1">100</span>; ++i) {
-    image.<span class="pl-c1">row</span>(i).<span class="pl-c1">setTo</span>(<span class="pl-c1">Scalar</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-c1">0</span>)); <span class="pl-c"><span class="pl-c">//</span> modify the i th row data</span>
-    image.<span class="pl-c1">col</span>(i).<span class="pl-c1">setTo</span>(<span class="pl-c1">Scalar</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-c1">0</span>)); <span class="pl-c"><span class="pl-c">//</span> modify the i th column data</span>
-}</pre></div>
-<h2>when <code class="notranslate">isContinuous()</code> is true</h2>
-<div class="highlight highlight-source-c++"><pre class="notranslate">Mat image = imread(<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>);
-<span class="pl-k">int</span> nRows = image.rows;
-<span class="pl-k">int</span> nCols = image.cols * image.channels();
-
-<span class="pl-k">if</span> (image.isContinuous()) {
-    nCols = nRows * nCols;
-    nRows = <span class="pl-c1">1</span>;
-}
-
-<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; nRows; ++h) {
-    uchar* ptr = image.<span class="pl-smi">ptr</span>&lt;uchar&gt;(h);
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; nCols; ++w) {
-        <span class="pl-c"><span class="pl-c">//</span> ptr[w] = 128 ;</span>
-        *ptr++ = <span class="pl-c1">128</span>;
-    }
-}</pre></div>
+<span class="pl-k">auto</span> model = core.read_model(model_path); # can use onnx <span class="pl-k">or</span> openvino<span class="pl-s"><span class="pl-pds">'</span>s xml file</span>
+<span class="pl-s">preprocessing(model);</span>
+<span class="pl-s"></span>
+<span class="pl-s">auto compiled_model = core.compile_model(model, "CPU");  // Or without `"CPU"`</span>
+<span class="pl-s">auto input_port = compiled_model.input();</span>
+<span class="pl-s">auto infer_request = compiled_model.create_infer_request();</span></pre></div>
+<h2>Input and Output</h2>
+<ul>
+<li>single input</li>
+</ul>
+<div class="highlight highlight-source-c++"><pre class="notranslate">infer_request.set_input_tensor(blob);
+infer_request.crop_net.infer();</pre></div>
+<ul>
+<li>single output</li>
+</ul>
+<div class="highlight highlight-source-c++"><pre class="notranslate">ov::Tensor single_output = <span class="pl-c1">this</span>-&gt;point_net.get_output_tensor(<span class="pl-c1">0</span>);</pre></div>
+<ul>
+<li>multiple outputs</li>
+</ul>
+<div class="highlight highlight-source-c++"><pre class="notranslate">ov::Tensor multi_outputs0 = <span class="pl-c1">this</span>-&gt;point_net.get_output_tensor(<span class="pl-c1">0</span>);
+ov::Tensor multi_outputs1 = <span class="pl-c1">this</span>-&gt;point_net.get_output_tensor(<span class="pl-c1">1</span>);</pre></div>
+<h2>OpenCV <code class="notranslate">cv::Mat</code> &lt;-&gt; OpenVINO <code class="notranslate">ov::Tensor</code></h2>
+<p>The key to these steps is the alignment of the data layout.</p>
+<h3><code class="notranslate">cv::Mat</code> -&gt; <code class="notranslate">ov::Tensor</code></h3>
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> converting the uint8 3-channels image mat to a float32 tensor</span>
+image.convertTo(image, CV_32FC3, <span class="pl-c1">1.0</span> / <span class="pl-c1">255</span>);
+<span class="pl-c"><span class="pl-c">//</span> NHWC layout as mentioned above. (N=1, C=3)</span>
+ov::Tensor <span class="pl-en">blob</span>(input_port.get_element_type(), input_port.get_shape(), (<span class="pl-k">float</span> *)image.data);</pre></div>
+<h3><code class="notranslate">ov::Tensor</code> -&gt; <code class="notranslate">cv::Mat</code></h3>
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> tensor follows the NCHW layout, so tensor_shape is (N,C,H,W)</span>
+ov::Shape tensor_shape = tensor.get_shape();
+<span class="pl-c"><span class="pl-c">//</span> Due to N=1 and C=1, we can directly assign all data to a new mat.</span>
+cv::Mat <span class="pl-en">mat</span>(tensor_shape[<span class="pl-c1">2</span>], tensor_shape[<span class="pl-c1">3</span>], CV_32F, tensor.data());</pre></div>
 <h2>Reference</h2>
 <ul>
-<li><a href="http://t.csdn.cn/bSDNn" rel="nofollow">http://t.csdn.cn/bSDNn</a></li>
+<li><a href="https://github.com/OpenVINO-dev-contest/YOLOv7_OpenVINO_cpp-python/blob/main/cpp/main_preprocessing.cpp">https://github.com/OpenVINO-dev-contest/YOLOv7_OpenVINO_cpp-python/blob/main/cpp/main_preprocessing.cpp</a></li>
+<li><a href="https://github.com/openvinotoolkit/openvino/blob/master/samples/cpp/hello_classification/main.cpp">https://github.com/openvinotoolkit/openvino/blob/master/samples/cpp/hello_classification/main.cpp</a></li>
 </ul></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

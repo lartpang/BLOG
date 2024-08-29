@@ -10,12 +10,12 @@
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="">
-<meta property="og:title" content="CVPR 2024 - SED - A Simple Encoder-Decoder for Open-Vocabulary Semantic Segmentation">
+<meta property="og:title" content="CVPR 2024 - Open-Vocabulary Video Anomaly Detection">
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog//post/CVPR%202024%20-%20SED%20-%20A%20Simple%20Encoder-Decoder%20for%20Open-Vocabulary%20Semantic%20Segmentation.html">
+<meta property="og:url" content="https://lartpang.github.io/blog//post/14.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
-<title>CVPR 2024 - SED - A Simple Encoder-Decoder for Open-Vocabulary Semantic Segmentation</title>
+<title>CVPR 2024 - Open-Vocabulary Video Anomaly Detection</title>
 
 
 </head>
@@ -109,7 +109,7 @@
 
 <body>
     <div id="header">
-<h1 class="post_title">CVPR 2024 - SED - A Simple Encoder-Decoder for Open-Vocabulary Semantic Segmentation</h1>
+<h1 class="post_title">CVPR 2024 - Open-Vocabulary Video Anomaly Detection</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -117,7 +117,7 @@
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/16" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/lartpang/blog/issues/14" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -133,89 +133,38 @@
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="post_body"><h1>CVPR 2024 - SED - A Simple Encoder-Decoder for Open-Vocabulary Semantic Segmentation</h1>
+<div class="markdown-body" id="post_body"><h1>CVPR 2024 - Open-Vocabulary Video Anomaly Detection</h1>
 <ul>
-<li>论文：<a href="https://arxiv.org/abs/2311.15537" rel="nofollow">https://arxiv.org/abs/2311.15537</a></li>
-<li>代码：<a href="https://github.com/xb534/SED">https://github.com/xb534/SED</a></li>
+<li>论文：<a href="https://arxiv.org/abs/2311.07042" rel="nofollow">https://arxiv.org/abs/2311.07042</a></li>
 </ul>
-<p>这篇文章提出了一种名为 SED 的简单编码器解码器，用于结合 CLIP 的 open-vocabulary 能力实现了开放词汇语义分割。在多个语义分割数据集上的实验证明了 SED 在开放词汇准确性和效率方面的优势。当使用 ConvNeXt-B 时，SED 在 ADE20K 上的 mIoU 得分为 31.6%，并且在单个 A6000 上每张图像只需 82 毫秒。</p>
-<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>本文的方法受启发于最近的 CAT-Seg（通过 cost map 微调图像编码器没有损坏 CLIP 的 open-vocabulary 能力），主要差异包括三点：</p>
-<ol>
-<li>本文是一个不需要额外视觉 encoder 的更加简单的框架，同时具有更好的性能和更快的推理速度。</li>
-<li>本文利用分层图像编码器生成 cost map 并且执行跳层融合，这显著提升了性能，并且计算成本与图像尺寸呈线性。</li>
-<li>本文在解码器中引入了一个简单的大核操作，并逐步融合特征，同时设计了一个 category early rejection strategy 来加速推理同时不损害性能。</li>
-</ol>
-</div>
-<h2>模型细节</h2>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/0b093332-8726-409b-af5f-db6e5ed13a11"><img src="https://github.com/lartpang/blog/assets/26847524/0b093332-8726-409b-af5f-db6e5ed13a11" alt="image" style="max-width: 100%;"></a></p>
-<p>SED 方法包括一个 hierarchical encoder-based cost map generation 和一个带有 category early rejection strategy 的 gradual fusion decoder。</p>
-<markdown-accessiblity-table><table role="table">
-<thead>
-<tr>
-<th>Gradual Fusion Decoder</th>
-<th>Category Early Rejection</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/b0f1daf1-2cbe-4193-bac3-ef006c4e605a"><img src="https://github.com/lartpang/blog/assets/26847524/b0f1daf1-2cbe-4193-bac3-ef006c4e605a" alt="image" style="max-width: 100%;"></a><br></td>
-<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/020d6c4e-820e-4e77-88a5-75da1555412d"><img src="https://github.com/lartpang/blog/assets/26847524/020d6c4e-820e-4e77-88a5-75da1555412d" alt="image" style="max-width: 100%;"></a></td>
-</tr>
-</tbody>
-</table></markdown-accessiblity-table>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/39e42922-523a-4f5f-b350-23fa5164eeab"><img src="https://github.com/lartpang/blog/assets/26847524/39e42922-523a-4f5f-b350-23fa5164eeab" alt="image" style="max-width: 100%;"></a></p>
+<p>这篇文章主要研究了开放词汇视频异常检测（openvocabulary video anomaly detection，OVVAD）的问题，这是一个具有挑战性但实际重要的问题。</p>
+<p>传统方法不能处理开放词汇场景下的视频异常检测：</p>
 <ul>
-<li>hierarchical encoder：不使用普通的直筒型 ViT 视觉编码器，而是基于分层的 ConvNeXt 视觉编码器，从而帮助更好地捕捉不同层次的空间信息，增强局部性，并且与输入大小成线性复杂度。利用其可以获得多层级特征图 $F_2, F_3, F_4, F_5$。其中的 $F_5$ 利用最后的 MLP 层转换获得图像嵌入 $F_v \in \mathbb{R}^{H_v \times W_v \times D_t}$，结合文本嵌入集合（对应 $N$ 类，每类 $P$ 个模板，设计与 CAT-Seg 一致） $E \in \mathbb{R}^{N \times P \times D_t}$ 获得像素级的 4D image-text cost map $F_{cv} \in \mathbb{R}^{H_v \times W_v \times N \times P}$ 。</li>
-<li>gradual fusion decoder：解码器采用自顶向下的结构将 cost map 和不同级别的 backbone 特征图结合起来进行分割。通过级联特征聚合模块（FAM）和跳层融合模块（SFM）来逐步组合视觉编码器的多层级特征图 $F_2, F_3, F_4$ 从而生成高分辨率特征图 $F_h$，这通过一个输出层转换为不同类别的分割图预测。需要注意的是，<strong>CAT-Seg 中观察到，直接对图像编码器回传梯度会破坏 open-vocabulary semantic segmentation 性能。所以这里对 skip-layer fusion 模块到图像编码器的梯度进行了截断。</strong>
+<li>主要是因为它们通常针对特定类别或已知异常进行训练和检测，缺乏对未知异常（即开放词汇）的泛化能力。</li>
+<li>此外，传统方法往往难以充分挖掘和利用视频数据中的时空信息以及外部知识，从而限制了其在开放词汇场景下的性能。</li>
+</ul>
+<p>该研究提出了一种基于预训练大型模型的解决方案。利用语言图像预训练模型，如 CLIP 作为基础，得益于其强大的零样本泛化能力。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/e861f10f-f36a-4925-9047-769bdb4578c0"><img src="https://github.com/lartpang/blog/assets/26847524/e861f10f-f36a-4925-9047-769bdb4578c0" alt="image" style="max-width: 100%;"></a></p>
+<p>具体而言，<strong>将开放词汇视频异常检测任务分解为类无关检测（class-agnostic detection）和类特定分类（class-specific categorization）这样两个互补的子任务</strong>，以更好地处理开放词汇视频异常检测问题。并引入了几个专用模块来促进对基线和新异常的检测。</p>
 <ul>
-<li>FAM 分别利用大核深度卷积执行空间融合，利用线性自注意力操作执行类别融合。</li>
-<li>SFM 利用层次编码器的浅层特征 $F_2, F_3, F_4$ 增强 FAM 输出特征图的局部细节。并进一步融合原始的 cost map。</li>
+<li>对于类无关的检测：设计了时序适配器模块（TA）和语义知识注入模块（SKI），主要旨在提高检测性能；
+<ul>
+<li>时序适配器模块 TA：现有的基于时序 Transformer 的设计面对新的类别时性能衰退严重，可能的原因是其中的额外参数特化于训练集，损害了对于新类别的泛化能力。因此本文设计了一个构建在经典的图卷积网络之上的几乎无权重的时序适配器来处理时序依赖，即 $x_t = \text{LN}(\text{softmax}(H)x_f), H_{i,j}=\frac{-|i-j|}{\sigma}$ 来对各帧特征进行交互重组，这里仅有的额外参数来自于 LN。</li>
+<li>语义知识注入模块 SKI：该模块旨在将额外的语义知识引入视觉检测任务中，以提高模型性能。SKI 引入额外的关于异常场景的短语（包括场景名词和动作动词）作为先验知识输入 CLIP。然后使用视觉特征利用类似于 cross-attention 的操作从文本特征中寻找相关的语义知识 $F_{know} = \text{sigmoid}(x_t F^{\top}<em>{text})F^{\top}</em>{text}/l$。这里使用 sigmoid 函数来促使视觉信号可以组合更多相关的语义概念。模块输出直接送入二值检测器中获得类无关检测的帧异常和视频异常得分。</li>
 </ul>
 </li>
-<li>category early rejection strategy：因为类别数量增大时，解码器中的推理成本会显著增加。但是实际上大多数图像仅包含数个语义类别。所以本文在解码器中引入的类别早期拒绝方案，可以在早期层有效地预测现有类别并拒绝不存在的类别，从而显著提高推理速度。从而最多提供 4.7 倍的速度提升而不会出现显著的性能下降。
+<li>对于细粒度异常分类：考虑到 CLIP 这样的预训练 VLM 面对视频相关的数据时 zore-shot 能力有限，本文使用新异常合成模块（NAS）基于潜在的异常类别生成可能的伪新异常视频样本，以帮助模型更准确地分类新异常类型。主要由三个关键过程组成：
 <ul>
-<li>训练期间，如图 4a，添加的辅助卷积分治分别预测分割图，并受真值监督。为了避免对模型训练的负面影响，这里阶段了其与 decoder 主体间的梯度。</li>
-<li>推理期间，如图 4b，引入 top-k 策略来预测存在的语义类别。通过对每个像素选择选择 top-k 个最大激活类别，从而生成一个所有像素的并集，移除未选择类别后的特征图（$H' \times W' \times N' \times D$）被送到下一个解码器层中。论文中观察到 k=8 的时候确保了大多数存在的类别被识别。</li>
+<li>首先，使用预定义的模板提示生成器（prompt_gen）来提示大型语言模型（LLMs），例如 ChatGPT 和 ERNIE Bot，以生成有关现实世界中“战斗”的十个简短场景描述。</li>
+<li>然后，使用 AI 生成模型（AIGC）例如 DALLE mini 和 Gen-2，从生成的文本描述中产生相应的图像（Igen）或短视频（Sgen）。</li>
+<li>Igen 会从单个图像转成视频片段，具体使用不同的检测比例中心剪裁图像中的对应区域，然后放缩到原始尺寸后，堆叠形成新的视频片段 Scat。</li>
+<li>为了模拟完整长异常视频中真实世界场景，这里将生成的 Scat 或者 Sgen 被随机插入到正常视频中的随机位置上，从而获得最终的伪异常视频样本 Vnas。</li>
+<li>利用这些 Vnas 可以微调训练在现有标准数据集（包含正常样本和异常样本）上的模型，从而增强其对于新异常的泛化能力。</li>
 </ul>
 </li>
 </ul>
-<h2>实验设定</h2>
-<ul>
-<li>训练集：COCO-Stuff 的训练集，包含大约 118k 密集标注的 171 类目标。</li>
-<li>测试集：跨数据集测试。
-<ul>
-<li>ADE20K，包含 20K training 和 2K validation =&gt; A-150 和 A-847。</li>
-<li>PASCAL VOC，包含 1.5k training 和 1.5k validation =&gt; PAS-20。</li>
-<li>PASCAL-Context 来自原始的 PASCAL VOC 数据集 =&gt; PC-59 和 PC-459。</li>
-</ul>
-</li>
-<li>模型设定：
-<ul>
-<li>基于 ConvNeXt-B/L 视觉编码器形式的预训练 CLIP。</li>
-<li>类别模板数量 $P$ 同 CAT-Seg 一致，均为 80。</li>
-<li>文本编码器冻结，只训练图像编码器和解码器。</li>
-<li>GPU: 4xA6000 with the mini-batch of 4 images。</li>
-<li>图像编码器学习率多乘以一个 0.01 倍的因子。</li>
-<li>共 80k 次迭代。</li>
-<li>训练时剪裁图像 $768 \times 768$ 大小，测试时直接放缩图像到 $768 \times 768$ 大小。</li>
-</ul>
-</li>
-</ul>
-<markdown-accessiblity-table><table role="table">
-<thead>
-<tr>
-<th>Vision Encoder 形式和微调策略的消融</th>
-<th>Decoder 结构的消融</th>
-<th>早退结构的消融</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/75713d34-2009-44ee-bae8-37ea4e938696"><img src="https://github.com/lartpang/blog/assets/26847524/75713d34-2009-44ee-bae8-37ea4e938696" alt="image" style="max-width: 100%;"></a><br></td>
-<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/822ff308-f033-4b59-8855-f83a0e2b86cf"><img src="https://github.com/lartpang/blog/assets/26847524/822ff308-f033-4b59-8855-f83a0e2b86cf" alt="image" style="max-width: 100%;"></a></td>
-<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/0fe7a5e1-173e-446e-b384-55eab2101490"><img src="https://github.com/lartpang/blog/assets/26847524/0fe7a5e1-173e-446e-b384-55eab2101490" alt="image" style="max-width: 100%;"></a><br></td>
-</tr>
-</tbody>
-</table></markdown-accessiblity-table></div>
+<p>实验结果表明，该模型在三个公开基准 UBnormal，UCF-Crime，XD-Violence 上优于现有方法，特别是在处理新类别时表现出明显的优势。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
@@ -272,7 +221,11 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-
+cmButton=document.getElementById("cmButton");
+    span=document.createElement("span");
+    span.setAttribute("class","Counter");
+    span.innerHTML="4";
+    cmButton.appendChild(span);
 function openComments(){
     cm=document.getElementById("comments");
     cmButton=document.getElementById("cmButton");

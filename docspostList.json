@@ -4,7 +4,7 @@
       "tool"
     ],
     "post_title": "\u3010\u8bd1\u3011\u4f7f\u7528\u4fbf\u643a\u6a21\u5f0f\u7684VSCode",
-    "post_url": "/post/%E3%80%90%E8%AF%91%E3%80%91%E4%BD%BF%E7%94%A8%E4%BE%BF%E6%90%BA%E6%A8%A1%E5%BC%8F%E7%9A%84VSCode.html",
+    "post_url": "/post/21.html",
     "created_date": "2024-07-30",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/\u3010\u8bd1\u3011\u4f7f\u7528\u4fbf\u643a\u6a21\u5f0f\u7684VSCode.md"
@@ -14,7 +14,7 @@
       "machine learning"
     ],
     "post_title": "\u3010\u8bd1\u3011\u96c6\u6210\u6a21\u578b\uff1a\u5b83\u4eec\u662f\u4ec0\u4e48\u4ee5\u53ca\u4f55\u65f6\u5e94\u8be5\u4f7f\u7528\u5b83\u4eec\uff1f",
-    "post_url": "/post/%E3%80%90%E8%AF%91%E3%80%91%E9%9B%86%E6%88%90%E6%A8%A1%E5%9E%8B%EF%BC%9A%E5%AE%83%E4%BB%AC%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A5%E5%8F%8A%E4%BD%95%E6%97%B6%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%AE%83%E4%BB%AC%EF%BC%9F.html",
+    "post_url": "/post/20.html",
     "created_date": "2024-07-25",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/\u3010\u8bd1\u3011\u96c6\u6210\u6a21\u578b\uff1a\u5b83\u4eec\u662f\u4ec0\u4e48\u4ee5\u53ca\u4f55\u65f6\u5e94\u8be5\u4f7f\u7528\u5b83\u4eec\uff1f.md"
@@ -24,7 +24,7 @@
       "paper"
     ],
     "post_title": "ArXiv 2405 - Rethinking Scanning Strategies with Vision Mamba in Semantic Segmentation of Remote Sensing Imagery - An Experimental Study",
-    "post_url": "/post/ArXiv%202405%20-%20Rethinking%20Scanning%20Strategies%20with%20Vision%20Mamba%20in%20Semantic%20Segmentation%20of%20Remote%20Sensing%20Imagery%20-%20An%20Experimental%20Study.html",
+    "post_url": "/post/19.html",
     "created_date": "2024-05-17",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/ArXiv 2405 - Rethinking Scanning Strategies with Vision Mamba in Semantic Segmentation of Remote Sensing Imagery - An Experimental Study.md"
@@ -34,7 +34,7 @@
       "paper"
     ],
     "post_title": "ICLR 2024 - FasterViT - Fast Vision Transformers with Hierarchical Attention",
-    "post_url": "/post/ICLR%202024%20-%20FasterViT%20-%20Fast%20Vision%20Transformers%20with%20Hierarchical%20Attention.html",
+    "post_url": "/post/18.html",
     "created_date": "2024-05-17",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/ICLR 2024 - FasterViT - Fast Vision Transformers with Hierarchical Attention.md"
@@ -44,7 +44,7 @@
       "life"
     ],
     "post_title": "CVPR \u53c2\u4f1a\u8bb0\u5f55",
-    "post_url": "/post/CVPR%20%E5%8F%82%E4%BC%9A%E8%AE%B0%E5%BD%95.html",
+    "post_url": "/post/17.html",
     "created_date": "2024-04-17",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/CVPR \u53c2\u4f1a\u8bb0\u5f55.md"
@@ -54,7 +54,7 @@
       "paper"
     ],
     "post_title": "CVPR 2024 - SED - A Simple Encoder-Decoder for Open-Vocabulary Semantic Segmentation",
-    "post_url": "/post/CVPR%202024%20-%20SED%20-%20A%20Simple%20Encoder-Decoder%20for%20Open-Vocabulary%20Semantic%20Segmentation.html",
+    "post_url": "/post/16.html",
     "created_date": "2024-04-11",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - SED - A Simple Encoder-Decoder for Open-Vocabulary Semantic Segmentation.md"
@@ -64,7 +64,7 @@
       "paper"
     ],
     "post_title": "CVPR 2024 - OVFoodSeg - Elevating Open-Vocabulary Food Image Segmentation via Image-Informed Textual Representation",
-    "post_url": "/post/CVPR%202024%20-%20OVFoodSeg%20-%20Elevating%20Open-Vocabulary%20Food%20Image%20Segmentation%20via%20Image-Informed%20Textual%20Representation.html",
+    "post_url": "/post/15.html",
     "created_date": "2024-04-10",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - OVFoodSeg - Elevating Open-Vocabulary Food Image Segmentation via Image-Informed Textual Representation.md"
@@ -74,7 +74,7 @@
       "paper"
     ],
     "post_title": "CVPR 2024 - Open-Vocabulary Video Anomaly Detection",
-    "post_url": "/post/CVPR%202024%20-%20Open-Vocabulary%20Video%20Anomaly%20Detection.html",
+    "post_url": "/post/14.html",
     "created_date": "2024-04-10",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Open-Vocabulary Video Anomaly Detection.md"
@@ -84,7 +84,7 @@
       "paper"
     ],
     "post_title": "CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection",
-    "post_url": "/post/CVPR%202024%20-%20Retrieval-Augmented%20Open-Vocabulary%20Object%20Detection.html",
+    "post_url": "/post/13.html",
     "created_date": "2024-04-10",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection.md"
@@ -94,7 +94,7 @@
       "paper"
     ],
     "post_title": "CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts",
-    "post_url": "/post/CVPR%202024%20-%20Rethinking%20Interactive%20Image%20Segmentationwith%20Low%20Latency%2C%20High%20Quality%2C%20and%20Diverse%20Prompts.html",
+    "post_url": "/post/12.html",
     "created_date": "2024-04-10",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts.md"
@@ -104,7 +104,7 @@
       "paper"
     ],
     "post_title": "CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation",
-    "post_url": "/post/CVPR%202024%20-%20Rethinking%20Inductive%20Biases%20for%20Surface%20Normal%20Estimation.html",
+    "post_url": "/post/11.html",
     "created_date": "2024-04-10",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation.md"
@@ -114,7 +114,7 @@
       "paper"
     ],
     "post_title": "Rethinking Interactive Image Segmentation: Feature Space Annotation",
-    "post_url": "/post/Rethinking%20Interactive%20Image%20Segmentation-%20Feature%20Space%20Annotation.html",
+    "post_url": "/post/10.html",
     "created_date": "2024-04-10",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/Rethinking Interactive Image Segmentation- Feature Space Annotation.md"
@@ -124,7 +124,7 @@
       "paper"
     ],
     "post_title": "CVPR 2024 - Efficient Deformable ConvNets: Rethinking Dynamic and Sparse Operator for Vision Applications",
-    "post_url": "/post/CVPR%202024%20-%20Efficient%20Deformable%20ConvNets-%20Rethinking%20Dynamic%20and%20Sparse%20Operator%20for%20Vision%20Applications.html",
+    "post_url": "/post/9.html",
     "created_date": "2024-04-10",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Efficient Deformable ConvNets- Rethinking Dynamic and Sparse Operator for Vision Applications.md"
@@ -134,7 +134,7 @@
       "paper"
     ],
     "post_title": "CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization",
-    "post_url": "/post/CVPR%202024%20-%20Rethinking%20the%20Evaluation%20Protocol%20of%20Domain%20Generalization.html",
+    "post_url": "/post/8.html",
     "created_date": "2024-04-10",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization.md"
@@ -144,7 +144,7 @@
       "paper"
     ],
     "post_title": "CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection",
-    "post_url": "/post/CVPR%202024%20-%20Rethinking%20the%20Up-Sampling%20Operations%20in%20CNN-based%20Generative%20Network%20for%20Generalizable%20Deepfake%20Detection.html",
+    "post_url": "/post/7.html",
     "created_date": "2024-04-10",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection.md"
@@ -154,7 +154,7 @@
       "paper"
     ],
     "post_title": "ICLR 2024 - FeatUp - A Model-Agnostic Framework for Features at Any Resolution",
-    "post_url": "/post/ICLR%202024%20-%20FeatUp%20-%20A%20Model-Agnostic%20Framework%20for%20Features%20at%20Any%20Resolution.html",
+    "post_url": "/post/6.html",
     "created_date": "2024-04-03",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/ICLR 2024 - FeatUp - A Model-Agnostic Framework for Features at Any Resolution.md"
@@ -164,7 +164,7 @@
       "paper"
     ],
     "post_title": "Arixv 2403 - Parameter-Efficient Fine-Tuning for Large Models A Comprehensive Survey",
-    "post_url": "/post/Arixv%202403%20-%20Parameter-Efficient%20Fine-Tuning%20for%20Large%20Models%20A%20Comprehensive%20Survey.html",
+    "post_url": "/post/5.html",
     "created_date": "2024-04-03",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/Arixv 2403 - Parameter-Efficient Fine-Tuning for Large Models A Comprehensive Survey.md"
@@ -174,7 +174,7 @@
       "qt"
     ],
     "post_title": "Tips for Qt",
-    "post_url": "/post/Tips%20for%20Qt.html",
+    "post_url": "/post/4.html",
     "created_date": "2024-03-25",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/Tips for Qt.md"
@@ -184,7 +184,7 @@
       "opencv"
     ],
     "post_title": "Six methods of indexing pixels of Mat in OpenCV",
-    "post_url": "/post/Six%20methods%20of%20indexing%20pixels%20of%20Mat%20in%20OpenCV.html",
+    "post_url": "/post/3.html",
     "created_date": "2024-03-25",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/Six methods of indexing pixels of Mat in OpenCV.md"
@@ -194,7 +194,7 @@
       "opencv"
     ],
     "post_title": "Snippets of OpenVINO-CPP for Model Inference",
-    "post_url": "/post/Snippets%20of%20OpenVINO-CPP%20for%20Model%20Inference.html",
+    "post_url": "/post/2.html",
     "created_date": "2024-03-25",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/Snippets of OpenVINO-CPP for Model Inference.md"
@@ -204,7 +204,7 @@
       "opencv"
     ],
     "post_title": "Build OpenCV and OpenVINO for Windows 10 with VS 2022",
-    "post_url": "/post/Build%20OpenCV%20and%20OpenVINO%20for%20Windows%2010%20with%20VS%202022.html",
+    "post_url": "/post/1.html",
     "created_date": "2024-03-25",
     "dateLabelColor": "#bc4c00",
     "md_path": "/home/runner/work/blog/blog/backup/Build OpenCV and OpenVINO for Windows 10 with VS 2022.md"

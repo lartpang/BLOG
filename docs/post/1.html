@@ -10,12 +10,12 @@
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="">
-<meta property="og:title" content="CVPR 参会记录">
+<meta property="og:title" content="Build OpenCV and OpenVINO for Windows 10 with VS 2022">
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog//post/CVPR%20%E5%8F%82%E4%BC%9A%E8%AE%B0%E5%BD%95.html">
+<meta property="og:url" content="https://lartpang.github.io/blog//post/1.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
-<title>CVPR 参会记录</title>
+<title>Build OpenCV and OpenVINO for Windows 10 with VS 2022</title>
 
 
 </head>
@@ -109,7 +109,7 @@
 
 <body>
     <div id="header">
-<h1 class="post_title">CVPR 参会记录</h1>
+<h1 class="post_title">Build OpenCV and OpenVINO for Windows 10 with VS 2022</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -117,7 +117,7 @@
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/17" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/lartpang/blog/issues/1" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -133,64 +133,142 @@
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="post_body"><ol>
-<li>【获得邀请函】在 CVPR 官网参会注册后即可申请：<a href="https://cvpr.thecvf.com" rel="nofollow">https://cvpr.thecvf.com</a></li>
-<li>【申请美签】填写 DS-160：<a href="https://ceac.state.gov/genniv" rel="nofollow">https://ceac.state.gov/genniv</a>
+<div class="markdown-body" id="post_body"><h1>Build OpenCV and OpenVINO for Windows 10 with VS 2022</h1>
+<p>In this guide, I will build the two powerful open-source libraries, i.e., OpenCV and OpenVINO for running my deeplearning model on windows 10.<br>
+Interestingly, both libraries are closely associated with Intel 🖥️.</p>
+<h2>OpenCV 😮</h2>
+<p>First of all, we must download the related code projects (<code class="notranslate">opencv</code> and <code class="notranslate">opencv_contrib</code> containing some plugins for <code class="notranslate">opencv</code>) into our computer from this links:</p>
+<ul>
+<li><a href="https://github.com/opencv/opencv/releases">https://github.com/opencv/opencv/releases</a></li>
+<li><a href="https://github.com/opencv/opencv_contrib/tags">https://github.com/opencv/opencv_contrib/tags</a></li>
+</ul>
+<p>Make sure the selected versions of the two libararies are the same.<br>
+Here, I choice the latest version <code class="notranslate">4.7.0</code>.<br>
+Because we will recompiling them by ourselves, we can just download the source code zip files.<br>
+Put the two unpacked libraries into the same parent folder <code class="notranslate">opencv_dir</code> as follows:</p>
+<pre class="notranslate"><code class="notranslate">-opencv_dir
+  -opencv-4.7.0
+    -...
+  -opencv_contrib-4.7.0
+    -modules
+    -...
+</code></pre>
+<p><strong>NOTE</strong>: To avoid the network issue that may be encountered during using CMake, we need to add the url proxy prefix <code class="notranslate">https://ghproxy.com/</code> before the urls of some setting of the relevant modules like <code class="notranslate">https://ghproxy.com/https://raw.github***</code>:</p>
+<ul>
+<li><code class="notranslate">.cmake</code> in <code class="notranslate">opencv-4.7.0/3rdparty/ippicv</code></li>
+<li><code class="notranslate">.cmake</code> in <code class="notranslate">opencv-4.7.0/3rdparty/ffmpeg</code></li>
+<li><code class="notranslate">CMakeLists.txt</code> in <code class="notranslate">opencv_contrib-4.7.0/modules/face</code></li>
+<li>Files in <code class="notranslate">cmake</code> of <code class="notranslate">opencv_contrib-4.7.0/modules/xfeatures2d</code></li>
+<li><code class="notranslate">CMakeLists.txt</code> in <code class="notranslate">opencv_contrib-4.7.0/modules/wechat_qrcode</code></li>
+<li><code class="notranslate">CMakeLists.txt</code> in <code class="notranslate">opencv_contrib-4.7.0/modules/cudaoptflow</code></li>
+</ul>
+<p>Next, start compiling OpenCV.</p>
 <ol>
-<li>需要准备电子照片，相关要求可见：<a href="https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/photos.html" rel="nofollow">https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/photos.html</a>
+<li>Create the build folder: <code class="notranslate">cd opencv_dir &amp;&amp; mkdir opencv-build-vs2022</code></li>
+<li>Configure and generate the VS solution by CMake with some config items:</li>
+</ol>
+<ul>
+<li>General:
+<ul>
+<li>source folder: <code class="notranslate">&lt;opencv-4.7.0&gt;</code></li>
+<li>build folder: <code class="notranslate">&lt;opencv-build-vs2022&gt;</code></li>
+<li><code class="notranslate">BUILD_OPENCV_WORLD=ON</code></li>
+<li><code class="notranslate">CMAKE_BUILD_TYPE=RELEASE</code></li>
+<li><code class="notranslate">OPENCV_ENABLE_NONFREE=ON</code></li>
+<li><code class="notranslate">BUILD_opencv_dnn=ON</code></li>
+<li><code class="notranslate">OPENCV_EXTRA_MODULES_PATH=&lt;opencv_contrib-4.7.0/modules&gt;</code></li>
+</ul>
+</li>
+<li>CUDA:
+<ul>
+<li><code class="notranslate">WITH_CUDA=ON</code></li>
+<li><code class="notranslate">WITH_CUDNN=ON</code></li>
+<li><code class="notranslate">WITH_CUBLAS=ON</code></li>
+<li><code class="notranslate">WITH_CUFFT=ON</code></li>
+<li><code class="notranslate">CUDA_FAST_MATH=ON</code></li>
+<li><code class="notranslate">CUDA_ARCH_BIN=7.5</code> (We can fill the single value corresponding to the real GPU for accelerating the compilation process.)</li>
+<li><code class="notranslate">OPENCV_DNN_CUDA=ON</code></li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>Go to the build directory: <code class="notranslate">cd &lt;opencv-build-vs2022&gt;</code></li>
+<li>Start build by cmake and msvc compiler: <code class="notranslate">cmake --build . --config Release --verbose -j8</code></li>
+<li>Install the built opencv into the <code class="notranslate">install</code> folder in the current path: <code class="notranslate">cmake --install . --prefix install</code></li>
+<li>Add the <code class="notranslate">bin</code> directory into the user environment: <code class="notranslate">&lt;path&gt;\install\x64\vc17\bin</code></li>
+<li>In VS:
+<ul>
+<li>add the <code class="notranslate">&lt;path&gt;\install\include</code> directory into "解决方案资源管理器-&gt;右键点击属性-&gt;VC++目录-&gt;外部包含目录"</li>
+<li>add the <code class="notranslate">&lt;path&gt;\install\x64\vc17\lib</code> directory into "解决方案资源管理器-&gt;右键点击属性-&gt;VC++目录-&gt;库目录"</li>
+<li>add the <code class="notranslate">opencv_world470.lib</code> into "解决方案资源管理器-&gt;右键点击属性-&gt;链接器-&gt;输入-&gt;附加依赖项"</li>
+</ul>
+</li>
+</ol>
+<h2>OpenVINO 🍰</h2>
+<p>The document of OpenVINO is intuitive and the readability is better than OpenCV.<br>
+The relevant content about building and installing the libirary is listed in these links:</p>
+<ul>
+<li><a href="https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/build_windows.md">https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/build_windows.md</a></li>
+<li><a href="https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/cmake_options_for_custom_comiplation.md">https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/cmake_options_for_custom_comiplation.md</a></li>
+<li><a href="https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/installing.md">https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/installing.md</a></li>
+</ul>
+<p>After building and install the OpenCV library, it's time to move on to OpenVINO.</p>
 <ol>
-<li><a href="https://www.meiguo-qianzheng.com/qitaqianzhengwenti/393.html" rel="nofollow">美国签证DS160照片和要携带面试上交的照片必须要同一张吗？</a></li>
-</ol>
+<li>We need clone the project and the sub modules.
+<pre class="notranslate"><code class="notranslate">git clone https://github.com/openvinotoolkit/openvino.git
+cd openvino
+git submodule update --init --recursive
+</code></pre>
 </li>
-<li>考虑选择申请 B1 签证。</li>
-<li>Passport Book Number（似乎可以不填）：<a href="https://www.citicbank.com/about/companynews/citicwiki/visafees/202502/t20250208_840231.html" rel="nofollow">办理美国签证护照本编号是什么</a></li>
-<li>邀请函中提供了填写 DS-160 需要的美国当地的联系人信息。</li>
-<li>中文姓名电码查询，注意电码必须四位，如果连续的多个，可以用空格隔开：<a href="https://apps.chasedream.com/chinese-commercial-code" rel="nofollow">https://apps.chasedream.com/chinese-commercial-code</a></li>
-<li>会议地址的信息可以从会议中心的官网上找到：<a href="https://seattleconventioncenter.com" rel="nofollow">https://seattleconventioncenter.com</a></li>
-<li>过程中会用到很多信息和选项，可以参考这些帖子：
-<ol>
-<li>各种填写细节：
-<ol>
-<li><a href="https://zhuanlan.zhihu.com/p/635554105" rel="nofollow">美国签证办理全流程攻略（上） - 火星大章鱼的文章 - 知乎</a></li>
-<li><a href="https://www.zhihu.com/tardis/zm/art/238155975" rel="nofollow">赴美签证DS160表格填写说明</a></li>
-<li><a href="http://www.ailvxing.com/info-103-22538-0.html" rel="nofollow">如何填写美国B1-B2申请表（DS-160）</a></li>
-<li><a href="https://www.meilvtong.com/viewthread.php?tid=19" rel="nofollow">美国签证DS160表格填写样本</a></li>
-</ol>
+<li>Create the build folder: <code class="notranslate">mkdir build &amp;&amp; cd build</code></li>
+<li>Configure and generate the VS solution by CMake:
+<ul>
+<li><code class="notranslate">ENABLE_INTEL_GPU=OFF</code> (We only use the Intel CPU.)</li>
+<li>Disable some frontend items:
+<ul>
+<li><code class="notranslate">ENABLE_OV_PDPD_FRONTEND=OFF</code></li>
+<li><code class="notranslate">ENABLE_OV_TF_FRONTEND=OFF</code></li>
+<li><code class="notranslate">ENABLE_OV_TF_LITE_FRONTEND=OFF</code></li>
+<li><code class="notranslate">ENABLE_OV_PYTORCH_FRONTEND=OFF</code></li>
+</ul>
 </li>
-<li>关于社交账号：<a href="https://sevissavvy.com/ds-160-social-media-presence-cn/" rel="nofollow">如何回答DS-160表格上“你是否有社交网络账号”的问题</a></li>
-</ol>
+<li>For Python:
+<ul>
+<li><code class="notranslate">ENABLE_PYTHON=ON</code> It seems that <code class="notranslate">openvino-dev</code> needs to be installed first in the detected environment, otherwise a warning message will be thrown in the cmake-gui window.</li>
+<li><code class="notranslate">PYTHON_EXECUTABLE=&lt;python.exe&gt;</code></li>
+<li><code class="notranslate">PYTHON_INCLUDE_DIR=&lt;incude directory&gt;</code></li>
+<li><code class="notranslate">PYTHON_LIBIRARY=&lt;pythonxx.lib in libs directory&gt;</code></li>
+</ul>
 </li>
-</ol>
+<li>For OpenCV:
+<ul>
+<li><code class="notranslate">ENABLE_OPENCV=ON</code></li>
+<li><code class="notranslate">OpenCV_DIR=&lt;opencv-build-vs2022/install&gt;</code></li>
+</ul>
 </li>
-<li>【申请面签】页面为 <a href="https://www.ustraveldocs.com/cn/zh/nonimmigrant-visa" rel="nofollow">https://www.ustraveldocs.com/cn/zh/nonimmigrant-visa</a>
-<ol>
-<li>关于 B1 签证的一些要求：<a href="https://www.ustraveldocs.com/cn/zh/business-visa" rel="nofollow">https://www.ustraveldocs.com/cn/zh/business-visa</a></li>
-<li>关于费用支付的一些信息：<a href="https://www.ustraveldocs.com/cn/zh/payment-options" rel="nofollow">https://www.ustraveldocs.com/cn/zh/payment-options</a></li>
-<li>【注意事项】
-<ol>
-<li>费用支付后，记住支付码，后面取消预约后还可以在新的预约中使用这个码。</li>
-<li>预约系统有防止滥用预约的机制，尽量不要反复操作，容易被封号72小时。如果被封了，期间不要再登录系统，容易继续延长。</li>
-</ol>
+</ul>
 </li>
-</ol>
+<li>Build the library: <code class="notranslate">cmake --build . --config Release --verbose -j8</code></li>
+<li>Install the library into the <code class="notranslate">install</code> directory: <code class="notranslate">cmake --install . --prefix install</code></li>
+<li>Add the <code class="notranslate">bin</code> directory into the environment:
+<ul>
+<li><code class="notranslate">&lt;path&gt;\install\runtime\bin\intel64\Release</code></li>
+<li><code class="notranslate">&lt;path&gt;\install\runtime\3rdparty\tbb\bin</code></li>
+</ul>
 </li>
-<li>【面签过程】
-<ol>
-<li><a href="https://www.sohu.com/a/624182528_121061754" rel="nofollow">美国签证被CHECK怎么办？一定会被拒吗？哪种情况会导致CHECK?</a></li>
-<li>准备好DS-160的确认页和最终预约确认页一起打印出来，面试需要。</li>
-<li>到日期准备参加面试吧。建议面试前多看看小红书上关于不同地区签证处的面试情况。提前做好心理准备。</li>
-</ol>
-</li>
-<li>【面前后续】面签之后如果没有当场通过或者被拒绝，那可能就要收走材料面临行政审查了。可以在 <a href="https://ceac.state.gov/CEACStatTracker/Status.aspx" rel="nofollow">https://ceac.state.gov/CEACStatTracker/Status.aspx</a> 中检索你的当前状态。
-<ol>
-<li><a href="https://zhuanlan.zhihu.com/p/113057894" rel="nofollow">实锤！美国签证查询系统更新，行政审查的“Refused”不是最终裁决！ - 鱼总美签的文章 - 知乎</a></li>
-<li>等了一个月，终于从refused变为了issued。护照寄出来，但是还没收掉。感觉时间可能不太行了。</li>
-</ol>
+<li>In VS:
+<ul>
+<li>add the <code class="notranslate">&lt;path&gt;\install\runtime\include</code> directory into "解决方案资源管理器-&gt;右键点击属性-&gt;VC++目录-&gt;外部包含目录"</li>
+<li>add the <code class="notranslate">&lt;path&gt;\install\runtime\lib\intel64\Release</code> directory into "解决方案资源管理器-&gt;右键点击属性-&gt;VC++目录-&gt;库目录"</li>
+<li>add the 🌟 <code class="notranslate">openvino.lib</code>, 🌟 <code class="notranslate">openvino_onnx_frontend.lib</code>, <code class="notranslate">openvino_c.lib</code> into "解决方案资源管理器-&gt;右键点击属性-&gt;链接器-&gt;输入-&gt;附加依赖项"</li>
+</ul>
 </li>
 </ol>
-<hr>
-<p><a href="https://zhuanlan.zhihu.com/p/35256544" rel="nofollow">一些建议的材料（有点旧了）</a>：</p>
-<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e7c54b54f9630c3be6a538e9f827d1f4be8a21fe2d620412a38591e6226989f6/68747470733a2f2f706963332e7a68696d672e636f6d2f38302f76322d65613761346134353437333565393837346138623263633237636438373937325f373230772e77656270"><img src="https://camo.githubusercontent.com/e7c54b54f9630c3be6a538e9f827d1f4be8a21fe2d620412a38591e6226989f6/68747470733a2f2f706963332e7a68696d672e636f6d2f38302f76322d65613761346134353437333565393837346138623263633237636438373937325f373230772e77656270" alt="" data-canonical-src="https://pic3.zhimg.com/80/v2-ea7a4a454735e9874a8b2cc27cd87972_720w.webp" style="max-width: 100%;"></a></p></div>
+<h2>Set DLL path in IDE</h2>
+<ul>
+<li>VS: "right click on solution -&gt; Properties -&gt; Debugging -&gt; Environment -&gt; <code class="notranslate">PATH=&lt;path&gt;\install\x64\vc17\bin;%PATH%</code>"</li>
+<li>Qt Creator: "Projects -&gt; Build &amp; Run -&gt; Build/Run -&gt; Environment -&gt; Details -&gt; Eidt %PATH% -&gt; Add <code class="notranslate">&lt;path&gt;\install\x64\vc17\bin</code>"</li>
+</ul></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>

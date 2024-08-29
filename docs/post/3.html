@@ -10,13 +10,13 @@
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="">
-<meta property="og:title" content="CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection">
+<meta property="og:title" content="Six methods of indexing pixels of Mat in OpenCV">
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog//post/CVPR%202024%20-%20Retrieval-Augmented%20Open-Vocabulary%20Object%20Detection.html">
+<meta property="og:url" content="https://lartpang.github.io/blog//post/3.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
-<title>CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection</title>
-
+<title>Six methods of indexing pixels of Mat in OpenCV</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 </head>
 <style>
@@ -109,7 +109,7 @@
 
 <body>
     <div id="header">
-<h1 class="post_title">CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection</h1>
+<h1 class="post_title">Six methods of indexing pixels of Mat in OpenCV</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -117,7 +117,7 @@
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/13" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/lartpang/blog/issues/3" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -133,32 +133,128 @@
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="post_body"><h1>CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection</h1>
+<div class="markdown-body" id="post_body"><h1>Six methods of indexing pixels of Mat in OpenCV</h1>
+<h2><code class="notranslate">.at&lt;&gt;()</code></h2>
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> modify the pixel directly</span>
+<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span>; ++w) {
+        image.<span class="pl-smi">at</span>&lt;Vec3b&gt;(h, w)[<span class="pl-c1">0</span>] = <span class="pl-c1">255</span>;
+        image.<span class="pl-smi">at</span>&lt;Vec3b&gt;(h, w)[<span class="pl-c1">1</span>] = <span class="pl-c1">0</span>;
+        image.<span class="pl-smi">at</span>&lt;Vec3b&gt;(h, w)[<span class="pl-c1">2</span>] = <span class="pl-c1">0</span>;
+    }
+}
+
+<span class="pl-c"><span class="pl-c">//</span> modify the pixel by the reference</span>
+<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span>; ++w) {
+        Vec3b&amp; bgr = image.<span class="pl-smi">at</span>&lt;Vec3b&gt;(h, w);
+        bgr.<span class="pl-smi">val</span>[<span class="pl-c1">0</span>] = <span class="pl-c1">0</span>;
+        bgr.<span class="pl-smi">val</span>[<span class="pl-c1">1</span>] = <span class="pl-c1">255</span>;
+        bgr.<span class="pl-smi">val</span>[<span class="pl-c1">2</span>] = <span class="pl-c1">0</span>;
+    }
+}
+
+<span class="pl-c"><span class="pl-c">//</span> the image has one channel</span>
+<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
+        image.<span class="pl-smi">at</span>&lt;uchar&gt;(h, w) = <span class="pl-c1">128</span>;
+    }
+}</pre></div>
+<h2><code class="notranslate">.ptr&lt;&gt;()</code></h2>
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> use uchar type</span>
+<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
+        uchar* ptr = image.<span class="pl-smi">ptr</span>&lt;uchar&gt;(h, w);
+        ptr[<span class="pl-c1">0</span>] = <span class="pl-c1">255</span>;
+        ptr[<span class="pl-c1">1</span>] = <span class="pl-c1">0</span>;
+        ptr[<span class="pl-c1">2</span>] = <span class="pl-c1">0</span>;
+    }
+}
+<span class="pl-c"><span class="pl-c">//</span> use cv::Vec3b type</span>
+<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
+        Vec3b* ptr = image.<span class="pl-smi">ptr</span>&lt;Vec3b&gt;(h, w);
+        ptr-&gt;<span class="pl-smi">val</span>[<span class="pl-c1">0</span>] = <span class="pl-c1">0</span>;
+        ptr-&gt;<span class="pl-smi">val</span>[<span class="pl-c1">1</span>] = <span class="pl-c1">255</span>;
+        ptr-&gt;<span class="pl-smi">val</span>[<span class="pl-c1">2</span>] = <span class="pl-c1">0</span>;
+    }
+}
+
+<span class="pl-c"><span class="pl-c">//</span> use the row pointer and the image has one channel</span>
+<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
+    uchar* ptr = image.<span class="pl-c1">ptr</span>(h);
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
+        ptr[w] = <span class="pl-c1">128</span>;
+    }
+}
+
+<span class="pl-c"><span class="pl-c">//</span> use the pixel pointer and the image has one channel</span>
+<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
+        uchar* ptr = image.<span class="pl-smi">ptr</span>&lt;uchar&gt;(h, w);
+        *ptr = <span class="pl-c1">255</span>;
+    }
+}</pre></div>
+<h2><code class="notranslate">iterator</code></h2>
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> the image has three channels</span>
+Mat_&lt;Vec3b&gt;::iterator it = image.begin&lt;Vec3b&gt;();
+Mat_&lt;Vec3b&gt;::iterator itend = image.end&lt;Vec3b&gt;();
+<span class="pl-k">for</span> (; it != itend; ++it) {
+    (*it)[<span class="pl-c1">0</span>] = <span class="pl-c1">255</span>;
+    (*it)[<span class="pl-c1">1</span>] = <span class="pl-c1">0</span>;
+    (*it)[<span class="pl-c1">2</span>] = <span class="pl-c1">0</span>;
+}
+
+<span class="pl-c"><span class="pl-c">//</span> the image has one channel</span>
+Mat_&lt;uchar&gt;::iterator it1 = image.begin&lt;uchar&gt;();
+Mat_&lt;uchar&gt;::iterator itend1 = image.end&lt;uchar&gt;();
+<span class="pl-k">for</span> (; it1 != itend1; ++it1) {
+    (*it1) = <span class="pl-c1">128</span>;
+}</pre></div>
+<h2><code class="notranslate">.data</code> pointer</h2>
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> 3 channels</span>
+uchar* data = image.data;
+<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
+        *data++ = <span class="pl-c1">128</span>;
+        *data++ = <span class="pl-c1">128</span>;
+        *data++ = <span class="pl-c1">128</span>;
+    }
+}
+
+<span class="pl-c"><span class="pl-c">//</span> 1 channel</span>
+uchar* data = image.data;
+<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; image.rows; ++h) {
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; image.<span class="pl-smi">cols</span> / <span class="pl-c1">2</span>; ++w) {
+        *data++ = <span class="pl-c1">128</span>;
+    }
+}</pre></div>
+<h2><code class="notranslate">.row()</code> and <code class="notranslate">.col()</code></h2>
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; <span class="pl-c1">100</span>; ++i) {
+    image.<span class="pl-c1">row</span>(i).<span class="pl-c1">setTo</span>(<span class="pl-c1">Scalar</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-c1">0</span>)); <span class="pl-c"><span class="pl-c">//</span> modify the i th row data</span>
+    image.<span class="pl-c1">col</span>(i).<span class="pl-c1">setTo</span>(<span class="pl-c1">Scalar</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-c1">0</span>)); <span class="pl-c"><span class="pl-c">//</span> modify the i th column data</span>
+}</pre></div>
+<h2>when <code class="notranslate">isContinuous()</code> is true</h2>
+<div class="highlight highlight-source-c++"><pre class="notranslate">Mat image = imread(<span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>);
+<span class="pl-k">int</span> nRows = image.rows;
+<span class="pl-k">int</span> nCols = image.cols * image.channels();
+
+<span class="pl-k">if</span> (image.isContinuous()) {
+    nCols = nRows * nCols;
+    nRows = <span class="pl-c1">1</span>;
+}
+
+<span class="pl-k">for</span> (<span class="pl-k">int</span> h = <span class="pl-c1">0</span>; h &lt; nRows; ++h) {
+    uchar* ptr = image.<span class="pl-smi">ptr</span>&lt;uchar&gt;(h);
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> w = <span class="pl-c1">0</span>; w &lt; nCols; ++w) {
+        <span class="pl-c"><span class="pl-c">//</span> ptr[w] = 128 ;</span>
+        *ptr++ = <span class="pl-c1">128</span>;
+    }
+}</pre></div>
+<h2>Reference</h2>
 <ul>
-<li>论文：<a href="https://arxiv.org/abs/2404.05687" rel="nofollow">https://arxiv.org/abs/2404.05687</a></li>
-<li>代码：<a href="https://github.com/mlvlab/RALF">https://github.com/mlvlab/RALF</a></li>
-</ul>
-<p>本文提出了一种新的开放词汇目标检测方法 Retrieval-Augmented Losses and visual Features (RALF)。RALF 通过从大型词汇库中检索词汇并增强损失函数和视觉特征来提高检测器对新类别的泛化能力。</p>
-<p>该方法由两个部分组成：检索增强损失（RAL）和检索增强视觉特征（RAF）。</p>
-<markdown-accessiblity-table><table role="table">
-<thead>
-<tr>
-<th>RAL</th>
-<th>RAF</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/6b98d3d3-7a4c-4083-9984-bb29e83fd7fe"><img src="https://github.com/lartpang/blog/assets/26847524/6b98d3d3-7a4c-4083-9984-bb29e83fd7fe" alt="image" style="max-width: 100%;"></a></td>
-<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/dceade62-4d39-4246-a6cd-edc389575e45"><img src="https://github.com/lartpang/blog/assets/26847524/dceade62-4d39-4246-a6cd-edc389575e45" alt="image" style="max-width: 100%;"></a></td>
-</tr>
-</tbody>
-</table></markdown-accessiblity-table>
-<ul>
-<li>RAL 通过使用与负词汇库的语义相似性的距离来优化嵌入空间。通过从大型词汇库中，按照语义相似性检索与真实类别标签相关的难负词汇和易负词汇。然后，RAL 使用这些词汇和真实框嵌入来定义难负损失和易负损失。</li>
-<li>RAF 则利用大型语言模型（LLM）生成关于大型词汇库的描述，并从中提取有关目标的详细信息，以增强视觉特征。RAF 首先在离线阶段从目标提案中生成视觉特征。然后，在推理阶段，RAF 使用概念检索器和增强器从概念存储库中检索相关概念，并使用这些概念来增强视觉特征。</li>
-</ul>
-<p>通过实验，作者证明了 RALF 在 COCO 和 LVIS 基准数据集上的有效性。特别是在 COCO 数据集的新类别上，APN50 提高了 3.4%，在 LVIS 数据集的新类别上，mask APr 提高了 3.6%。 未命名</p></div>
+<li><a href="http://t.csdn.cn/bSDNn" rel="nofollow">http://t.csdn.cn/bSDNn</a></li>
+</ul></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>

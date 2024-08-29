@@ -10,12 +10,12 @@
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="">
-<meta property="og:title" content="Rethinking Interactive Image Segmentation: Feature Space Annotation">
+<meta property="og:title" content="CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization">
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog//post/Rethinking%20Interactive%20Image%20Segmentation-%20Feature%20Space%20Annotation.html">
+<meta property="og:url" content="https://lartpang.github.io/blog//post/8.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
-<title>Rethinking Interactive Image Segmentation: Feature Space Annotation</title>
+<title>CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization</title>
 
 
 </head>
@@ -109,7 +109,7 @@
 
 <body>
     <div id="header">
-<h1 class="post_title">Rethinking Interactive Image Segmentation: Feature Space Annotation</h1>
+<h1 class="post_title">CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -117,7 +117,7 @@
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/10" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/lartpang/blog/issues/8" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -133,18 +133,17 @@
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="post_body"><h1>Rethinking Interactive Image Segmentation Feature Space Annotation</h1>
+<div class="markdown-body" id="post_body"><h1>CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization</h1>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7619762ddda5d566cc58c46b1b81f1596f2d091a30acc6b4cc3f15b679ebd62d/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f63393764616662383166633734613232626136623433643438646432663264612e706e67"><img src="https://camo.githubusercontent.com/7619762ddda5d566cc58c46b1b81f1596f2d091a30acc6b4cc3f15b679ebd62d/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f63393764616662383166633734613232626136623433643438646432663264612e706e67" alt="在这里插入图片描述" data-canonical-src="https://img-blog.csdnimg.cn/direct/c97dafb81fc74a22ba6b43d48dd2f2da.png" style="max-width: 100%;"></a></p>
 <ul>
-<li>论文：<a href="https://arxiv.org/abs/2101.04378" rel="nofollow">https://arxiv.org/abs/2101.04378</a></li>
-<li>代码：<a href="https://github.com/LIDS-UNICAMP/rethinking-interactive-image-segmentation">https://github.com/LIDS-UNICAMP/rethinking-interactive-image-segmentation</a></li>
+<li>论文：<a href="https://arxiv.org/abs/2305.15253" rel="nofollow">https://arxiv.org/abs/2305.15253</a></li>
 </ul>
-<p>本文提出了一种新的交互式图像分割方法，通过特征空间注释来同时对多张图像进行分割注释，这与现有的交互式分割方法在图像领域进行注解的方式形成了鲜明对比。研究结果表明，这种特征空间注解的方法在前景分割数据集上可以取得与最先进的方法相媲美的结果。</p>
+<p>这篇文章主要讨论了领域泛化评估协议的重新思考，特别是如何处理可能存在的测试数据信息泄露风险。作者首先指出，当前的领域泛化评估协议可能存在问题，可能导致测试数据信息泄露，进而影响评估的公平性和准确性。为了解决这个问题，作者提出了两个建议：</p>
 <ul>
-<li>交互式图像分割方法：现有的交互式图像分割方法主要依赖于用户的点击、矩形框或者多边形等输入，以实现像素级的注解。然而，这些方法仍然需要大量的用户努力，成为深度学习应用的一个瓶颈。</li>
-<li>特征空间注解的新方法：本文提出了一种新的交互式图像分割方法，通过特征空间投影来进行同时图像分割注解。这种方法与现有方法的不同之处在于，它不是在图像领域进行注解，而是在特征空间中进行操作，从而大大减少了用户的注解负担。</li>
-<li>实验结果：实验结果表明，这种新方法在前景分割数据集上可以取得与最先进的方法相当的结果。在语义分割的 Cityscapes 数据集上，它达到了 91.5% 的精度，比原始注解程序快了 74.75 倍。</li>
+<li>一是建议领域泛化算法在进行比较和评估时应采用自监督预训练权重或随机权重作为初始化；</li>
+<li>二是建议对每个训练模型在多个测试域上进行评估。</li>
 </ul>
-<p>总的来说，本文提出了一种新的交互式图像分割方法，通过特征空间注解，可以在保持结果竞争力的同时，大大提高用户的注解效率。这种方法为交互式图像注解提供了一个新的方向，可以与其他现有方法相结合，实现更有效的注解。</p></div>
+<p>作者还根据这些建议重新评估了十个代表性的领域泛化算法，并提供了三个新的测试leaderboard。这些更改和新的测试leaderboard将鼓励未来的研究，并促进领域泛化的更准确评估。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>

@@ -10,12 +10,12 @@
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="">
-<meta property="og:title" content="CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts">
+<meta property="og:title" content="【译】使用便携模式的VSCode">
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog//post/CVPR%202024%20-%20Rethinking%20Interactive%20Image%20Segmentationwith%20Low%20Latency%2C%20High%20Quality%2C%20and%20Diverse%20Prompts.html">
+<meta property="og:url" content="https://lartpang.github.io/blog//post/21.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
-<title>CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts</title>
+<title>【译】使用便携模式的VSCode</title>
 
 
 </head>
@@ -109,7 +109,7 @@
 
 <body>
     <div id="header">
-<h1 class="post_title">CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts</h1>
+<h1 class="post_title">【译】使用便携模式的VSCode</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -117,7 +117,7 @@
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/12" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/lartpang/blog/issues/21" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -133,25 +133,92 @@
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="post_body"><h1>CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts</h1>
+<div class="markdown-body" id="post_body"><blockquote>
+<p>原始文档：<a href="https://code.visualstudio.com/docs/editor/portable#_migrate-to-portable-mode" rel="nofollow">https://code.visualstudio.com/docs/editor/portable#_migrate-to-portable-mode</a></p>
+</blockquote>
+<p>Visual Studio Code 支持<a href="https://en.wikipedia.org/wiki/Portable_application" rel="nofollow">便携模式</a>。此模式使 VS Code 创建和维护的所有数据都位于自身附近，因此可以在环境中移动。</p>
+<p>此模式还提供了一种设置 VS Code 扩展的安装文件夹位置的方法，这对于阻止在 Windows AppData 文件夹中安装扩展的企业环境非常有用。</p>
+<p>便携模式支持 Windows 的 ZIP 下载，Linux 的 TAR.GZ 下载，以及 macOS 的常规应用程序下载。请参阅<a href="https://code.visualstudio.com/download" rel="nofollow">下载页面</a>以查找适合您平台的正确文件。</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>请勿尝试在从 Windows User or System installers 进行安装时配置便携模式。便携模式仅在 Windows ZIP 存档上受支持。另请注意，Windows ZIP压缩包不支持自动更新。</p>
+</div>
+<h2>启用便携模式</h2>
+<h3>Windows、Linux</h3>
+<p>解压缩 VS Code 下载后，在 VS Code 的文件夹中创建一个文件夹：<code class="notranslate">data</code></p>
+<pre class="notranslate"><code class="notranslate">|- VSCode-win32-x64-1.84.2
+|   |- Code.exe (or code executable)
+|   |- data
+|   |- bin
+|   |  |- code
+|   |  |- ...
+|   |- ...
+</code></pre>
+<p>从那时起，该文件夹将用于包含所有 VS Code 数据，包括会话状态、首选项、扩展等。</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>该文件夹将覆盖 <code class="notranslate">--user-data-dir</code> 和 <code class="notranslate">--extensions-dir</code> 这两个<a href="https://code.visualstudio.com/docs/editor/command-line#_advanced-cli-options" rel="nofollow">命令行</a>选项。</p>
+</div>
+<p><code class="notranslate">data</code> 文件夹可以移动到其他 VS Code 安装中。这对于更新可移植的 VS Code 版本非常有用，在这种情况下，您可以将文件夹移动到较新的 VS Code 提取版本。</p>
+<h3>macOS</h3>
+<p>在 macOS 上，您需要将数据文件夹作为应用程序本身的同级文件夹。由于该文件夹将与应用程序并列，因此您需要专门命名它，以便 VS Code 可以找到它。默认文件夹名称为：<code class="notranslate">code-portable-data</code>。</p>
+<pre class="notranslate"><code class="notranslate">|- Visual Studio Code.app
+|- code-portable-data
+</code></pre>
+<p>如果您的应用程序处于<a href="https://apple.stackexchange.com/a/104875" rel="nofollow">隔离状态</a>，则便携模式将不起作用，如果您刚刚下载了 VS Code，则默认情况下会发生这种情况。如果便携模式似乎不起作用，请确保删除隔离属性：</p>
+<pre class="notranslate"><code class="notranslate">xattr -dr com.apple.quarantine Visual\ Studio\ Code.app
+</code></pre>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>在预览体验成员上，文件夹应命名为 <code class="notranslate">code-insiders-portable-data</code>。</p>
+</div>
+<h2>更新便携式 VS Code</h2>
 <ul>
-<li>论文：<a href="https://arxiv.org/bas/2404.00741" rel="nofollow">https://arxiv.org/bas/2404.00741</a></li>
-<li>代码：<a href="https://github.com/uncbiag/SegNext">https://github.com/uncbiag/SegNext</a></li>
+<li>
+<p>在 Windows 和 Linux 上，可以通过将 <code class="notranslate">data</code> 文件夹复制到 VS Code 的最新版本来更新 VS Code。</p>
+</li>
+<li>
+<p>在 macOS 上，自动更新应一如既往地工作，无需额外工作。</p>
+</li>
 </ul>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/70061347-789b-4334-bc13-012d1c713723"><img src="https://github.com/lartpang/blog/assets/26847524/70061347-789b-4334-bc13-012d1c713723" alt="image" style="max-width: 100%;"></a></p>
-<p>这篇文章主要研究了如何在保持低延迟的同时提高交互式图像分割的质量，并实现多种提示的兼容性。</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/9ecd883a-f0d5-46ed-a9ce-77426d7cae07"><img src="https://github.com/lartpang/blog/assets/26847524/9ecd883a-f0d5-46ed-a9ce-77426d7cae07" alt="image" style="max-width: 100%;"></a></p>
-<p>研究人员提出了一种名为 SegNext 的方法，它重新引入了专家模型中常用的密集视觉提示的表示和融合方式，以促进高质量的分割。该方法将五种不同的视觉提示（包括点击、框、涂鸦、多边形和遮罩）统一在一个密集图上。</p>
-<p>所提方法也支持文本提示，即使用 CLIP 来将文本提示编码成向量，并通过交叉注意力块将其与图像嵌入融合。尽管文本提示的性能可能具有很大的提升空间，但是配合视觉提示仍然展现出了具有希望的表现。</p>
-<p>实验结果显示，<strong>密集表示和融合视觉提示</strong>是实现高质量分割的关键设计选择。与现有的专家模型相比，该方法能够在保持低延迟的同时实现更好的分割效果。</p>
-<p>交互式图像分割是一个长期存在的计算机视觉任务，旨在精确地划分特定的图像区域。然而，现有的专家模型和通用模型在实现低延迟、高质量的交互式分割以及支持多种提示方面存在困难。现有方法无法实现低延时高性能的原因主要有以下几点：</p>
+<h2>迁移到便携模式</h2>
+<p>您还可以将现有安装迁移到便携模式。</p>
+<h3>Windows、Linux</h3>
+<ol>
+<li>
+<p>下载适用于您的平台的 <a href="https://code.visualstudio.com/download" rel="nofollow">VS Code</a>（或 <a href="https://code.visualstudio.com/insiders" rel="nofollow">VS Code Insiders</a>）ZIP 分发。</p>
+</li>
+<li>
+<p>如上所述创建 <code class="notranslate">data</code> 文件夹。</p>
+</li>
+<li>
+<p>将用户数据目录 <code class="notranslate">Code</code> 复制到 <code class="notranslate">data</code> 中，并重命名为 <code class="notranslate">user-data</code>。</p>
 <ul>
-<li>现有方法通常只支持有限的提示，如点击或简单的文本描述，缺乏多样性，这限制了模型的泛化能力。</li>
-<li>许多方法采用联合编码的方式处理图像和提示，导致计算复杂度高，延迟较大。</li>
-<li>在处理图像分割任务时，现有方法往往需要对整个图像进行重新计算，每次更新提示都需要重新计算，这也增加了延迟。</li>
+<li>Windows <code class="notranslate">%APPDATA%\Code</code></li>
+<li>Linux <code class="notranslate">$HOME/.config/Code</code></li>
 </ul>
-<p>相比之下，本文提出的方法通过引入密集的视觉提示和优化模型结构，实现了低延时和高性能的图像分割效果。</p>
-<p>与 SAM 这类专家模型的关键差异主要在于表征视觉提示的方式不同。本文采用密集表征来保留空间信息。这样的密集设计导致了高质量的分割效果。</p></div>
+</li>
+<li>
+<p>将扩展目录复制到 <code class="notranslate">data</code>。</p>
+<ul>
+<li>Windows <code class="notranslate">%USERPROFILE%\.vscode\extensions</code></li>
+<li>Linux <code class="notranslate">~/.vscode/extensions</code></li>
+</ul>
+</li>
+</ol>
+<p>例如，以下是 Windows 上的预期结果：</p>
+<pre class="notranslate"><code class="notranslate">|- VSCode-win32-x64-1.84.2
+|   |- Code.exe (or code executable)
+|   |- data
+|   |   |- user-data
+|   |   |   |- ...
+|   |   |- extensions
+|   |   |   |- ...
+|   |- ...
+</code></pre>
+<h3>macOS</h3>
+<p>下载适用于 macOS 的 <a href="https://code.visualstudio.com/download" rel="nofollow">VS Code</a>（或 <a href="https://code.visualstudio.com/insiders" rel="nofollow">VS Code Insiders</a>）。</p>
+<ol>
+<li>如上所述创建文件夹 <code class="notranslate">code-portable-data</code>。</li>
+<li>将用户数据目录 <code class="notranslate">$HOME/Library/Application Support/Code</code> 复制到 <code class="notranslate">code-portable-data</code> 并重命名为 <code class="notranslate">user-data</code>。</li>
+<li>将扩展目录 <code class="notranslate">~/.vscode/extensions</code> 复制到 <code class="notranslate">code-portable-data </code>。</li>
+</ol>
+<h2>TMP 目录</h2>
+<p>默认情况下，即使在便携模式下，默认的 <code class="notranslate">TMP</code> 目录仍然是系统目录，因为那里没有保留任何状态。如果您还希望将 TMP 目录放在可移植目录中，则可以在 <code class="notranslate">data</code> 文件夹内创建一个空目录 <code class="notranslate">tmp</code>。只要目录存在，它就会用于 TMP 数据。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
@@ -208,11 +275,7 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-cmButton=document.getElementById("cmButton");
-    span=document.createElement("span");
-    span.setAttribute("class","Counter");
-    span.innerHTML="3";
-    cmButton.appendChild(span);
+
 function openComments(){
     cm=document.getElementById("comments");
     cmButton=document.getElementById("cmButton");

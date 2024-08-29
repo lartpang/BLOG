@@ -10,12 +10,12 @@
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="">
-<meta property="og:title" content="CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection">
+<meta property="og:title" content="CVPR 2024 - SED - A Simple Encoder-Decoder for Open-Vocabulary Semantic Segmentation">
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog//post/CVPR%202024%20-%20Rethinking%20the%20Up-Sampling%20Operations%20in%20CNN-based%20Generative%20Network%20for%20Generalizable%20Deepfake%20Detection.html">
+<meta property="og:url" content="https://lartpang.github.io/blog//post/16.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
-<title>CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection</title>
+<title>CVPR 2024 - SED - A Simple Encoder-Decoder for Open-Vocabulary Semantic Segmentation</title>
 
 
 </head>
@@ -109,7 +109,7 @@
 
 <body>
     <div id="header">
-<h1 class="post_title">CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection</h1>
+<h1 class="post_title">CVPR 2024 - SED - A Simple Encoder-Decoder for Open-Vocabulary Semantic Segmentation</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -117,7 +117,7 @@
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/7" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/lartpang/blog/issues/16" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -133,27 +133,89 @@
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="post_body"><h1>CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection</h1>
+<div class="markdown-body" id="post_body"><h1>CVPR 2024 - SED - A Simple Encoder-Decoder for Open-Vocabulary Semantic Segmentation</h1>
 <ul>
-<li>论文：<a href="https://arxiv.org/abs/2312.10461" rel="nofollow">https://arxiv.org/abs/2312.10461</a></li>
-<li>代码：<a href="https://github.com/chuangchuangtan/NPR-DeepfakeDetection">https://github.com/chuangchuangtan/NPR-DeepfakeDetection</a></li>
+<li>论文：<a href="https://arxiv.org/abs/2311.15537" rel="nofollow">https://arxiv.org/abs/2311.15537</a></li>
+<li>代码：<a href="https://github.com/xb534/SED">https://github.com/xb534/SED</a></li>
 </ul>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/0c7f34a2-8f24-458e-84c9-37b8253deb5c"><img src="https://github.com/lartpang/blog/assets/26847524/0c7f34a2-8f24-458e-84c9-37b8253deb5c" alt="image" style="max-width: 100%;"></a></p>
-<p>本文主要研究了基于 CNN 的生成网络中的上采样操作，以实现通用的深度伪造检测。研究者发现，上采样操作不仅可以产生基于频率的伪造 artifact，还可以产生更广义的伪造 artifact。研究者提出了邻近像素关系（NPR）的概念，用作训练检测模型的 artifact 表示。研究者通过在包含 28 种不同生成模型样本的开放世界数据集上进行的全面分析，验证了所提出 NPR 的有效性。</p>
-<ul>
-<li>上采样操作的研究：研究者发现，上采样操作在常见的生成模型中普遍存在，这些操作不仅在频率域上影响整个图像，还在像素级上留下痕迹。</li>
-<li>邻近像素关系（NPR）：研究者提出了邻近像素关系（NPR）的概念，用作训练检测模型的 artifact 表示。NPR 有效地捕捉了与图像细节相关的 artifact，如头发、眼睛和胡子等。NPR（Neighboring Pixel Relationships）是一种用于检测合成图像中本地上采样痕迹的简单而有效的特征表示方法。它通过计算相邻像素之间的关系来揭示图像细节中的上采样痕迹。在实际应用中，可以通过调整窗口大小 l 和指数 j 来优化 NPR 的性能。实验表明，当 l=2 且 j=1 时，NPR 具有较好的性能。此外，NPR 可以应用于不同类型的图像生成技术，如 GAN 和扩散生成的图像，具有较强的泛化能力。</li>
-<li>NPR 的计算过程如下：
+<p>这篇文章提出了一种名为 SED 的简单编码器解码器，用于结合 CLIP 的 open-vocabulary 能力实现了开放词汇语义分割。在多个语义分割数据集上的实验证明了 SED 在开放词汇准确性和效率方面的优势。当使用 ConvNeXt-B 时，SED 在 ADE20K 上的 mIoU 得分为 31.6%，并且在单个 A6000 上每张图像只需 82 毫秒。</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>本文的方法受启发于最近的 CAT-Seg（通过 cost map 微调图像编码器没有损坏 CLIP 的 open-vocabulary 能力），主要差异包括三点：</p>
 <ol>
-<li>选择一个大小为 l×l 的窗口，窗口中心位于像素点 (x, y)。</li>
-<li>在窗口内，计算窗口中心像素值与窗口内其他像素值的差值，并将这些差值存储在一个向量 vc 中。</li>
-<li>对于向量 vc 中的每个元素 vi，计算其与指定参考值的差值，即 vi-vj。</li>
-<li>将这些差值组成的向量视为一个特征表示，记作 NPR。</li>
+<li>本文是一个不需要额外视觉 encoder 的更加简单的框架，同时具有更好的性能和更快的推理速度。</li>
+<li>本文利用分层图像编码器生成 cost map 并且执行跳层融合，这显著提升了性能，并且计算成本与图像尺寸呈线性。</li>
+<li>本文在解码器中引入了一个简单的大核操作，并逐步融合特征，同时设计了一个 category early rejection strategy 来加速推理同时不损害性能。</li>
 </ol>
+</div>
+<h2>模型细节</h2>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/0b093332-8726-409b-af5f-db6e5ed13a11"><img src="https://github.com/lartpang/blog/assets/26847524/0b093332-8726-409b-af5f-db6e5ed13a11" alt="image" style="max-width: 100%;"></a></p>
+<p>SED 方法包括一个 hierarchical encoder-based cost map generation 和一个带有 category early rejection strategy 的 gradual fusion decoder。</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>Gradual Fusion Decoder</th>
+<th>Category Early Rejection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/b0f1daf1-2cbe-4193-bac3-ef006c4e605a"><img src="https://github.com/lartpang/blog/assets/26847524/b0f1daf1-2cbe-4193-bac3-ef006c4e605a" alt="image" style="max-width: 100%;"></a><br></td>
+<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/020d6c4e-820e-4e77-88a5-75da1555412d"><img src="https://github.com/lartpang/blog/assets/26847524/020d6c4e-820e-4e77-88a5-75da1555412d" alt="image" style="max-width: 100%;"></a></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<ul>
+<li>hierarchical encoder：不使用普通的直筒型 ViT 视觉编码器，而是基于分层的 ConvNeXt 视觉编码器，从而帮助更好地捕捉不同层次的空间信息，增强局部性，并且与输入大小成线性复杂度。利用其可以获得多层级特征图 $F_2, F_3, F_4, F_5$。其中的 $F_5$ 利用最后的 MLP 层转换获得图像嵌入 $F_v \in \mathbb{R}^{H_v \times W_v \times D_t}$，结合文本嵌入集合（对应 $N$ 类，每类 $P$ 个模板，设计与 CAT-Seg 一致） $E \in \mathbb{R}^{N \times P \times D_t}$ 获得像素级的 4D image-text cost map $F_{cv} \in \mathbb{R}^{H_v \times W_v \times N \times P}$ 。</li>
+<li>gradual fusion decoder：解码器采用自顶向下的结构将 cost map 和不同级别的 backbone 特征图结合起来进行分割。通过级联特征聚合模块（FAM）和跳层融合模块（SFM）来逐步组合视觉编码器的多层级特征图 $F_2, F_3, F_4$ 从而生成高分辨率特征图 $F_h$，这通过一个输出层转换为不同类别的分割图预测。需要注意的是，<strong>CAT-Seg 中观察到，直接对图像编码器回传梯度会破坏 open-vocabulary semantic segmentation 性能。所以这里对 skip-layer fusion 模块到图像编码器的梯度进行了截断。</strong>
+<ul>
+<li>FAM 分别利用大核深度卷积执行空间融合，利用线性自注意力操作执行类别融合。</li>
+<li>SFM 利用层次编码器的浅层特征 $F_2, F_3, F_4$ 增强 FAM 输出特征图的局部细节。并进一步融合原始的 cost map。</li>
+</ul>
 </li>
-<li>NPR 的有效性验证：研究者通过对包含 28 种不同生成模型样本的开放世界数据集进行的全面分析，验证了所提出 NPR 的有效性。实验结果显示，NPR 在 28 种不同的生成模型上都有很好的泛化能力，相比于现有方法，NPR 带来了显著的 11.6% 的提升。</li>
-<li>如何实现检测算法：本文中的检测算法是通过训练一个二元分类器 D 来实现的，该分类器利用训练图像的相邻像素关系（NPR）作为特征提取器 f 的输入，以区分真实图像和合成图像。在测试阶段，分类器 D 根据 NPR 特征来预测测试图像是否为真实图像。为了训练这个分类器，作者们首先将 ProGAN 生成器的训练集作为真实图像，然后使用各种 GAN 和扩散模型生成合成图像。这些合成图像与真实图像混合在一起，用于训练二元分类器 D。在训练过程中，NPR 特征被提取出来并输入到分类器 D 中，以使其学习如何区分真实图像和合成图像。在测试阶段，对于给定的测试图像，NPR 特征被提取出来并输入到训练好的分类器 D 中，以预测该图像是否为真实图像。</li>
-</ul></div>
+<li>category early rejection strategy：因为类别数量增大时，解码器中的推理成本会显著增加。但是实际上大多数图像仅包含数个语义类别。所以本文在解码器中引入的类别早期拒绝方案，可以在早期层有效地预测现有类别并拒绝不存在的类别，从而显著提高推理速度。从而最多提供 4.7 倍的速度提升而不会出现显著的性能下降。
+<ul>
+<li>训练期间，如图 4a，添加的辅助卷积分治分别预测分割图，并受真值监督。为了避免对模型训练的负面影响，这里阶段了其与 decoder 主体间的梯度。</li>
+<li>推理期间，如图 4b，引入 top-k 策略来预测存在的语义类别。通过对每个像素选择选择 top-k 个最大激活类别，从而生成一个所有像素的并集，移除未选择类别后的特征图（$H' \times W' \times N' \times D$）被送到下一个解码器层中。论文中观察到 k=8 的时候确保了大多数存在的类别被识别。</li>
+</ul>
+</li>
+</ul>
+<h2>实验设定</h2>
+<ul>
+<li>训练集：COCO-Stuff 的训练集，包含大约 118k 密集标注的 171 类目标。</li>
+<li>测试集：跨数据集测试。
+<ul>
+<li>ADE20K，包含 20K training 和 2K validation =&gt; A-150 和 A-847。</li>
+<li>PASCAL VOC，包含 1.5k training 和 1.5k validation =&gt; PAS-20。</li>
+<li>PASCAL-Context 来自原始的 PASCAL VOC 数据集 =&gt; PC-59 和 PC-459。</li>
+</ul>
+</li>
+<li>模型设定：
+<ul>
+<li>基于 ConvNeXt-B/L 视觉编码器形式的预训练 CLIP。</li>
+<li>类别模板数量 $P$ 同 CAT-Seg 一致，均为 80。</li>
+<li>文本编码器冻结，只训练图像编码器和解码器。</li>
+<li>GPU: 4xA6000 with the mini-batch of 4 images。</li>
+<li>图像编码器学习率多乘以一个 0.01 倍的因子。</li>
+<li>共 80k 次迭代。</li>
+<li>训练时剪裁图像 $768 \times 768$ 大小，测试时直接放缩图像到 $768 \times 768$ 大小。</li>
+</ul>
+</li>
+</ul>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>Vision Encoder 形式和微调策略的消融</th>
+<th>Decoder 结构的消融</th>
+<th>早退结构的消融</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/75713d34-2009-44ee-bae8-37ea4e938696"><img src="https://github.com/lartpang/blog/assets/26847524/75713d34-2009-44ee-bae8-37ea4e938696" alt="image" style="max-width: 100%;"></a><br></td>
+<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/822ff308-f033-4b59-8855-f83a0e2b86cf"><img src="https://github.com/lartpang/blog/assets/26847524/822ff308-f033-4b59-8855-f83a0e2b86cf" alt="image" style="max-width: 100%;"></a></td>
+<td><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/0fe7a5e1-173e-446e-b384-55eab2101490"><img src="https://github.com/lartpang/blog/assets/26847524/0fe7a5e1-173e-446e-b384-55eab2101490" alt="image" style="max-width: 100%;"></a><br></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
@@ -262,5 +324,5 @@ function iFrameLoading(){
   mediumZoom('#postBody img');
 </script>
 
-
+<script>MathJax = {tex: {inlineMath: [["$", "$"]]}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </html>

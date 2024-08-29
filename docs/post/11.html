@@ -10,12 +10,12 @@
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="">
-<meta property="og:title" content="Build OpenCV and OpenVINO for Windows 10 with VS 2022">
+<meta property="og:title" content="CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation">
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog//post/Build%20OpenCV%20and%20OpenVINO%20for%20Windows%2010%20with%20VS%202022.html">
+<meta property="og:url" content="https://lartpang.github.io/blog//post/11.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
-<title>Build OpenCV and OpenVINO for Windows 10 with VS 2022</title>
+<title>CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation</title>
 
 
 </head>
@@ -109,7 +109,7 @@
 
 <body>
     <div id="header">
-<h1 class="post_title">Build OpenCV and OpenVINO for Windows 10 with VS 2022</h1>
+<h1 class="post_title">CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation</h1>
 <div class="title-right">
     <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
@@ -117,7 +117,7 @@
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/1" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/lartpang/blog/issues/11" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -133,142 +133,23 @@
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="post_body"><h1>Build OpenCV and OpenVINO for Windows 10 with VS 2022</h1>
-<p>In this guide, I will build the two powerful open-source libraries, i.e., OpenCV and OpenVINO for running my deeplearning model on windows 10.<br>
-Interestingly, both libraries are closely associated with Intel 🖥️.</p>
-<h2>OpenCV 😮</h2>
-<p>First of all, we must download the related code projects (<code class="notranslate">opencv</code> and <code class="notranslate">opencv_contrib</code> containing some plugins for <code class="notranslate">opencv</code>) into our computer from this links:</p>
+<div class="markdown-body" id="post_body"><h1>CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation</h1>
 <ul>
-<li><a href="https://github.com/opencv/opencv/releases">https://github.com/opencv/opencv/releases</a></li>
-<li><a href="https://github.com/opencv/opencv_contrib/tags">https://github.com/opencv/opencv_contrib/tags</a></li>
+<li>论文：<a href="https://arxiv.org/abs/2403.00712" rel="nofollow">https://arxiv.org/abs/2403.00712</a></li>
+<li>代码：<a href="https://github.com/baegwangbin/DSINE">https://github.com/baegwangbin/DSINE</a></li>
 </ul>
-<p>Make sure the selected versions of the two libararies are the same.<br>
-Here, I choice the latest version <code class="notranslate">4.7.0</code>.<br>
-Because we will recompiling them by ourselves, we can just download the source code zip files.<br>
-Put the two unpacked libraries into the same parent folder <code class="notranslate">opencv_dir</code> as follows:</p>
-<pre class="notranslate"><code class="notranslate">-opencv_dir
-  -opencv-4.7.0
-    -...
-  -opencv_contrib-4.7.0
-    -modules
-    -...
-</code></pre>
-<p><strong>NOTE</strong>: To avoid the network issue that may be encountered during using CMake, we need to add the url proxy prefix <code class="notranslate">https://ghproxy.com/</code> before the urls of some setting of the relevant modules like <code class="notranslate">https://ghproxy.com/https://raw.github***</code>:</p>
+<p>该研究重新思考了表面法线估计的归纳偏置，提出了利用逐像素射线方向并学习相邻表面法线之间相对旋转关系的方法。相比于现有采用通用密集预测模型的方法，该方法能生成清晰且平滑的预测，并且在训练数据规模更小的情况下展现出更强的泛化能力。</p>
 <ul>
-<li><code class="notranslate">.cmake</code> in <code class="notranslate">opencv-4.7.0/3rdparty/ippicv</code></li>
-<li><code class="notranslate">.cmake</code> in <code class="notranslate">opencv-4.7.0/3rdparty/ffmpeg</code></li>
-<li><code class="notranslate">CMakeLists.txt</code> in <code class="notranslate">opencv_contrib-4.7.0/modules/face</code></li>
-<li>Files in <code class="notranslate">cmake</code> of <code class="notranslate">opencv_contrib-4.7.0/modules/xfeatures2d</code></li>
-<li><code class="notranslate">CMakeLists.txt</code> in <code class="notranslate">opencv_contrib-4.7.0/modules/wechat_qrcode</code></li>
-<li><code class="notranslate">CMakeLists.txt</code> in <code class="notranslate">opencv_contrib-4.7.0/modules/cudaoptflow</code></li>
+<li>归纳偏置的重要性：现有的表面法线估计方法采用了一般目的的密集预测模型，这限制了其预测精度和对不同相机拍摄图像的泛化能力。这篇论文深入讨论了表面法线估计所需的归纳偏置，并提出了三种架构改变来融入这些偏置。</li>
+<li>方法介绍：作者首先提出利用逐像素的射线方向作为输入，然后提出了基于射线方向的激活函数，最后将表面法线估计重新解释为旋转估计，其中相邻像素之间的相对旋转以轴角表示法估计。这种方法可以生成细节丰富且在表面交界处清晰的预测。</li>
 </ul>
-<p>Next, start compiling OpenCV.</p>
-<ol>
-<li>Create the build folder: <code class="notranslate">cd opencv_dir &amp;&amp; mkdir opencv-build-vs2022</code></li>
-<li>Configure and generate the VS solution by CMake with some config items:</li>
-</ol>
-<ul>
-<li>General:
-<ul>
-<li>source folder: <code class="notranslate">&lt;opencv-4.7.0&gt;</code></li>
-<li>build folder: <code class="notranslate">&lt;opencv-build-vs2022&gt;</code></li>
-<li><code class="notranslate">BUILD_OPENCV_WORLD=ON</code></li>
-<li><code class="notranslate">CMAKE_BUILD_TYPE=RELEASE</code></li>
-<li><code class="notranslate">OPENCV_ENABLE_NONFREE=ON</code></li>
-<li><code class="notranslate">BUILD_opencv_dnn=ON</code></li>
-<li><code class="notranslate">OPENCV_EXTRA_MODULES_PATH=&lt;opencv_contrib-4.7.0/modules&gt;</code></li>
-</ul>
-</li>
-<li>CUDA:
-<ul>
-<li><code class="notranslate">WITH_CUDA=ON</code></li>
-<li><code class="notranslate">WITH_CUDNN=ON</code></li>
-<li><code class="notranslate">WITH_CUBLAS=ON</code></li>
-<li><code class="notranslate">WITH_CUFFT=ON</code></li>
-<li><code class="notranslate">CUDA_FAST_MATH=ON</code></li>
-<li><code class="notranslate">CUDA_ARCH_BIN=7.5</code> (We can fill the single value corresponding to the real GPU for accelerating the compilation process.)</li>
-<li><code class="notranslate">OPENCV_DNN_CUDA=ON</code></li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li>Go to the build directory: <code class="notranslate">cd &lt;opencv-build-vs2022&gt;</code></li>
-<li>Start build by cmake and msvc compiler: <code class="notranslate">cmake --build . --config Release --verbose -j8</code></li>
-<li>Install the built opencv into the <code class="notranslate">install</code> folder in the current path: <code class="notranslate">cmake --install . --prefix install</code></li>
-<li>Add the <code class="notranslate">bin</code> directory into the user environment: <code class="notranslate">&lt;path&gt;\install\x64\vc17\bin</code></li>
-<li>In VS:
-<ul>
-<li>add the <code class="notranslate">&lt;path&gt;\install\include</code> directory into "解决方案资源管理器-&gt;右键点击属性-&gt;VC++目录-&gt;外部包含目录"</li>
-<li>add the <code class="notranslate">&lt;path&gt;\install\x64\vc17\lib</code> directory into "解决方案资源管理器-&gt;右键点击属性-&gt;VC++目录-&gt;库目录"</li>
-<li>add the <code class="notranslate">opencv_world470.lib</code> into "解决方案资源管理器-&gt;右键点击属性-&gt;链接器-&gt;输入-&gt;附加依赖项"</li>
-</ul>
-</li>
-</ol>
-<h2>OpenVINO 🍰</h2>
-<p>The document of OpenVINO is intuitive and the readability is better than OpenCV.<br>
-The relevant content about building and installing the libirary is listed in these links:</p>
-<ul>
-<li><a href="https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/build_windows.md">https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/build_windows.md</a></li>
-<li><a href="https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/cmake_options_for_custom_comiplation.md">https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/cmake_options_for_custom_comiplation.md</a></li>
-<li><a href="https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/installing.md">https://github.com/openvinotoolkit/openvino/blob/master/docs/dev/installing.md</a></li>
-</ul>
-<p>After building and install the OpenCV library, it's time to move on to OpenVINO.</p>
-<ol>
-<li>We need clone the project and the sub modules.
-<pre class="notranslate"><code class="notranslate">git clone https://github.com/openvinotoolkit/openvino.git
-cd openvino
-git submodule update --init --recursive
-</code></pre>
-</li>
-<li>Create the build folder: <code class="notranslate">mkdir build &amp;&amp; cd build</code></li>
-<li>Configure and generate the VS solution by CMake:
-<ul>
-<li><code class="notranslate">ENABLE_INTEL_GPU=OFF</code> (We only use the Intel CPU.)</li>
-<li>Disable some frontend items:
-<ul>
-<li><code class="notranslate">ENABLE_OV_PDPD_FRONTEND=OFF</code></li>
-<li><code class="notranslate">ENABLE_OV_TF_FRONTEND=OFF</code></li>
-<li><code class="notranslate">ENABLE_OV_TF_LITE_FRONTEND=OFF</code></li>
-<li><code class="notranslate">ENABLE_OV_PYTORCH_FRONTEND=OFF</code></li>
-</ul>
-</li>
-<li>For Python:
-<ul>
-<li><code class="notranslate">ENABLE_PYTHON=ON</code> It seems that <code class="notranslate">openvino-dev</code> needs to be installed first in the detected environment, otherwise a warning message will be thrown in the cmake-gui window.</li>
-<li><code class="notranslate">PYTHON_EXECUTABLE=&lt;python.exe&gt;</code></li>
-<li><code class="notranslate">PYTHON_INCLUDE_DIR=&lt;incude directory&gt;</code></li>
-<li><code class="notranslate">PYTHON_LIBIRARY=&lt;pythonxx.lib in libs directory&gt;</code></li>
-</ul>
-</li>
-<li>For OpenCV:
-<ul>
-<li><code class="notranslate">ENABLE_OPENCV=ON</code></li>
-<li><code class="notranslate">OpenCV_DIR=&lt;opencv-build-vs2022/install&gt;</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Build the library: <code class="notranslate">cmake --build . --config Release --verbose -j8</code></li>
-<li>Install the library into the <code class="notranslate">install</code> directory: <code class="notranslate">cmake --install . --prefix install</code></li>
-<li>Add the <code class="notranslate">bin</code> directory into the environment:
-<ul>
-<li><code class="notranslate">&lt;path&gt;\install\runtime\bin\intel64\Release</code></li>
-<li><code class="notranslate">&lt;path&gt;\install\runtime\3rdparty\tbb\bin</code></li>
-</ul>
-</li>
-<li>In VS:
-<ul>
-<li>add the <code class="notranslate">&lt;path&gt;\install\runtime\include</code> directory into "解决方案资源管理器-&gt;右键点击属性-&gt;VC++目录-&gt;外部包含目录"</li>
-<li>add the <code class="notranslate">&lt;path&gt;\install\runtime\lib\intel64\Release</code> directory into "解决方案资源管理器-&gt;右键点击属性-&gt;VC++目录-&gt;库目录"</li>
-<li>add the 🌟 <code class="notranslate">openvino.lib</code>, 🌟 <code class="notranslate">openvino_onnx_frontend.lib</code>, <code class="notranslate">openvino_c.lib</code> into "解决方案资源管理器-&gt;右键点击属性-&gt;链接器-&gt;输入-&gt;附加依赖项"</li>
-</ul>
-</li>
-</ol>
-<h2>Set DLL path in IDE</h2>
-<ul>
-<li>VS: "right click on solution -&gt; Properties -&gt; Debugging -&gt; Environment -&gt; <code class="notranslate">PATH=&lt;path&gt;\install\x64\vc17\bin;%PATH%</code>"</li>
-<li>Qt Creator: "Projects -&gt; Build &amp; Run -&gt; Build/Run -&gt; Environment -&gt; Details -&gt; Eidt %PATH% -&gt; Add <code class="notranslate">&lt;path&gt;\install\x64\vc17\bin</code>"</li>
-</ul></div>
+<p>总的来说，这篇论文通过提出新的归纳偏置和方法，成功地改善了表面法线估计的准确性和平滑性，并提高了模型的泛化能力。</p>
+<blockquote>
+<p><strong>表面法线估计</strong></p>
+<p>表面法线估计是一种计算机视觉任务，旨在从单个 RGB 图像中估计出每个像素点的表面法线。表面法线是一个三维向量，表示在给定像素点上垂直于表面的方向。这个任务在许多计算机视觉应用中非常重要，如三维重建、场景理解、物体识别等。<br>
+其提供了一种理解场景几何结构的方法。通过估计表面法线，我们可以获取到场景中物体表面的局部属性，如平面的法线方向、曲面的光滑程度等。这些信息对于进一步理解场景和进行后续处理（如深度估计、物体识别等）非常有用。<br>
+表面法线估计通常通过深度学习方法实现。通过对大量带有标注的表面法线图像进行训练，神经网络可以学习到一种从 RGB 图像中估计表面法线的方法。然而，由于表面法线估计任务的输出空间是三维的（即单位球面），因此存在一些挑战，如输出空间的非一致性、难以收集带有标注的数据等。</p>
+</blockquote></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
