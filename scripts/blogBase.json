@@ -24,17 +24,19 @@
   "extra_links": {},
   "posts": {
     "P21": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/21.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0021.html",
       "labels": [
         "tool"
       ],
+      "labelColor": "#f9d0c4",
+      "post_type": "posts",
       "post_title": "\u3010\u8bd1\u3011\u4f7f\u7528\u4fbf\u643a\u6a21\u5f0f\u7684VSCode",
-      "post_url": "/post/21.html",
+      "post_url": "https://lartpang.github.io/blog/post/0021.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/21",
       "num_comments": 0,
-      "top": 0,
       "num_words": 2765,
       "description": "",
+      "top": 0,
       "created_time": 1722323862,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -44,17 +46,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/\u3010\u8bd1\u3011\u4f7f\u7528\u4fbf\u643a\u6a21\u5f0f\u7684VSCode.md"
     },
     "P20": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/20.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0020.html",
       "labels": [
         "machine learning"
       ],
+      "labelColor": "#B2CD03",
+      "post_type": "posts",
       "post_title": "\u3010\u8bd1\u3011\u96c6\u6210\u6a21\u578b\uff1a\u5b83\u4eec\u662f\u4ec0\u4e48\u4ee5\u53ca\u4f55\u65f6\u5e94\u8be5\u4f7f\u7528\u5b83\u4eec\uff1f",
-      "post_url": "/post/20.html",
+      "post_url": "https://lartpang.github.io/blog/post/0020.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/20",
       "num_comments": 0,
-      "top": 0,
       "num_words": 8366,
       "description": "",
+      "top": 0,
       "created_time": 1721896328,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -64,17 +68,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/\u3010\u8bd1\u3011\u96c6\u6210\u6a21\u578b\uff1a\u5b83\u4eec\u662f\u4ec0\u4e48\u4ee5\u53ca\u4f55\u65f6\u5e94\u8be5\u4f7f\u7528\u5b83\u4eec\uff1f.md"
     },
     "P19": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/19.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0019.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "ArXiv 2405 - Rethinking Scanning Strategies with Vision Mamba in Semantic Segmentation of Remote Sensing Imagery - An Experimental Study",
-      "post_url": "/post/19.html",
+      "post_url": "https://lartpang.github.io/blog/post/0019.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/19",
       "num_comments": 0,
-      "top": 0,
       "num_words": 7689,
       "description": "",
+      "top": 0,
       "created_time": 1715944134,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -84,17 +90,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/ArXiv 2405 - Rethinking Scanning Strategies with Vision Mamba in Semantic Segmentation of Remote Sensing Imagery - An Experimental Study.md"
     },
     "P18": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/18.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0018.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "ICLR 2024 - FasterViT - Fast Vision Transformers with Hierarchical Attention",
-      "post_url": "/post/18.html",
+      "post_url": "https://lartpang.github.io/blog/post/0018.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/18",
       "num_comments": 0,
-      "top": 0,
       "num_words": 3623,
       "description": "",
+      "top": 0,
       "created_time": 1715937674,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n<script>MathJax = {tex: {inlineMath: [[\"$\", \"$\"]]}};</script><script async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>",
@@ -104,17 +112,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/ICLR 2024 - FasterViT - Fast Vision Transformers with Hierarchical Attention.md"
     },
     "P17": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/17.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0017.html",
       "labels": [
         "life"
       ],
+      "labelColor": "#4FBE48",
+      "post_type": "posts",
       "post_title": "CVPR \u53c2\u4f1a\u8bb0\u5f55",
-      "post_url": "/post/17.html",
+      "post_url": "https://lartpang.github.io/blog/post/0017.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/17",
       "num_comments": 0,
-      "top": 0,
       "num_words": 2166,
       "description": "",
+      "top": 0,
       "created_time": 1713324735,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -124,17 +134,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/CVPR \u53c2\u4f1a\u8bb0\u5f55.md"
     },
     "P16": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/16.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0016.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "CVPR 2024 - SED - A Simple Encoder-Decoder for Open-Vocabulary Semantic Segmentation",
-      "post_url": "/post/16.html",
+      "post_url": "https://lartpang.github.io/blog/post/0016.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/16",
       "num_comments": 0,
-      "top": 0,
       "num_words": 4221,
       "description": "",
+      "top": 0,
       "created_time": 1712817468,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n<script>MathJax = {tex: {inlineMath: [[\"$\", \"$\"]]}};</script><script async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>",
@@ -144,17 +156,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - SED - A Simple Encoder-Decoder for Open-Vocabulary Semantic Segmentation.md"
     },
     "P15": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/15.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0015.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "CVPR 2024 - OVFoodSeg - Elevating Open-Vocabulary Food Image Segmentation via Image-Informed Textual Representation",
-      "post_url": "/post/15.html",
+      "post_url": "https://lartpang.github.io/blog/post/0015.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/15",
       "num_comments": 0,
-      "top": 0,
       "num_words": 2633,
       "description": "",
+      "top": 0,
       "created_time": 1712747543,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -164,17 +178,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - OVFoodSeg - Elevating Open-Vocabulary Food Image Segmentation via Image-Informed Textual Representation.md"
     },
     "P14": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/14.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0014.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "CVPR 2024 - Open-Vocabulary Video Anomaly Detection",
-      "post_url": "/post/14.html",
+      "post_url": "https://lartpang.github.io/blog/post/0014.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/14",
       "num_comments": 4,
-      "top": 0,
       "num_words": 1929,
       "description": "",
+      "top": 0,
       "created_time": 1712741986,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n<script>MathJax = {tex: {inlineMath: [[\"$\", \"$\"]]}};</script><script async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>",
@@ -184,17 +200,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Open-Vocabulary Video Anomaly Detection.md"
     },
     "P13": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/13.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0013.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection",
-      "post_url": "/post/13.html",
+      "post_url": "https://lartpang.github.io/blog/post/0013.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/13",
       "num_comments": 0,
-      "top": 0,
       "num_words": 1271,
       "description": "",
+      "top": 0,
       "created_time": 1712735442,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -204,17 +222,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Retrieval-Augmented Open-Vocabulary Object Detection.md"
     },
     "P12": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/12.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0012.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts",
-      "post_url": "/post/12.html",
+      "post_url": "https://lartpang.github.io/blog/post/0012.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/12",
       "num_comments": 3,
-      "top": 0,
       "num_words": 1110,
       "description": "",
+      "top": 0,
       "created_time": 1712731900,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -224,17 +244,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Rethinking Interactive Image Segmentationwith Low Latency, High Quality, and Diverse Prompts.md"
     },
     "P11": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/11.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0011.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation",
-      "post_url": "/post/11.html",
+      "post_url": "https://lartpang.github.io/blog/post/0011.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/11",
       "num_comments": 0,
-      "top": 0,
       "num_words": 934,
       "description": "",
+      "top": 0,
       "created_time": 1712730469,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -244,17 +266,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation.md"
     },
     "P10": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/10.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0010.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "Rethinking Interactive Image Segmentation: Feature Space Annotation",
-      "post_url": "/post/10.html",
+      "post_url": "https://lartpang.github.io/blog/post/0010.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/10",
       "num_comments": 0,
-      "top": 0,
       "num_words": 732,
       "description": "",
+      "top": 0,
       "created_time": 1712730376,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -264,17 +288,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/Rethinking Interactive Image Segmentation- Feature Space Annotation.md"
     },
     "P9": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/9.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0009.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "CVPR 2024 - Efficient Deformable ConvNets: Rethinking Dynamic and Sparse Operator for Vision Applications",
-      "post_url": "/post/9.html",
+      "post_url": "https://lartpang.github.io/blog/post/0009.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/9",
       "num_comments": 0,
-      "top": 0,
       "num_words": 907,
       "description": "",
+      "top": 0,
       "created_time": 1712730296,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -284,17 +310,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Efficient Deformable ConvNets- Rethinking Dynamic and Sparse Operator for Vision Applications.md"
     },
     "P8": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/8.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0008.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization",
-      "post_url": "/post/8.html",
+      "post_url": "https://lartpang.github.io/blog/post/0008.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/8",
       "num_comments": 0,
-      "top": 0,
       "num_words": 497,
       "description": "",
+      "top": 0,
       "created_time": 1712730232,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -304,17 +332,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Rethinking the Evaluation Protocol of Domain Generalization.md"
     },
     "P7": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/7.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0007.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection",
-      "post_url": "/post/7.html",
+      "post_url": "https://lartpang.github.io/blog/post/0007.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/7",
       "num_comments": 0,
-      "top": 0,
       "num_words": 1548,
       "description": "",
+      "top": 0,
       "created_time": 1712730171,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -324,17 +354,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/CVPR 2024 - Rethinking the Up-Sampling Operations in CNN-based Generative Network for Generalizable Deepfake Detection.md"
     },
     "P6": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/6.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0006.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "ICLR 2024 - FeatUp - A Model-Agnostic Framework for Features at Any Resolution",
-      "post_url": "/post/6.html",
+      "post_url": "https://lartpang.github.io/blog/post/0006.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/6",
       "num_comments": 0,
-      "top": 0,
       "num_words": 16261,
       "description": "",
+      "top": 0,
       "created_time": 1712120562,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n<script>MathJax = {tex: {inlineMath: [[\"$\", \"$\"]]}};</script><script async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>",
@@ -344,17 +376,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/ICLR 2024 - FeatUp - A Model-Agnostic Framework for Features at Any Resolution.md"
     },
     "P5": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/5.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0005.html",
       "labels": [
         "paper"
       ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
       "post_title": "Arixv 2403 - Parameter-Efficient Fine-Tuning for Large Models A Comprehensive Survey",
-      "post_url": "/post/5.html",
+      "post_url": "https://lartpang.github.io/blog/post/0005.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/5",
       "num_comments": 0,
-      "top": 0,
       "num_words": 32832,
       "description": "",
+      "top": 0,
       "created_time": 1712119585,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n<script>MathJax = {tex: {inlineMath: [[\"$\", \"$\"]]}};</script><script async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>",
@@ -364,17 +398,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/Arixv 2403 - Parameter-Efficient Fine-Tuning for Large Models A Comprehensive Survey.md"
     },
     "P4": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/4.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0004.html",
       "labels": [
         "qt"
       ],
+      "labelColor": "#5B7F97",
+      "post_type": "posts",
       "post_title": "Tips for Qt",
-      "post_url": "/post/4.html",
+      "post_url": "https://lartpang.github.io/blog/post/0004.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/4",
       "num_comments": 0,
-      "top": 0,
       "num_words": 207,
       "description": "",
+      "top": 0,
       "created_time": 1711360178,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -384,17 +420,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/Tips for Qt.md"
     },
     "P3": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/3.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0003.html",
       "labels": [
         "opencv"
       ],
+      "labelColor": "#3108A9",
+      "post_type": "posts",
       "post_title": "Six methods of indexing pixels of Mat in OpenCV",
-      "post_url": "/post/3.html",
+      "post_url": "https://lartpang.github.io/blog/post/0003.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/3",
       "num_comments": 0,
-      "top": 0,
       "num_words": 3215,
       "description": "",
+      "top": 0,
       "created_time": 1711359712,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -404,17 +442,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/Six methods of indexing pixels of Mat in OpenCV.md"
     },
     "P2": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/2.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0002.html",
       "labels": [
         "opencv"
       ],
+      "labelColor": "#3108A9",
+      "post_type": "posts",
       "post_title": "Snippets of OpenVINO-CPP for Model Inference",
-      "post_url": "/post/2.html",
+      "post_url": "https://lartpang.github.io/blog/post/0002.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/2",
       "num_comments": 0,
-      "top": 0,
       "num_words": 2095,
       "description": "",
+      "top": 0,
       "created_time": 1711359665,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -424,17 +464,19 @@
       "md_path": "/home/runner/work/blog/blog/backup/Snippets of OpenVINO-CPP for Model Inference.md"
     },
     "P1": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/1.html",
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0001.html",
       "labels": [
         "opencv"
       ],
+      "labelColor": "#3108A9",
+      "post_type": "posts",
       "post_title": "Build OpenCV and OpenVINO for Windows 10 with VS 2022",
-      "post_url": "/post/1.html",
+      "post_url": "https://lartpang.github.io/blog/post/0001.html",
       "post_source_url": "https://github.com/lartpang/blog/issues/1",
       "num_comments": 0,
-      "top": 0,
       "num_words": 5428,
       "description": "",
+      "top": 0,
       "created_time": 1711359483,
       "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
       "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
@@ -453,6 +495,7 @@
     "qt": "#5B7F97",
     "tool": "#f9d0c4"
   },
+  "home_url": "https://lartpang.github.io/blog",
   "GMEEK_VERSION": "last",
   "title": "Simpler, Better",
   "sub_title": "Just for fun.",
@@ -460,7 +503,6 @@
   "displayTitle": "Simpler, Better",
   "faviconUrl": "https://avatars.githubusercontent.com/u/26847524",
   "og_image": "https://avatars.githubusercontent.com/u/26847524",
-  "home_url": "https://lartpang.github.io/blog",
   "prevUrl": "/index.html",
   "nextUrl": "disabled"
 }

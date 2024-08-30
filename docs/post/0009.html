@@ -1,21 +1,18 @@
 <!DOCTYPE html>
-<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<html data-color-mode="light" data-dark-theme="" data-light-theme="" lang="en">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
-    <link rel="icon" href="https://avatars.githubusercontent.com/u/26847524"><script>
-        let theme = localStorage.getItem("meek_theme") || "light";
-        document.documentElement.setAttribute("data-color-mode", theme);
-    </script>
+    <link rel="icon" href="">
 <meta name="description" content="">
-<meta property="og:title" content="CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation">
+<meta property="og:title" content="CVPR 2024 - Efficient Deformable ConvNets: Rethinking Dynamic and Sparse Operator for Vision Applications">
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog//post/11.html">
+<meta property="og:url" content="https://lartpang.github.io/blog/post/0009.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
-<title>CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation</title>
+<title>CVPR 2024 - Efficient Deformable ConvNets: Rethinking Dynamic and Sparse Operator for Vision Applications</title>
 
 
 </head>
@@ -109,15 +106,15 @@
 
 <body>
     <div id="header">
-<h1 class="post_title">CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation</h1>
+<h1 class="post_title">CVPR 2024 - Efficient Deformable ConvNets: Rethinking Dynamic and Sparse Operator for Vision Applications</h1>
 <div class="title-right">
-    <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
+    <a href="" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
             <path id="pathHome" fill-rule="evenodd"></path>
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/11" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/lartpang/blog/issues/9" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -133,29 +130,28 @@
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="post_body"><h1>CVPR 2024 - Rethinking Inductive Biases for Surface Normal Estimation</h1>
+<div class="markdown-body" id="post_body"><h1>CVPR 2024 - Efficient Deformable ConvNets - Rethinking Dynamic and Sparse Operator for Vision Applications</h1>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/afbb7f94cc1584ed25cb1ba9fb7ee458969dac9cfde698acad89272ae0b297c7/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f39313231386235343439653434646330383238316432323763623938306632652e706e67"><img src="https://camo.githubusercontent.com/afbb7f94cc1584ed25cb1ba9fb7ee458969dac9cfde698acad89272ae0b297c7/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f39313231386235343439653434646330383238316432323763623938306632652e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/direct/91218b5449e44dc08281d227cb980f2e.png" style="max-width: 100%;"></a></p>
 <ul>
-<li>论文：<a href="https://arxiv.org/abs/2403.00712" rel="nofollow">https://arxiv.org/abs/2403.00712</a></li>
-<li>代码：<a href="https://github.com/baegwangbin/DSINE">https://github.com/baegwangbin/DSINE</a></li>
+<li>论文：<a href="https://arxiv.org/abs/2401.06197" rel="nofollow">https://arxiv.org/abs/2401.06197</a></li>
+<li>代码：<a href="https://github.com/OpenGVLab/DCNv4">https://github.com/OpenGVLab/DCNv4</a></li>
 </ul>
-<p>该研究重新思考了表面法线估计的归纳偏置，提出了利用逐像素射线方向并学习相邻表面法线之间相对旋转关系的方法。相比于现有采用通用密集预测模型的方法，该方法能生成清晰且平滑的预测，并且在训练数据规模更小的情况下展现出更强的泛化能力。</p>
+<p>本文提出了高效的 DCNv4，这是一个专为视觉应用设计的高效有效的运算符。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d6e8cbb89276c383e14c39fe6b4e3ed26ba624e5f98cc41f0f3aba4d5b0d5d0b/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f66366433373439636263326234336130613637663439626361366361333434652e706e67"><img src="https://camo.githubusercontent.com/d6e8cbb89276c383e14c39fe6b4e3ed26ba624e5f98cc41f0f3aba4d5b0d5d0b/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f66366433373439636263326234336130613637663439626361366361333434652e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/direct/f6d3749cbc2b43a0a67f49bca6ca344e.png" style="max-width: 100%;"></a></p>
+<p>DCNv4 通过两个关键增强解决了其前身 DCNv3 的限制：</p>
 <ul>
-<li>归纳偏置的重要性：现有的表面法线估计方法采用了一般目的的密集预测模型，这限制了其预测精度和对不同相机拍摄图像的泛化能力。这篇论文深入讨论了表面法线估计所需的归纳偏置，并提出了三种架构改变来融入这些偏置。</li>
-<li>方法介绍：作者首先提出利用逐像素的射线方向作为输入，然后提出了基于射线方向的激活函数，最后将表面法线估计重新解释为旋转估计，其中相邻像素之间的相对旋转以轴角表示法估计。这种方法可以生成细节丰富且在表面交界处清晰的预测。</li>
+<li>在空间聚合中去除 softmax 归一化，以增强其动态特性和表达能力；</li>
+<li>优化内存访问，最小化冗余操作以加快速度。通过对现有实现进行指令级内核剖析，发现 DCNv3 已经很轻量级，计算成本不到 1%，而内存访问成本占了 99%。因此重新审视运算符实现，并发现许多内存访问在 DCN 的前向过程中是冗余的，可以通过优化来实现更快的 DCNv4 实现。</li>
 </ul>
-<p>总的来说，这篇论文通过提出新的归纳偏置和方法，成功地改善了表面法线估计的准确性和平滑性，并提高了模型的泛化能力。</p>
-<blockquote>
-<p><strong>表面法线估计</strong></p>
-<p>表面法线估计是一种计算机视觉任务，旨在从单个 RGB 图像中估计出每个像素点的表面法线。表面法线是一个三维向量，表示在给定像素点上垂直于表面的方向。这个任务在许多计算机视觉应用中非常重要，如三维重建、场景理解、物体识别等。<br>
-其提供了一种理解场景几何结构的方法。通过估计表面法线，我们可以获取到场景中物体表面的局部属性，如平面的法线方向、曲面的光滑程度等。这些信息对于进一步理解场景和进行后续处理（如深度估计、物体识别等）非常有用。<br>
-表面法线估计通常通过深度学习方法实现。通过对大量带有标注的表面法线图像进行训练，神经网络可以学习到一种从 RGB 图像中估计表面法线的方法。然而，由于表面法线估计任务的输出空间是三维的（即单位球面），因此存在一些挑战，如输出空间的非一致性、难以收集带有标注的数据等。</p>
-</blockquote></div>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c5bcee9325ddd5af96a71678484466868500a97755eb0b1a324b000c89c21e5d/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f66653838663465613965363734366465613066323038643333306432306235612e706e67"><img src="https://camo.githubusercontent.com/c5bcee9325ddd5af96a71678484466868500a97755eb0b1a324b000c89c21e5d/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f6469726563742f66653838663465613965363734366465613066323038643333306432306235612e706e67" alt="" data-canonical-src="https://img-blog.csdnimg.cn/direct/fe88f4ea9e6746dea0f208d330d20b5a.png" style="max-width: 100%;"></a></p>
+<p>这些改进使得 DCNv4 与 DCNv3 相比显示出显著更快的收敛速度，并且处理速度大大提高，DCNv4 的速度提高了三倍以上。</p>
+<p>将 DCNv4 集成到其他现代骨干架构中，包括 ConvNeXt 和 ViT，替换深度可分离卷积和密集自注意力层。值得注意的是，在没有进行任何超参数调整的情况下，这些经过精心设计的网络在使用 DCNv4 时表现得相当出色，同时速度快得多，显示了动态、稀疏的 DCNv4 的有效性和效率。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 </div>
-    <div id="footer">Copyright © <span id="year"></span><a href="https://lartpang.github.io/blog"> Simpler, Better </a>
-<p>
+    <div id="footer">Copyright © <span id="year"></span><a href="">  </a>
+<p><a href="https://beian.miit.gov.cn/" target="_blank"></a>
 <span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
 </p>
 
@@ -175,32 +171,7 @@ if(""!=""){
 var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
 var utterancesLoad=0;
 
-let themeSettings={
-    "dark": ["dark","moon","#00f0ff","dark-blue"],
-    "light": ["light","sun","#ff5000","github-light"],
-    "auto": ["auto","sync","","preferred-color-scheme"]
-};
-function changeTheme(mode, icon, color, utheme){
-    document.documentElement.setAttribute("data-color-mode",mode);
-    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
-    document.getElementById("themeSwitch").parentNode.style.color=color;
-    if(utterancesLoad==1){utterancesTheme(utheme);}
-}
-function modeSwitch(){
-    let currentMode=document.documentElement.getAttribute('data-color-mode');
-    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
-    localStorage.setItem("meek_theme", newMode);
-    if(themeSettings[newMode]){
-        changeTheme(...themeSettings[newMode]);
-    }
-}
-function utterancesTheme(theme){
-    const message={type:'set-theme',theme: theme};
-    const iframe=document.getElementsByClassName('utterances-frame')[0];
-    iframe.contentWindow.postMessage(message,'https://utteranc.es');
-}
-if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
-console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+console.log("\n %c Gmeek  https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
 </script>
 
 <script>
@@ -220,9 +191,7 @@ function openComments(){
     script.setAttribute("repo","lartpang/blog");
     script.setAttribute("issue-term","title");
     
-    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
-    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
-    else{script.setAttribute("theme","preferred-color-scheme");}
+    script.setAttribute("theme","");
     
     script.setAttribute("crossorigin","anonymous");
     script.setAttribute("async","");

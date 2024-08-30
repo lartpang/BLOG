@@ -2,6 +2,6 @@
 This is a simple static self based on GitHub Issue and Page.
 | :alarm_clock: Late updated                            | :page_facing_up: Articles                                                | :speech_balloon: Comments | :hibiscus: Words |
 | ----------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------- | ---------------- |
-|2024-08-30 13:16:04 | [20](https://lartpang.github.io/blog/tag.html)| 7            | 100429      |
+|2024-08-30 14:44:36 | [20](https://lartpang.github.io/blog/tag.html)| 7            | 100429      |
 ---
 *Powered by `issue2md.py` in [scripts](./scripts), which is modified from [Gmeek](https://github.com/Meekdai/Gmeek)*

@@ -1,22 +1,19 @@
 <!DOCTYPE html>
-<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<html data-color-mode="light" data-dark-theme="" data-light-theme="" lang="en">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
-    <link rel="icon" href="https://avatars.githubusercontent.com/u/26847524"><script>
-        let theme = localStorage.getItem("meek_theme") || "light";
-        document.documentElement.setAttribute("data-color-mode", theme);
-    </script>
+    <link rel="icon" href="">
 <meta name="description" content="">
-<meta property="og:title" content="Tips for Qt">
+<meta property="og:title" content="CVPR 2024 - Open-Vocabulary Video Anomaly Detection">
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://lartpang.github.io/blog//post/4.html">
+<meta property="og:url" content="https://lartpang.github.io/blog/post/0014.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/26847524">
-<title>Tips for Qt</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<title>CVPR 2024 - Open-Vocabulary Video Anomaly Detection</title>
+
 
 </head>
 <style>
@@ -109,15 +106,15 @@
 
 <body>
     <div id="header">
-<h1 class="post_title">Tips for Qt</h1>
+<h1 class="post_title">CVPR 2024 - Open-Vocabulary Video Anomaly Detection</h1>
 <div class="title-right">
-    <a href="https://lartpang.github.io/blog" id="buttonHome" class="btn btn-invisible circle" title="首页">
+    <a href="" id="buttonHome" class="btn btn-invisible circle" title="首页">
         <svg class="octicon" width="16" height="16">
             <path id="pathHome" fill-rule="evenodd"></path>
         </svg>
     </a>
     
-    <a href="https://github.com/lartpang/blog/issues/4" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/lartpang/blog/issues/14" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -133,16 +130,44 @@
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="post_body"><h1>Tips for Qt</h1>
-<h2>Set a proper mirror for MaintenanceTool.exe</h2>
-<p>From: <a href="https://mirrors.tuna.tsinghua.edu.cn/help/qt/" rel="nofollow">https://mirrors.tuna.tsinghua.edu.cn/help/qt/</a></p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">.<span class="pl-cce">\M</span>aintenanceTool.exe --mirror https://mirrors.tuna.tsinghua.edu.cn/qt</pre></div></div>
+<div class="markdown-body" id="post_body"><h1>CVPR 2024 - Open-Vocabulary Video Anomaly Detection</h1>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2311.07042" rel="nofollow">https://arxiv.org/abs/2311.07042</a></li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/39e42922-523a-4f5f-b350-23fa5164eeab"><img src="https://github.com/lartpang/blog/assets/26847524/39e42922-523a-4f5f-b350-23fa5164eeab" alt="image" style="max-width: 100%;"></a></p>
+<p>这篇文章主要研究了开放词汇视频异常检测（openvocabulary video anomaly detection，OVVAD）的问题，这是一个具有挑战性但实际重要的问题。</p>
+<p>传统方法不能处理开放词汇场景下的视频异常检测：</p>
+<ul>
+<li>主要是因为它们通常针对特定类别或已知异常进行训练和检测，缺乏对未知异常（即开放词汇）的泛化能力。</li>
+<li>此外，传统方法往往难以充分挖掘和利用视频数据中的时空信息以及外部知识，从而限制了其在开放词汇场景下的性能。</li>
+</ul>
+<p>该研究提出了一种基于预训练大型模型的解决方案。利用语言图像预训练模型，如 CLIP 作为基础，得益于其强大的零样本泛化能力。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/lartpang/blog/assets/26847524/e861f10f-f36a-4925-9047-769bdb4578c0"><img src="https://github.com/lartpang/blog/assets/26847524/e861f10f-f36a-4925-9047-769bdb4578c0" alt="image" style="max-width: 100%;"></a></p>
+<p>具体而言，<strong>将开放词汇视频异常检测任务分解为类无关检测（class-agnostic detection）和类特定分类（class-specific categorization）这样两个互补的子任务</strong>，以更好地处理开放词汇视频异常检测问题。并引入了几个专用模块来促进对基线和新异常的检测。</p>
+<ul>
+<li>对于类无关的检测：设计了时序适配器模块（TA）和语义知识注入模块（SKI），主要旨在提高检测性能；
+<ul>
+<li>时序适配器模块 TA：现有的基于时序 Transformer 的设计面对新的类别时性能衰退严重，可能的原因是其中的额外参数特化于训练集，损害了对于新类别的泛化能力。因此本文设计了一个构建在经典的图卷积网络之上的几乎无权重的时序适配器来处理时序依赖，即 $x_t = \text{LN}(\text{softmax}(H)x_f), H_{i,j}=\frac{-|i-j|}{\sigma}$ 来对各帧特征进行交互重组，这里仅有的额外参数来自于 LN。</li>
+<li>语义知识注入模块 SKI：该模块旨在将额外的语义知识引入视觉检测任务中，以提高模型性能。SKI 引入额外的关于异常场景的短语（包括场景名词和动作动词）作为先验知识输入 CLIP。然后使用视觉特征利用类似于 cross-attention 的操作从文本特征中寻找相关的语义知识 $F_{know} = \text{sigmoid}(x_t F^{\top}<em>{text})F^{\top}</em>{text}/l$。这里使用 sigmoid 函数来促使视觉信号可以组合更多相关的语义概念。模块输出直接送入二值检测器中获得类无关检测的帧异常和视频异常得分。</li>
+</ul>
+</li>
+<li>对于细粒度异常分类：考虑到 CLIP 这样的预训练 VLM 面对视频相关的数据时 zore-shot 能力有限，本文使用新异常合成模块（NAS）基于潜在的异常类别生成可能的伪新异常视频样本，以帮助模型更准确地分类新异常类型。主要由三个关键过程组成：
+<ul>
+<li>首先，使用预定义的模板提示生成器（prompt_gen）来提示大型语言模型（LLMs），例如 ChatGPT 和 ERNIE Bot，以生成有关现实世界中“战斗”的十个简短场景描述。</li>
+<li>然后，使用 AI 生成模型（AIGC）例如 DALLE mini 和 Gen-2，从生成的文本描述中产生相应的图像（Igen）或短视频（Sgen）。</li>
+<li>Igen 会从单个图像转成视频片段，具体使用不同的检测比例中心剪裁图像中的对应区域，然后放缩到原始尺寸后，堆叠形成新的视频片段 Scat。</li>
+<li>为了模拟完整长异常视频中真实世界场景，这里将生成的 Scat 或者 Sgen 被随机插入到正常视频中的随机位置上，从而获得最终的伪异常视频样本 Vnas。</li>
+<li>利用这些 Vnas 可以微调训练在现有标准数据集（包含正常样本和异常样本）上的模型，从而增强其对于新异常的泛化能力。</li>
+</ul>
+</li>
+</ul>
+<p>实验结果表明，该模型在三个公开基准 UBnormal，UCF-Crime，XD-Violence 上优于现有方法，特别是在处理新类别时表现出明显的优势。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处 (*❦ω❦)</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 </div>
-    <div id="footer">Copyright © <span id="year"></span><a href="https://lartpang.github.io/blog"> Simpler, Better </a>
-<p>
+    <div id="footer">Copyright © <span id="year"></span><a href="">  </a>
+<p><a href="https://beian.miit.gov.cn/" target="_blank"></a>
 <span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
 </p>
 
@@ -162,38 +187,17 @@ if(""!=""){
 var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
 var utterancesLoad=0;
 
-let themeSettings={
-    "dark": ["dark","moon","#00f0ff","dark-blue"],
-    "light": ["light","sun","#ff5000","github-light"],
-    "auto": ["auto","sync","","preferred-color-scheme"]
-};
-function changeTheme(mode, icon, color, utheme){
-    document.documentElement.setAttribute("data-color-mode",mode);
-    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
-    document.getElementById("themeSwitch").parentNode.style.color=color;
-    if(utterancesLoad==1){utterancesTheme(utheme);}
-}
-function modeSwitch(){
-    let currentMode=document.documentElement.getAttribute('data-color-mode');
-    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
-    localStorage.setItem("meek_theme", newMode);
-    if(themeSettings[newMode]){
-        changeTheme(...themeSettings[newMode]);
-    }
-}
-function utterancesTheme(theme){
-    const message={type:'set-theme',theme: theme};
-    const iframe=document.getElementsByClassName('utterances-frame')[0];
-    iframe.contentWindow.postMessage(message,'https://utteranc.es');
-}
-if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
-console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+console.log("\n %c Gmeek  https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
 </script>
 
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-
+cmButton=document.getElementById("cmButton");
+    span=document.createElement("span");
+    span.setAttribute("class","Counter");
+    span.innerHTML="4";
+    cmButton.appendChild(span);
 function openComments(){
     cm=document.getElementById("comments");
     cmButton=document.getElementById("cmButton");
@@ -207,9 +211,7 @@ function openComments(){
     script.setAttribute("repo","lartpang/blog");
     script.setAttribute("issue-term","title");
     
-    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
-    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
-    else{script.setAttribute("theme","preferred-color-scheme");}
+    script.setAttribute("theme","");
     
     script.setAttribute("crossorigin","anonymous");
     script.setAttribute("async","");
@@ -245,5 +247,5 @@ function iFrameLoading(){
   mediumZoom('#postBody img');
 </script>
 
-
+<script>MathJax = {tex: {inlineMath: [["$", "$"]]}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </html>
