@@ -72,6 +72,7 @@ class Convertor:
             "sub_pages": OrderedDict(),  # 独立网页页面信息 singeListJson
             "label_color_info": self.label_color_info,
             "home_url": f"https://{self.repo.owner.login}.github.io",
+            "author": self.repo.owner.login,
         }
 
         # 加载用户自定义的html格式的脚本和样式
@@ -93,7 +94,7 @@ class Convertor:
                 user_cfg["style"] = f.read() + NEWLINE_CHAR
         self.blogBase.update(user_cfg)
 
-        self.blogBase.setdefault("displayTitle", self.blogBase["title"])
+        # self.blogBase.setdefault("displayTitle", self.blogBase["title"])
         self.blogBase.setdefault("faviconUrl", self.blogBase["avatar_url"])
         self.blogBase.setdefault("og_image", self.blogBase["avatar_url"])
 

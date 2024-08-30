@@ -39,11 +39,7 @@
 {% block header %}
 <h1>
     <img src="{{ blogBase['avatar_url'] }}" class="avatar circle" id="avatarImg" alt="avatar">
-    {%- if blogBase['displayTitle']=='eekdai' -%}
-    <a class="blogTitle" href="https://meekdai.com">{{ blogBase['displayTitle'] }}</a>
-    {% else -%}
-    <a class="blogTitle">{{ blogBase['displayTitle'] }}</a>
-    {%- endif -%}
+    <a class="blogTitle">{{ blogBase['title'] }}</a>
 </h1>
 <div class="title-right">
     <a href="{{ blogBase['home_url'] }}/tag.html" id="buttonSearch" class="btn btn-invisible circle" title="{{ i18n['Search'] }}">
