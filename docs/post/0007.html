@@ -155,21 +155,13 @@
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
 </div>
-    <div id="footer">Copyright © <span id="year"></span><a href="">  </a>
-<p><a href="https://beian.miit.gov.cn/" target="_blank"></a>
-<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
-</p>
+    <div id="footer">Copyright © <span id="runday"></span> 
 
 <script>
-if(""!=""){
-    var now=new Date();
-    var start_site=new Date("");
-    var diff=now.getTime()-start_site.getTime();
-    var diffDay=Math.floor(diff/(1000*60*60*24));
-    document.getElementById("year").innerHTML=now.getFullYear();
-    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
-    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
-}
+    if ("" != "") {
+        var start_site = new Date("");
+        document.getElementById("runday").innerHTML = start_site.getFullYear + "-" + Date().getFullYear();
+    }
 </script></div>
 </body>
 <script>

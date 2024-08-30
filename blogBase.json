@@ -1,6 +1,6 @@
 {
   "sub_page_labels": [],
-  "start_site": "",
+  "start_site": "2024-05-25",
   "filingNum": "",
   "max_posts_per_page": 15,
   "comment_label_color": "#006b75",
@@ -496,11 +496,11 @@
     "tool": "#f9d0c4"
   },
   "home_url": "https://lartpang.github.io/blog",
+  "author": "lartpang",
   "GMEEK_VERSION": "last",
   "title": "Simpler, Better",
   "sub_title": "Just for fun.",
   "avatar_url": "https://avatars.githubusercontent.com/u/26847524",
-  "displayTitle": "Simpler, Better",
   "faviconUrl": "https://avatars.githubusercontent.com/u/26847524",
   "og_image": "https://avatars.githubusercontent.com/u/26847524",
   "prevUrl": "/index.html",
