@@ -24,8 +24,6 @@ __VERSION__ = "2.0.0"
 
 # Predefined Paths
 GITHUB_WORKSPACE = os.environ.get("GITHUB_WORKSPACE")
-print("GITHUB_WORKSPACE", GITHUB_WORKSPACE)
-
 USER_CONFIG_FILE = os.path.join(GITHUB_WORKSPACE, "config.json")
 README_FILE = os.path.join(GITHUB_WORKSPACE, "README.md")
 BACKUP_DIR = os.path.join(GITHUB_WORKSPACE, "backup")
@@ -33,6 +31,7 @@ DOCS_DIR = os.path.join(GITHUB_WORKSPACE, "docs")
 
 POST_DIR = os.path.join(DOCS_DIR, "post")
 RSS_XML_FILE = os.path.join(DOCS_DIR, "rss.xml")
+POST_LIST_FILE = os.path.join(DOCS_DIR, "postList.json")
 
 
 class Convertor:
@@ -443,7 +442,7 @@ class Convertor:
 
         sorted_post_infos["label_color_info"] = self.label_color_info
 
-        with open(DOCS_DIR + "postList.json", "w", encoding="utf-8") as f:
+        with open(POST_LIST_FILE, mode="w", encoding="utf-8") as f:
             json.dump(sorted_post_infos, f, indent=2)
         return num_comments, num_words
 
