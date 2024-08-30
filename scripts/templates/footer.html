@@ -3,6 +3,7 @@ Copyright © <span id="runday"></span> {{ blogBase['author'] }}
 <script>
     if ("{{ blogBase['start_site'] }}" != "") {
         var start_site = new Date("{{ blogBase['start_site'] }}");
-        document.getElementById("runday").innerHTML = start_site.getFullYear + "-" + Date().getFullYear();
+        var now_date = new Date();
+        document.getElementById("runday").innerHTML = start_site.getFullYear() + "-" + now_date.getFullYear();
     }
 </script>
