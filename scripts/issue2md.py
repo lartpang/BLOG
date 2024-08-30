@@ -24,13 +24,15 @@ __VERSION__ = "2.0.0"
 
 # Predefined Paths
 GITHUB_WORKSPACE = os.environ.get("GITHUB_WORKSPACE")
+print("GITHUB_WORKSPACE", GITHUB_WORKSPACE)
+
 USER_CONFIG_FILE = os.path.join(GITHUB_WORKSPACE, "config.json")
 README_FILE = os.path.join(GITHUB_WORKSPACE, "README.md")
 BACKUP_DIR = os.path.join(GITHUB_WORKSPACE, "backup")
-ROOT_DIR = os.path.join(GITHUB_WORKSPACE, "docs")
+DOCS_DIR = os.path.join(GITHUB_WORKSPACE, "docs")
 
-POST_DIR = os.path.join(ROOT_DIR, "post")
-RSS_XML_FILE = os.path.join(ROOT_DIR, "rss.xml")
+POST_DIR = os.path.join(DOCS_DIR, "post")
+RSS_XML_FILE = os.path.join(DOCS_DIR, "rss.xml")
 
 
 class Convertor:
@@ -69,6 +71,7 @@ class Convertor:
             "posts": OrderedDict(),  # 文章post页面信息 postListJson
             "sub_pages": OrderedDict(),  # 独立网页页面信息 singeListJson
             "label_color_info": self.label_color_info,
+            "home_url": f"https://{self.repo.owner.login}.github.io",
         }
 
         # 加载用户自定义的html格式的脚本和样式
@@ -94,13 +97,9 @@ class Convertor:
         self.blogBase.setdefault("faviconUrl", self.blogBase["avatar_url"])
         self.blogBase.setdefault("og_image", self.blogBase["avatar_url"])
 
-        if "home_url" not in self.blogBase:
-            user_github_io = f"{self.repo.owner.login}.github.io"
-
-            self.blogBase["home_url"] = f"https://{user_github_io}"
-            if f"{self.repo.name}".lower() != user_github_io.lower():
-                # 非user.github.io仓库
-                self.blogBase["home_url"] += f"/{self.repo.name}"
+        if self.repo.name.lower() != f"{self.repo.owner.login}.github.io":
+            # 非user.github.io仓库
+            self.blogBase["home_url"] += f"/{self.repo.name}"
         print("GitHub Pages URL: ", self.blogBase["home_url"])
 
         self.i18n = I18N.get(self.blogBase["i18n"], "EN")
@@ -140,6 +139,7 @@ class Convertor:
         except requests.RequestException as e:
             raise Exception("markdown2html error: {}".format(e))
 
+    # TODO: Maybe we should use the separated functions to handle the post and sub_page html files.
     def create_post_html(self, post_cfg: dict):
         with open(post_cfg["md_path"], "r", encoding="utf-8") as f:
             post_body = self.markdown2html(f.read())
@@ -156,36 +156,37 @@ class Convertor:
             )
 
         assert "post_title" in post_cfg, post_cfg.keys()
-        post_info = copy.deepcopy(self.blogBase)
-        post_info["post_title"] = post_cfg["post_title"]
-        post_info["post_url"] = self.blogBase["home_url"] + "/" + post_cfg["post_url"]
-        post_info["description"] = post_cfg["description"]
-        post_info["og_image"] = post_cfg["og_image"]
-        post_info["post_body"] = post_body
-        post_info["num_comments"] = post_cfg["num_comments"]
-        post_info["style"] = post_cfg["style"]
-        post_info["script"] = post_cfg["script"]
-        post_info["top"] = post_cfg["top"]
-        post_info["post_source_url"] = post_cfg["post_source_url"]
-        post_info["repo_name"] = self.repo_name
-        post_info["highlight"] = int("highlight" in post_body)
-
-        if post_cfg["labels"][0] in self.blogBase["sub_page_labels"]:
-            post_info["bottom_text"] = ""
+        # fmt: off
+        post_info = {
+            "show_source": self.blogBase["show_source"],
+            "og_image": post_cfg["og_image"],
+            "post_title": post_cfg["post_title"],
+            "description": post_cfg["description"],
+            "post_url": post_cfg["post_url"],
+            "post_source_url": post_cfg["post_source_url"],
+            "post_body": post_body,
+            "num_comments": post_cfg["num_comments"],
+            "style": post_cfg["style"],
+            "script": post_cfg["script"],
+            "top": post_cfg["top"],
+            "repo_name": self.repo_name,
+            "highlight": int("highlight" in post_body),
+            "bottom_text": "" if post_cfg["post_type"] == "sub_page" else  self.blogBase["bottom_text"],
+        }
+        # fmt: on
 
         post_icons = {k: ICONS[k] for k in ["sun", "moon", "sync", "home", "github"]}
         self.render_html("post.html", post_info, post_icons, post_cfg["html_dir"])
-        print(f'created post html {post_cfg["html_dir"]} from {post_cfg["post_title"]}')
+        print(f'{post_cfg["post_title"]} > {post_cfg["html_dir"]} > {post_info["post_url"]}')
 
-    def create_post_index_html(self):
+    def create_index_html(self):
+        base_icons = ["sun", "moon", "sync", "search", "rss", "upload", "post"]
         index_icons = {
-            k: ICONS[k]
-            for k in ["sun", "moon", "sync", "search", "rss", "upload", "post"]
-            + self.blogBase["sub_page_labels"]
+            k: ICONS.get(k, "link") for k in base_icons + self.blogBase["sub_page_labels"]
         }
+        # overwrite the icons with the user defined icons
         index_icons.update(self.blogBase["icons"])
 
-        # all_post_infos = list(self.blogBase["posts"].items())
         all_post_infos = sorted(
             self.blogBase["posts"].items(),
             key=lambda x: (x[1]["top"], x[1]["created_time"]),
@@ -201,14 +202,14 @@ class Convertor:
 
             if page_idx == 0:
                 # the total number of posts is less than max_posts_per_page
-                post_html = os.path.join(ROOT_DIR, "index.html")
+                post_html = os.path.join(DOCS_DIR, "index.html")
                 self.blogBase["prevUrl"] = "disabled"
                 if page_idx + 1 < num_pages:  # there is a next page
                     self.blogBase["nextUrl"] = "/page1.html"
                 else:  # current page is the last page with a full list
                     self.blogBase["nextUrl"] = "disabled"
             else:
-                post_html = os.path.join(ROOT_DIR, f"page{page_idx}.html")
+                post_html = os.path.join(DOCS_DIR, f"page{page_idx}.html")
                 if page_idx == 1:
                     self.blogBase["prevUrl"] = "/index.html"
                 else:
@@ -221,7 +222,7 @@ class Convertor:
 
         # create tag page
         tag_icons = {k: ICONS[k] for k in ["sun", "moon", "sync", "home", "search", "post"]}
-        tag_html = os.path.join(ROOT_DIR, "tag.html")
+        tag_html = os.path.join(DOCS_DIR, "tag.html")
         self.render_html("tag.html", self.blogBase, tag_icons, tag_html, curr_posts)
 
     def create_feed_xml(self):
@@ -235,40 +236,19 @@ class Convertor:
         feed.webMaster(self.blogBase["title"])
         feed.ttl("60")
 
-        for num in self.blogBase["sub_pages"]:
+        # fmt: off
+        # NOTE: Only list posts, not sub_pages
+        for post_info in sorted(self.blogBase["posts"].values(), key=lambda x: x["created_time"], reverse=False):
             item = feed.add_item()
-            item.guid(
-                self.blogBase["home_url"] + "/" + self.blogBase["sub_pages"][num]["post_url"],
-                permalink=True,
-            )
-            item.title(self.blogBase["sub_pages"][num]["post_title"])
-            item.description(self.blogBase["sub_pages"][num]["description"])
-            item.link(
-                href=self.blogBase["home_url"] + "/" + self.blogBase["sub_pages"][num]["post_url"]
-            )
-            item.pubDate(
-                time.strftime(
-                    "%a, %d %b %Y %H:%M:%S +0000",
-                    time.gmtime(self.blogBase["sub_pages"][num]["created_time"]),
-                )
-            )
-
-        for post_info in sorted(
-            self.blogBase["posts"].values(), key=lambda x: x["created_time"], reverse=False
-        ):
-            item = feed.add_item()
-            item.guid(self.blogBase["home_url"] + "/" + post_info["post_url"], permalink=True)
+            item.guid(post_info["post_url"], permalink=True)
             item.title(post_info["post_title"])
             item.description(post_info["description"])
-            item.link(href=self.blogBase["home_url"] + "/" + post_info["post_url"])
-            item.pubDate(
-                time.strftime(
-                    "%a, %d %b %Y %H:%M:%S +0000", time.gmtime(post_info["created_time"])
-                )
-            )
+            item.link(href=post_info["post_url"])
+            item.pubDate(time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime(post_info["created_time"])))
+        # fmt: on
 
         if self.old_feed_string != "":
-            new_feed_xml = os.path.join(ROOT_DIR, "new.xml")
+            new_feed_xml = os.path.join(DOCS_DIR, "new.xml")
 
             feed.rss_file(new_feed_xml)
             with open(new_feed_xml, "r", encoding="utf-8") as f:
@@ -292,38 +272,42 @@ class Convertor:
         if useLabel:
             fileName = issue.labels[0].name
         else:
-            fileName = str(issue.number)
+            fileName = str(issue.number).rjust(4, "0")  # 000X
         return re.sub(r"[<>:/\\|?*\"]|[\0-\31]", "-", fileName)
 
-    def update_post_info(self, issue: Issue):
+    def update_post_info(self, issue: Issue) -> dict:
         """Update the posts and sub_pages based on the issue information.
 
         Args:
             issue (Issue): issue object.
 
         Returns:
-            str: "sub_pages" or "posts".
+            dict: post information.
         """
         # TODO: 这里只考虑了标签列表中的第一个标签
         if issue.labels[0].name in self.blogBase["sub_page_labels"]:
             post_type = "sub_pages"
             html_name = self.create_file_name(issue, useLabel=True)
-            html_path = os.path.join(ROOT_DIR, f"{html_name}.html")
+            html_path = os.path.join(DOCS_DIR, f"{html_name}.html")
         else:
             post_type = "posts"
             html_name = self.create_file_name(issue, useLabel=False)
             html_path = os.path.join(POST_DIR, f"{html_name}.html")
 
-        post_cfg = {}
-        post_cfg["html_dir"] = html_path
-        post_cfg["labels"] = [label.name for label in issue.labels]
-        # post_cfg["labelColor"]=self.label_color_info[issue.labels[0].name]
-        post_cfg["post_title"] = issue.title
-        post_cfg["post_url"] = urllib.parse.quote(html_path[len(ROOT_DIR) :])
-        post_cfg["post_source_url"] = (
-            "https://github.com/" + self.repo_name + "/issues/" + str(issue.number)
-        )
-        post_cfg["num_comments"] = issue.get_comments().totalCount
+        # fmt: off
+        post_cfg = {
+            "html_dir": html_path,
+            "labels": [label.name for label in issue.labels],
+            "labelColor": self.label_color_info[issue.labels[0].name],
+            "post_type": post_type,
+            "post_title": issue.title,
+            "post_url": self.blogBase["home_url"] + "/" + urllib.parse.quote(os.path.relpath(html_path, start=DOCS_DIR)),
+            "post_source_url": "https://github.com/" + self.repo_name + "/issues/" + str(issue.number),
+            "num_comments": issue.get_comments().totalCount,
+            "num_words": len(issue.body),
+            "description": self.generate_post_description(issue.body),
+        }
+        # fmt: on
 
         post_cfg["top"] = 0
         for event in issue.get_events():
@@ -331,9 +315,6 @@ class Convertor:
                 post_cfg["top"] = 1
             # elif event.event == "unpinned":
             #     post_cfg["top"] = 0
-
-        post_cfg["num_words"] = len(issue.body)
-        post_cfg["description"] = self.generate_post_description(issue.body)
 
         # Parse and import the customized settings from the specific comment of the post body
         # format: <!-- myconfig:{key1:value1,key2:value2,...} -->
@@ -343,19 +324,16 @@ class Convertor:
             custom_post_cfg.update(json.loads(cfg))
         print("Customized settings: ", custom_post_cfg)
 
-        post_cfg["created_time"] = custom_post_cfg.get(
-            "timestamp", int(time.mktime(issue.created_at.timetuple()))
-        )
+        # fmt: off
+        post_cfg["created_time"] = custom_post_cfg.get("timestamp", int(time.mktime(issue.created_at.timetuple())))
         post_cfg["style"] = self.blogBase["style"] + custom_post_cfg.get("style", "")
         post_cfg["script"] = self.blogBase["script"] + custom_post_cfg.get("script", "")
         post_cfg["og_image"] = custom_post_cfg.get("og_image", self.blogBase["og_image"])
 
         thisTime = datetime.fromtimestamp(post_cfg["created_time"]).astimezone(self.TZ)
-        thisYear = thisTime.year
         post_cfg["created_date"] = thisTime.strftime("%Y-%m-%d")
-        post_cfg["dateLabelColor"] = self.blogBase["year_colors"][
-            int(thisYear) % len(self.blogBase["year_colors"])
-        ]
+        post_cfg["dateLabelColor"] = self.blogBase["year_colors"][int(thisTime.year) % len(self.blogBase["year_colors"])]
+        # fmt: on
 
         md_name = re.sub(r"[<>:/\\|?*\"]|[\0-\31]", "-", issue.title)
         md_path = os.path.join(BACKUP_DIR, md_name + ".md")
@@ -365,15 +343,15 @@ class Convertor:
                 f.write(issue.body)
 
         # self.blogBase[post_type][f"P{issue.number}"] = post_cfg
-        return post_type, post_cfg
+        return post_cfg
 
     def update_all_posts(self):
         print("====== start create all posts html ======")
 
-        for _dir in [BACKUP_DIR, ROOT_DIR, POST_DIR]:
+        for _dir in [BACKUP_DIR, DOCS_DIR, POST_DIR]:
             if os.path.exists(_dir):
                 shutil.rmtree(_dir)
-        for _dir in [BACKUP_DIR, ROOT_DIR, POST_DIR]:
+        for _dir in [BACKUP_DIR, DOCS_DIR, POST_DIR]:
             os.mkdir(_dir)
 
         # Only use the open issues
@@ -381,11 +359,11 @@ class Convertor:
             if len(issue.labels) < 1:
                 continue
 
-            post_type, post_cfg = self.update_post_info(issue)
-            self.blogBase[post_type][f"P{issue.number}"] = post_cfg
+            post_cfg = self.update_post_info(issue)
+            self.blogBase[post_cfg["post_type"]][f"P{issue.number}"] = post_cfg
             self.create_post_html(post_cfg)
 
-        self.create_post_index_html()
+        self.create_index_html()
         self.create_feed_xml()
         print("====== create all posts html end ======")
 
@@ -396,11 +374,11 @@ class Convertor:
         if len(issue.labels) < 1:
             return
 
-        post_type, post_cfg = self.update_post_info(issue)
-        self.blogBase[post_type][f"P{number}"] = post_cfg
+        post_cfg = self.update_post_info(issue)
+        self.blogBase[post_cfg["post_type"]][f"P{number}"] = post_cfg
         self.create_post_html(post_cfg)
 
-        self.create_post_index_html()
+        self.create_index_html()
         self.create_feed_xml()
         print("====== create single post html end ======")
 
@@ -465,7 +443,7 @@ class Convertor:
 
         sorted_post_infos["label_color_info"] = self.label_color_info
 
-        with open(ROOT_DIR + "postList.json", "w", encoding="utf-8") as f:
+        with open(DOCS_DIR + "postList.json", "w", encoding="utf-8") as f:
             json.dump(sorted_post_infos, f, indent=2)
         return num_comments, num_words
 
