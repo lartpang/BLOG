@@ -30,11 +30,11 @@
         padding: 14px 16px;
         margin-right: 8px;
     }
-    #post_body {
+    #postBody {
         border-bottom: 1px solid var(--color-border-default);
         padding-bottom: 36px;
     }
-    #post_body hr {
+    #postBody hr {
         height: 2px;
     }
     #cmButton {
@@ -85,7 +85,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="markdown-body" id="post_body">{{ blogBase['post_body'] }}</div>
+<div class="markdown-body" id="postBody">{{ blogBase['post_body'] }}</div>
 <div style="font-size:small;margin-top:8px;float:right;">{{ blogBase['bottom_text'] }}</div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">{{ i18n['comments'] }}</button>
 <div class="comments" id="comments"></div>

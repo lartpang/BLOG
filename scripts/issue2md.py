@@ -25,6 +25,7 @@ __VERSION__ = "2.0.0"
 # Predefined Paths
 GITHUB_WORKSPACE = os.environ.get("GITHUB_WORKSPACE")
 USER_CONFIG_FILE = os.path.join(GITHUB_WORKSPACE, "config.json")
+BLOG_BASE_FILE = os.path.join(GITHUB_WORKSPACE, "blogBase.json")
 README_FILE = os.path.join(GITHUB_WORKSPACE, "README.md")
 BACKUP_DIR = os.path.join(GITHUB_WORKSPACE, "backup")
 DOCS_DIR = os.path.join(GITHUB_WORKSPACE, "docs")
@@ -382,7 +383,7 @@ class Convertor:
         print("====== create single post html end ======")
 
     def update_blog_base(self):
-        if not os.path.exists("blogBase.json"):
+        if not os.path.exists(BLOG_BASE_FILE):
             print("blogBase is not exists, run_all")
             self.update_all_posts()
         else:
@@ -395,7 +396,7 @@ class Convertor:
                 self.update_all_posts()
             else:
                 print("blogBase is exists and issue_number!=0, run_one")
-                with open("blogBase.json", "r", encoding="utf-8") as f:
+                with open(BLOG_BASE_FILE, "r", encoding="utf-8") as f:
                     old_blog_base = json.load(f)
 
                 for key, value in old_blog_base.items():
@@ -403,7 +404,7 @@ class Convertor:
 
                 self.update_single_post(self.issue_number)
 
-        with open("blogBase.json", "w", encoding="utf-8") as f:
+        with open(BLOG_BASE_FILE, "w", encoding="utf-8") as f:
             json.dump(self.blogBase, f, indent=2)
 
     def update_post_list_json(self):
@@ -411,7 +412,9 @@ class Convertor:
 
         sorted_post_infos = OrderedDict(
             sorted(
-                self.blogBase["posts"].items(), key=lambda x: x[1]["created_time"], reverse=True
+                self.blogBase["posts"].items(),
+                key=lambda x: x[1]["created_time"],
+                reverse=True,
             )
         )
 
