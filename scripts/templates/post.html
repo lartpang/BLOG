@@ -57,8 +57,8 @@
     }
 </style>
 {{ blogBase['style'] }}
-
 {% endblock %}
+
 {% block header %}
 <h1 class="post_title">{{ blogBase['post_title'] }}</h1>
 <div class="title-right">
@@ -74,13 +74,11 @@
         </svg>
     </a>
     {% endif %}
-
     <a class="btn btn-invisible circle" onclick="modeSwitch();" title="{{ i18n['switchTheme'] }}" {%- if blogBase['theme_mode']=='fix' -%}style="display:none;"{%- endif -%}>
         <svg class="octicon" width="16" height="16" >
             <path id="themeSwitch" fill-rule="evenodd"></path>
         </svg>
     </a>
-
 </div>
 {% endblock %}
 
@@ -140,5 +138,4 @@ function iFrameLoading(){
     }
 }
 </script>
-
 {% endblock %}

@@ -160,6 +160,7 @@ class Convertor:
         # fmt: off
         post_info = {
             "show_source": self.blogBase["show_source"],
+            "start_site": self.blogBase["start_site"],
             "og_image": post_cfg["og_image"],
             "post_title": post_cfg["post_title"],
             "description": post_cfg["description"],
@@ -172,7 +173,7 @@ class Convertor:
             "top": post_cfg["top"],
             "repo_name": self.repo_name,
             "highlight": int("highlight" in post_body),
-            "bottom_text": "" if post_cfg["post_type"] == "sub_page" else  self.blogBase["bottom_text"],
+            "bottom_text": "" if post_cfg["post_type"] == "sub_page" else self.blogBase["bottom_text"],
         }
         # fmt: on
 

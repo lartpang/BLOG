@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block head %}
 <meta name="description" content="{{ blogBase['sub_title'] }}">
 <meta property="og:title" content="{{ blogBase['title'] }}">
@@ -108,7 +109,6 @@
         {% else -%}
         <a class="next_page" rel="next" href="{{ blogBase['home_url'] }}{{ blogBase['nextUrl'] }}" aria-label="Next Page">{{ i18n['Next'] }}</a>
         {%- endif -%}
-
     </div>
 </nav>
 {%- endif %}
