@@ -280,7 +280,8 @@ $w$ 和 $b$ 是所有补丁共享的学习权重和偏置核。</li>
 <script>
     if ("" != "") {
         var start_site = new Date("");
-        document.getElementById("runday").innerHTML = start_site.getFullYear + "-" + Date().getFullYear();
+        var now_date = new Date();
+        document.getElementById("runday").innerHTML = start_site.getFullYear() + "-" + now_date.getFullYear();
     }
 </script></div>
 </body>

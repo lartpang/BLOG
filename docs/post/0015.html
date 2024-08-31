@@ -177,7 +177,8 @@
 <script>
     if ("" != "") {
         var start_site = new Date("");
-        document.getElementById("runday").innerHTML = start_site.getFullYear + "-" + Date().getFullYear();
+        var now_date = new Date();
+        document.getElementById("runday").innerHTML = start_site.getFullYear() + "-" + now_date.getFullYear();
     }
 </script></div>
 </body>
