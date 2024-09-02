@@ -1,4 +1,16 @@
 {
+  "P22": {
+    "labels": [
+      "tool"
+    ],
+    "labelColor": "#f9d0c4",
+    "post_type": "posts",
+    "post_title": "\u3010Zotero7\u3011\u91cd\u65b0\u5b89\u88c5\u4e0e\u6570\u636e\u914d\u7f6e",
+    "post_url": "https://lartpang.github.io/blog/post/0022.html",
+    "created_date": "2024-09-01",
+    "dateLabelColor": "#bc4c00",
+    "md_path": "/home/runner/work/blog/blog/backup/\u3010Zotero7\u3011\u91cd\u65b0\u5b89\u88c5\u4e0e\u6570\u636e\u914d\u7f6e.md"
+  },
   "P21": {
     "labels": [
       "tool"
