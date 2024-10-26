@@ -1,4 +1,16 @@
 {
+  "P23": {
+    "labels": [
+      "paper"
+    ],
+    "labelColor": "#78A3A1",
+    "post_type": "posts",
+    "post_title": "Privacy-Enhancing Technologies in Biomedical Data Science",
+    "post_url": "https://lartpang.github.io/blog/post/0023.html",
+    "created_date": "2024-10-26",
+    "dateLabelColor": "#bc4c00",
+    "md_path": "/home/runner/work/blog/blog/backup/Privacy-Enhancing Technologies in Biomedical Data Science.md"
+  },
   "P22": {
     "labels": [
       "tool"
