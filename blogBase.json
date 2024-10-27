@@ -23,6 +23,28 @@
   "rss_split": "sentence",
   "extra_links": {},
   "posts": {
+    "P23": {
+      "html_dir": "/home/runner/work/blog/blog/docs/post/0023.html",
+      "labels": [
+        "paper"
+      ],
+      "labelColor": "#78A3A1",
+      "post_type": "posts",
+      "post_title": "Privacy-Enhancing Technologies in Biomedical Data Science",
+      "post_url": "https://lartpang.github.io/blog/post/0023.html",
+      "post_source_url": "https://github.com/lartpang/blog/issues/23",
+      "num_comments": 0,
+      "num_words": 16901,
+      "description": "",
+      "top": 0,
+      "created_time": 1729950487,
+      "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
+      "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
+      "og_image": "https://avatars.githubusercontent.com/u/26847524",
+      "created_date": "2024-10-26",
+      "dateLabelColor": "#bc4c00",
+      "md_path": "/home/runner/work/blog/blog/backup/Privacy-Enhancing Technologies in Biomedical Data Science.md"
+    },
     "P22": {
       "html_dir": "/home/runner/work/blog/blog/docs/post/0022.html",
       "labels": [
@@ -506,28 +528,6 @@
       "created_date": "2024-03-25",
       "dateLabelColor": "#bc4c00",
       "md_path": "/home/runner/work/blog/blog/backup/Build OpenCV and OpenVINO for Windows 10 with VS 2022.md"
-    },
-    "P23": {
-      "html_dir": "/home/runner/work/blog/blog/docs/post/0023.html",
-      "labels": [
-        "paper"
-      ],
-      "labelColor": "#78A3A1",
-      "post_type": "posts",
-      "post_title": "Privacy-Enhancing Technologies in Biomedical Data Science",
-      "post_url": "https://lartpang.github.io/blog/post/0023.html",
-      "post_source_url": "https://github.com/lartpang/blog/issues/23",
-      "num_comments": 0,
-      "num_words": 16901,
-      "description": "",
-      "top": 0,
-      "created_time": 1729950487,
-      "style": "<style>\n  #postBody img {\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n\r\n",
-      "script": "<script src='https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js'></script>\n<script>\n  var imgLinks = document.querySelectorAll('#postBody a > img');\n  imgLinks.forEach(\n    function (imgLink) {\n      var parentLink = imgLink.parentElement;\n      parentLink.parentNode.insertBefore(parentLink.removeChild(imgLink), parentLink);\n      parentLink.parentNode.removeChild(parentLink);\n    }\n  );\n  mediumZoom('#postBody img');\n</script>\n\r\n",
-      "og_image": "https://avatars.githubusercontent.com/u/26847524",
-      "created_date": "2024-10-26",
-      "dateLabelColor": "#bc4c00",
-      "md_path": "/home/runner/work/blog/blog/backup/Privacy-Enhancing Technologies in Biomedical Data Science.md"
     }
   },
   "sub_pages": {},
