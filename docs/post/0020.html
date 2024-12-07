@@ -220,23 +220,23 @@
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># Model Class to be used for different ML algorithms</span>
 <span class="pl-k">class</span> <span class="pl-v">ClassifierModel</span>(<span class="pl-s1">object</span>):
     <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">clf</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-c1">None</span>):
-        <span class="pl-s1">self</span>.<span class="pl-s1">clf</span> <span class="pl-c1">=</span> <span class="pl-en">clf</span>(<span class="pl-c1">**</span><span class="pl-s1">params</span>)
+        <span class="pl-s1">self</span>.<span class="pl-c1">clf</span> <span class="pl-c1">=</span> <span class="pl-en">clf</span>(<span class="pl-c1">**</span><span class="pl-s1">params</span>)
 
 <span class="pl-k">def</span> <span class="pl-en">train</span>(<span class="pl-s1">self</span>, <span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>):
-        <span class="pl-s1">self</span>.<span class="pl-s1">clf</span>.<span class="pl-en">fit</span>(<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>)
+        <span class="pl-s1">self</span>.<span class="pl-c1">clf</span>.<span class="pl-c1">fit</span>(<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>)
     
     <span class="pl-k">def</span> <span class="pl-en">fit</span>(<span class="pl-s1">self</span>,<span class="pl-s1">x</span>,<span class="pl-s1">y</span>):
-        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-s1">clf</span>.<span class="pl-en">fit</span>(<span class="pl-s1">x</span>,<span class="pl-s1">y</span>)
+        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-c1">clf</span>.<span class="pl-c1">fit</span>(<span class="pl-s1">x</span>,<span class="pl-s1">y</span>)
     
     <span class="pl-k">def</span> <span class="pl-en">feature_importances</span>(<span class="pl-s1">self</span>,<span class="pl-s1">x</span>,<span class="pl-s1">y</span>):
-        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-s1">clf</span>.<span class="pl-en">fit</span>(<span class="pl-s1">x</span>,<span class="pl-s1">y</span>).<span class="pl-s1">feature_importances_</span>
+        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-c1">clf</span>.<span class="pl-c1">fit</span>(<span class="pl-s1">x</span>,<span class="pl-s1">y</span>).<span class="pl-c1">feature_importances_</span>
     
     <span class="pl-k">def</span> <span class="pl-en">predict</span>(<span class="pl-s1">self</span>, <span class="pl-s1">x</span>):
-        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-s1">clf</span>.<span class="pl-en">predict</span>(<span class="pl-s1">x</span>)
+        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-c1">clf</span>.<span class="pl-c1">predict</span>(<span class="pl-s1">x</span>)
 
 <span class="pl-k">def</span> <span class="pl-en">trainModel</span>(<span class="pl-s1">model</span>, <span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">x_test</span>, <span class="pl-s1">n_folds</span>, <span class="pl-s1">seed</span>):
-    <span class="pl-s1">cv</span> <span class="pl-c1">=</span> <span class="pl-v">KFold</span>(<span class="pl-s1">n_splits</span><span class="pl-c1">=</span> <span class="pl-s1">n_folds</span>, <span class="pl-s1">random_state</span><span class="pl-c1">=</span><span class="pl-s1">seed</span>)
-    <span class="pl-s1">scores</span> <span class="pl-c1">=</span> <span class="pl-en">cross_val_score</span>(<span class="pl-s1">model</span>.<span class="pl-s1">clf</span>, <span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">scoring</span><span class="pl-c1">=</span><span class="pl-s">'accuracy'</span>, <span class="pl-s1">cv</span><span class="pl-c1">=</span><span class="pl-s1">cv</span>, <span class="pl-s1">n_jobs</span><span class="pl-c1">=</span><span class="pl-c1">-</span><span class="pl-c1">1</span>)
+    <span class="pl-s1">cv</span> <span class="pl-c1">=</span> <span class="pl-en">KFold</span>(<span class="pl-s1">n_splits</span><span class="pl-c1">=</span> <span class="pl-s1">n_folds</span>, <span class="pl-s1">random_state</span><span class="pl-c1">=</span><span class="pl-s1">seed</span>)
+    <span class="pl-s1">scores</span> <span class="pl-c1">=</span> <span class="pl-en">cross_val_score</span>(<span class="pl-s1">model</span>.<span class="pl-c1">clf</span>, <span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">scoring</span><span class="pl-c1">=</span><span class="pl-s">'accuracy'</span>, <span class="pl-s1">cv</span><span class="pl-c1">=</span><span class="pl-s1">cv</span>, <span class="pl-s1">n_jobs</span><span class="pl-c1">=</span><span class="pl-c1">-</span><span class="pl-c1">1</span>)
     <span class="pl-k">return</span> <span class="pl-s1">scores</span></pre></div>
 <h3>Random Forest Classifier</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># Random Forest parameters</span>
@@ -246,7 +246,7 @@
     <span class="pl-s">'min_samples_leaf'</span>: <span class="pl-c1">3</span>,
     <span class="pl-s">'max_features'</span> : <span class="pl-s">'sqrt'</span>,
 }
-<span class="pl-s1">rfc_model</span> <span class="pl-c1">=</span> <span class="pl-v">ClassifierModel</span>(<span class="pl-s1">clf</span><span class="pl-c1">=</span><span class="pl-v">RandomForestClassifier</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-s1">rf_params</span>)
+<span class="pl-s1">rfc_model</span> <span class="pl-c1">=</span> <span class="pl-en">ClassifierModel</span>(<span class="pl-s1">clf</span><span class="pl-c1">=</span><span class="pl-v">RandomForestClassifier</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-s1">rf_params</span>)
 <span class="pl-s1">rfc_scores</span> <span class="pl-c1">=</span> <span class="pl-en">trainModel</span>(<span class="pl-s1">rfc_model</span>,<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">x_test</span>, <span class="pl-c1">5</span>, <span class="pl-c1">0</span>)</pre></div>
 <h3>Extra Trees Classifier</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># Extra Trees Parameters</span>
@@ -256,7 +256,7 @@
     <span class="pl-s">'max_depth'</span>: <span class="pl-c1">5</span>,
     <span class="pl-s">'min_samples_leaf'</span>: <span class="pl-c1">2</span>,
 }
-<span class="pl-s1">etc_model</span> <span class="pl-c1">=</span> <span class="pl-v">ClassifierModel</span>(<span class="pl-s1">clf</span><span class="pl-c1">=</span><span class="pl-v">ExtraTreesClassifier</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-s1">et_params</span>)
+<span class="pl-s1">etc_model</span> <span class="pl-c1">=</span> <span class="pl-en">ClassifierModel</span>(<span class="pl-s1">clf</span><span class="pl-c1">=</span><span class="pl-v">ExtraTreesClassifier</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-s1">et_params</span>)
 <span class="pl-s1">etc_scores</span> <span class="pl-c1">=</span> <span class="pl-en">trainModel</span>(<span class="pl-s1">etc_model</span>,<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">x_test</span>, <span class="pl-c1">5</span>, <span class="pl-c1">0</span>)</pre></div>
 <h3>AdaBoost Classifier</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># AdaBoost parameters</span>
@@ -264,7 +264,7 @@
     <span class="pl-s">'n_estimators'</span>: <span class="pl-c1">400</span>,
     <span class="pl-s">'learning_rate'</span> : <span class="pl-c1">0.65</span>
 }
-<span class="pl-s1">ada_model</span> <span class="pl-c1">=</span> <span class="pl-v">ClassifierModel</span>(<span class="pl-s1">clf</span><span class="pl-c1">=</span><span class="pl-v">AdaBoostClassifier</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-s1">ada_params</span>)
+<span class="pl-s1">ada_model</span> <span class="pl-c1">=</span> <span class="pl-en">ClassifierModel</span>(<span class="pl-s1">clf</span><span class="pl-c1">=</span><span class="pl-v">AdaBoostClassifier</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-s1">ada_params</span>)
 <span class="pl-s1">ada_scores</span> <span class="pl-c1">=</span> <span class="pl-en">trainModel</span>(<span class="pl-s1">ada_model</span>,<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">x_test</span>, <span class="pl-c1">5</span>, <span class="pl-c1">0</span>)</pre></div>
 <h3>XGBoost Classifier</h3>
 <h1>Gradient Boosting parameters</h1>
@@ -273,18 +273,18 @@
     <span class="pl-s">'n_estimators'</span>: <span class="pl-c1">400</span>,
     <span class="pl-s">'max_depth'</span>: <span class="pl-c1">6</span>,
 }
-<span class="pl-s1">gbc_model</span> <span class="pl-c1">=</span> <span class="pl-v">ClassifierModel</span>(<span class="pl-s1">clf</span><span class="pl-c1">=</span><span class="pl-v">GradientBoostingClassifier</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-s1">gb_params</span>)
+<span class="pl-s1">gbc_model</span> <span class="pl-c1">=</span> <span class="pl-en">ClassifierModel</span>(<span class="pl-s1">clf</span><span class="pl-c1">=</span><span class="pl-v">GradientBoostingClassifier</span>, <span class="pl-s1">params</span><span class="pl-c1">=</span><span class="pl-s1">gb_params</span>)
 <span class="pl-s1">gbc_scores</span> <span class="pl-c1">=</span> <span class="pl-en">trainModel</span>(<span class="pl-s1">gbc_model</span>,<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">x_test</span>, <span class="pl-c1">5</span>, <span class="pl-c1">0</span>)</pre></div>
 <p>让我们将所有模型交叉验证精度结合在五个折上。</p>
 <p>现在，让我们构建一个堆叠模型，其中一个新的更强的模型从所有这些弱学习器中学习预测。我们用于训练先前模型的标签向量将保持不变。特征是从每个分类器收集的预测。</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">x_train</span> <span class="pl-c1">=</span> <span class="pl-s1">np</span>.<span class="pl-en">column_stack</span>((<span class="pl-s1">etc_train_pred</span>, <span class="pl-s1">rfc_train_pred</span>, <span class="pl-s1">ada_train_pred</span>, <span class="pl-s1">gbc_train_pred</span>, <span class="pl-s1">svc_train_pred</span>))</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">x_train</span> <span class="pl-c1">=</span> <span class="pl-s1">np</span>.<span class="pl-c1">column_stack</span>((<span class="pl-s1">etc_train_pred</span>, <span class="pl-s1">rfc_train_pred</span>, <span class="pl-s1">ada_train_pred</span>, <span class="pl-s1">gbc_train_pred</span>, <span class="pl-s1">svc_train_pred</span>))</pre></div>
 <p>现在，让我们看看构建 XGBoost 模型仅学习生成的预测是否会表现得更好。但首先，我们将快速了解分类器预测之间的相关性。</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/878be318c2b9cc1b02df5c10b1ba05a6680bc77819e4e6cab874305f5b3e2614/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f31305f656e73656d626c652d6d6f64656c2e706e67"><img src="https://camo.githubusercontent.com/878be318c2b9cc1b02df5c10b1ba05a6680bc77819e4e6cab874305f5b3e2614/687474703a2f2f6275696c74696e2e636f6d2f73697465732f7777772e6275696c74696e2e636f6d2f66696c65732f7374796c65732f636b656469746f725f6f7074696d697a652f7075626c69632f696e6c696e652d696d616765732f31305f656e73656d626c652d6d6f64656c2e706e67" alt="集成模型" data-canonical-src="http://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/10_ensemble-model.png" style="max-width: 100%;"></a></p>
 <p><em>图 9：分类器投票标签之间的 Pearson 相关性</em></p>
 <p>现在，我们将构建一个模型来组合来自多个贡献分类器的预测。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">trainStackModel</span>(<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">x_test</span>, <span class="pl-s1">n_folds</span>, <span class="pl-s1">seed</span>):
-    <span class="pl-s1">cv</span> <span class="pl-c1">=</span> <span class="pl-v">KFold</span>(<span class="pl-s1">n_splits</span><span class="pl-c1">=</span><span class="pl-s1">n_folds</span>, <span class="pl-s1">random_state</span><span class="pl-c1">=</span><span class="pl-s1">seed</span>)
-    <span class="pl-s1">gbm</span> <span class="pl-c1">=</span> <span class="pl-s1">xgb</span>.<span class="pl-v">XGBClassifier</span>(
+    <span class="pl-s1">cv</span> <span class="pl-c1">=</span> <span class="pl-en">KFold</span>(<span class="pl-s1">n_splits</span><span class="pl-c1">=</span><span class="pl-s1">n_folds</span>, <span class="pl-s1">random_state</span><span class="pl-c1">=</span><span class="pl-s1">seed</span>)
+    <span class="pl-s1">gbm</span> <span class="pl-c1">=</span> <span class="pl-s1">xgb</span>.<span class="pl-c1">XGBClassifier</span>(
         <span class="pl-s1">n_estimators</span><span class="pl-c1">=</span><span class="pl-c1">2000</span>,
         <span class="pl-s1">max_depth</span><span class="pl-c1">=</span><span class="pl-c1">4</span>,
         <span class="pl-s1">min_child_weight</span><span class="pl-c1">=</span><span class="pl-c1">2</span>,
@@ -292,7 +292,7 @@
         <span class="pl-s1">subsample</span><span class="pl-c1">=</span><span class="pl-c1">0.8</span>,
         <span class="pl-s1">colsample_bytree</span><span class="pl-c1">=</span><span class="pl-c1">0.8</span>,
         <span class="pl-s1">objective</span><span class="pl-c1">=</span><span class="pl-s">'binary:logistic'</span>,
-        <span class="pl-s1">scale_pos_weight</span><span class="pl-c1">=</span><span class="pl-c1">1</span>).<span class="pl-en">fit</span>(<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>)
+        <span class="pl-s1">scale_pos_weight</span><span class="pl-c1">=</span><span class="pl-c1">1</span>).<span class="pl-c1">fit</span>(<span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>)
     
     <span class="pl-s1">scores</span> <span class="pl-c1">=</span> <span class="pl-en">cross_val_score</span>(<span class="pl-s1">gbm</span>, <span class="pl-s1">x_train</span>, <span class="pl-s1">y_train</span>, <span class="pl-s1">scoring</span><span class="pl-c1">=</span><span class="pl-s">'accuracy'</span>, <span class="pl-s1">cv</span><span class="pl-c1">=</span><span class="pl-s1">cv</span>)
     <span class="pl-k">return</span> <span class="pl-s1">scores</span></pre></div>
